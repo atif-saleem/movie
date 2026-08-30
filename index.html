@@ -1,0 +1,802 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StreamVault | Cinema & Events Vault</title>
+
+    <!-- FontAwesome Icons & Google Fonts -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg-main: #0b0f19;
+        --bg-card: rgba(23, 31, 48, 0.7);
+        --bg-glass: rgba(15, 23, 42, 0.75);
+        --accent: #6366f1;
+        --accent-hover: #4f46e5;
+        --accent-glow: rgba(99, 102, 241, 0.35);
+        --text-main: #f8fafc;
+        --text-sub: #94a3b8;
+        --border: rgba(255, 255, 255, 0.08);
+        --radius: 16px;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background: var(--bg-main);
+        color: var(--text-main);
+        min-height: 100vh;
+        overflow-x: hidden;
+        background-image:
+          radial-gradient(
+            circle at 15% 15%,
+            rgba(99, 102, 241, 0.12) 0%,
+            transparent 45%
+          ),
+          radial-gradient(
+            circle at 85% 85%,
+            rgba(168, 85, 247, 0.08) 0%,
+            transparent 45%
+          );
+      }
+
+      /* Animated background grid */
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image:
+          linear-gradient(var(--border) 1px, transparent 1px),
+          linear-gradient(90deg, var(--border) 1px, transparent 1px);
+        background-size: 40px 40px;
+        z-index: -1;
+        opacity: 0.3;
+      }
+
+      /* Layout Structure */
+      .app-header {
+        backdrop-filter: blur(12px);
+        background: var(--bg-glass);
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        padding: 1rem 2rem;
+      }
+
+      .header-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 1.25rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #fff 30%, #a5b4fc 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .brand i {
+        color: var(--accent);
+        -webkit-text-fill-color: initial;
+        font-size: 1.5rem;
+        filter: drop-shadow(0 0 8px var(--accent-glow));
+      }
+
+      .main-container {
+        max-width: 1400px;
+        margin: 2rem auto;
+        padding: 0 1.5rem;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      @media (min-width: 1024px) {
+        .main-container {
+          grid-template-columns: 1fr 380px;
+        }
+      }
+
+      /* Glassmorphic Panel Styling */
+      .panel {
+        background: var(--bg-card);
+        backdrop-filter: blur(16px);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 1.5rem;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        animation: fadeIn 0.6s ease-out;
+      }
+
+      /* Player Container */
+      .player-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+      }
+
+      .screen-box {
+        position: relative;
+        width: 100%;
+        padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        background: #000;
+        border-radius: calc(var(--radius) - 4px);
+        overflow: hidden;
+        border: 1px solid var(--border);
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+      }
+
+      .screen-box iframe,
+      .screen-placeholder {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+
+      /* Pop-out Overlay Blocker */
+      .popout-blocker {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 65px;
+        height: 65px;
+        z-index: 10;
+        background: transparent;
+        pointer-events: auto;
+      }
+
+      .screen-placeholder {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        color: var(--text-sub);
+        background: radial-gradient(
+          circle,
+          rgba(30, 41, 59, 0.8) 0%,
+          rgba(15, 23, 42, 1) 100%
+        );
+        text-align: center;
+        padding: 2rem;
+      }
+
+      .screen-placeholder i {
+        font-size: 3.5rem;
+        color: var(--accent);
+        animation: pulse 2s infinite;
+      }
+
+      .video-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .video-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--text-main);
+      }
+
+      .category-badge {
+        background: rgba(99, 102, 241, 0.2);
+        color: var(--accent);
+        border: 1px solid rgba(99, 102, 241, 0.4);
+        padding: 0.35rem 0.85rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      /* Input & Add Video Panel */
+      .input-group {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .field-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      label {
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: var(--text-sub);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      input[type="text"],
+      select {
+        width: 100%;
+        padding: 0.85rem 1rem;
+        background: rgba(15, 23, 42, 0.6);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        color: #fff;
+        font-size: 0.95rem;
+        outline: none;
+        transition: all 0.3s ease;
+      }
+
+      select option {
+        background: #0f172a;
+        color: #fff;
+      }
+
+      input[type="text"]:focus,
+      select:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 12px var(--accent-glow);
+        background: rgba(15, 23, 42, 0.9);
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.85rem 1.5rem;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        cursor: pointer;
+        border: none;
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, var(--accent) 0%, #4338ca 100%);
+        color: #fff;
+        box-shadow: 0 4px 15px var(--accent-glow);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px var(--accent-glow);
+        background: linear-gradient(135deg, #6d28d9 0%, var(--accent) 100%);
+      }
+
+      /* Category Filter Tabs */
+      .tabs-container {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 0.75rem;
+        overflow-x: auto;
+      }
+
+      .tab-btn {
+        background: transparent;
+        border: none;
+        color: var(--text-sub);
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+        border-radius: 8px;
+        transition: all 0.25s ease;
+        white-space: nowrap;
+      }
+
+      .tab-btn:hover {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .tab-btn.active {
+        color: #fff;
+        background: var(--accent);
+        box-shadow: 0 0 12px var(--accent-glow);
+      }
+
+      /* Playlist Sidebar */
+      .playlist-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.75rem;
+      }
+
+      .playlist-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .playlist-items {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        max-height: 420px;
+        overflow-y: auto;
+        padding-right: 0.25rem;
+      }
+
+      .playlist-items::-webkit-scrollbar {
+        width: 5px;
+      }
+      .playlist-items::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .playlist-items::-webkit-scrollbar-thumb {
+        background: var(--border);
+        border-radius: 10px;
+      }
+
+      .playlist-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.85rem 1rem;
+        background: rgba(15, 23, 42, 0.4);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.25s ease;
+      }
+
+      .playlist-item:hover {
+        background: rgba(99, 102, 241, 0.1);
+        border-color: rgba(99, 102, 241, 0.3);
+        transform: translateX(4px);
+      }
+
+      .playlist-item.active {
+        background: rgba(99, 102, 241, 0.18);
+        border-color: var(--accent);
+      }
+
+      .item-info {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        overflow: hidden;
+      }
+
+      .item-info i {
+        color: var(--accent);
+        font-size: 1.1rem;
+      }
+
+      .item-details {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      .item-name {
+        font-size: 0.9rem;
+        font-weight: 500;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 180px;
+      }
+
+      .item-category {
+        font-size: 0.75rem;
+        color: var(--text-sub);
+      }
+
+      .item-actions {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .action-btn {
+        background: none;
+        border: none;
+        color: var(--text-sub);
+        cursor: pointer;
+        padding: 0.25rem;
+        font-size: 0.9rem;
+        transition: color 0.2s ease;
+      }
+
+      .action-btn:hover {
+        color: #ef4444;
+      }
+
+      /* Toast Notification */
+      .toast {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #1e293b;
+        color: #fff;
+        padding: 0.85rem 1.5rem;
+        border-radius: 10px;
+        border-left: 4px solid var(--accent);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        transform: translateY(100px);
+        opacity: 0;
+        transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        z-index: 1000;
+      }
+
+      .toast.show {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      /* Animations */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(15px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 0.8;
+        }
+        50% {
+          transform: scale(1.05);
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-container">
+        <div class="brand">
+          <i class="fa-solid fa-circle-play"></i>
+          <span>StreamVault</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Interface -->
+    <main class="main-container">
+      <!-- Player View -->
+      <section class="player-wrapper">
+        <div class="panel">
+          <div class="screen-box" id="screenBox">
+            <div class="screen-placeholder" id="placeholder">
+              <i class="fa-solid fa-photo-film"></i>
+              <h3>No Video Playing</h3>
+              <p>
+                Select a video from your vault on the right to start playback.
+              </p>
+            </div>
+          </div>
+          <div class="video-info" style="margin-top: 1.25rem">
+            <h2 class="video-title" id="currentTitle">
+              Select a video to play
+            </h2>
+            <span
+              class="category-badge"
+              id="currentCategory"
+              style="display: none"
+              >Barat</span
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- Side Control Panel -->
+      <aside class="sidebar-wrapper">
+        <div class="panel">
+          <!-- Add Video Form -->
+          <form class="input-group" id="videoForm">
+            <div class="field-wrapper">
+              <label for="videoTitle">Video Title</label>
+              <input
+                type="text"
+                id="videoTitle"
+                placeholder="e.g. Walima Highlights"
+                required
+              />
+            </div>
+
+            <div class="field-wrapper">
+              <label for="videoCategory">Event / Category</label>
+              <select id="videoCategory" required>
+                <option value="Barat">Barat</option>
+                <option value="Walima">Walima</option>
+                <option value="Mehendi">Mehendi</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div class="field-wrapper">
+              <label for="driveUrl">Google Drive Link</label>
+              <input
+                type="text"
+                id="driveUrl"
+                placeholder="https://drive.google.com/file/d/.../view"
+                required
+              />
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+              <i class="fa-solid fa-plus"></i> Add Video to Vault
+            </button>
+          </form>
+
+          <!-- Category Filter Tabs -->
+          <div class="tabs-container">
+            <button class="tab-btn active" onclick="filterCategory('All')">
+              All
+            </button>
+            <button class="tab-btn" onclick="filterCategory('Barat')">
+              Barat
+            </button>
+            <button class="tab-btn" onclick="filterCategory('Walima')">
+              Walima
+            </button>
+            <button class="tab-btn" onclick="filterCategory('Mehendi')">
+              Mehendi
+            </button>
+            <button class="tab-btn" onclick="filterCategory('Other')">
+              Other
+            </button>
+          </div>
+
+          <!-- Playlist -->
+          <div class="playlist-header">
+            <span class="playlist-title">
+              <i class="fa-solid fa-list-ul"></i> Video Vault
+            </span>
+            <span
+              style="font-size: 0.8rem; color: var(--text-sub)"
+              id="itemCount"
+              >0 Videos</span
+            >
+          </div>
+
+          <div class="playlist-items" id="playlist">
+            <!-- Dynamically Populated -->
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <!-- Notification Toast -->
+    <div class="toast" id="toast">Notice message</div>
+
+    <script>
+      const STORAGE_KEY = "streamvault_events_v2";
+      let videos = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+      let currentVideoId = null;
+      let activeFilter = "All";
+
+      // Pre-populated default videos
+      const defaultVideos = [
+        {
+          id: "default_barat",
+          title: "Barat Event",
+          category: "Barat",
+          url: "https://drive.google.com/file/d/1ip4fmeNw7FB4lUht_4HTNJjJM3t87cHS/view?usp=drive_link",
+        },
+        {
+          id: "default_walima",
+          title: "Walima Ceremony",
+          category: "Walima",
+          url: "https://drive.google.com/file/d/1p2RXktJmJ0toFE8WGleOCakwbxensq8L/view?usp=drive_link",
+        },
+      ];
+
+      // DOM References
+      const screenBox = document.getElementById("screenBox");
+      const currentTitle = document.getElementById("currentTitle");
+      const currentCategory = document.getElementById("currentCategory");
+      const videoForm = document.getElementById("videoForm");
+      const videoTitleInput = document.getElementById("videoTitle");
+      const videoCategoryInput = document.getElementById("videoCategory");
+      const driveUrlInput = document.getElementById("driveUrl");
+      const playlistContainer = document.getElementById("playlist");
+      const itemCount = document.getElementById("itemCount");
+      const toast = document.getElementById("toast");
+
+      function extractDriveId(url) {
+        const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+        return match ? match[1] : null;
+      }
+
+      function saveState() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(videos));
+        renderPlaylist();
+      }
+
+      function showToast(message) {
+        toast.textContent = message;
+        toast.classList.add("show");
+        setTimeout(() => toast.classList.remove("show"), 3000);
+      }
+
+      function loadVideo(id) {
+        const item = videos.find((v) => v.id === id);
+        if (!item) return;
+
+        const driveId = extractDriveId(item.url);
+        if (!driveId) {
+          showToast("Invalid Google Drive link");
+          return;
+        }
+
+        currentVideoId = id;
+        const embedUrl = `https://drive.google.com/file/d/${driveId}/preview`;
+
+        // Render iframe along with overlay blocker
+        screenBox.innerHTML = `
+        <iframe src="${embedUrl}" allow="autoplay" allowfullscreen></iframe>
+        <div class="popout-blocker"></div>
+      `;
+        currentTitle.textContent = item.title;
+        currentCategory.textContent = item.category;
+        currentCategory.style.display = "inline-block";
+
+        renderPlaylist();
+      }
+
+      function filterCategory(category) {
+        activeFilter = category;
+
+        document.querySelectorAll(".tab-btn").forEach((btn) => {
+          if (btn.textContent === category) {
+            btn.classList.add("active");
+          } else {
+            btn.classList.remove("active");
+          }
+        });
+
+        renderPlaylist();
+      }
+
+      function renderPlaylist() {
+        playlistContainer.innerHTML = "";
+
+        const filteredVideos =
+          activeFilter === "All"
+            ? videos
+            : videos.filter((v) => v.category === activeFilter);
+
+        itemCount.textContent = `${filteredVideos.length} ${filteredVideos.length === 1 ? "Video" : "Videos"}`;
+
+        if (filteredVideos.length === 0) {
+          playlistContainer.innerHTML = `
+          <div style="text-align: center; color: var(--text-sub); padding: 2rem 0; font-size: 0.9rem;">
+            No videos in "${activeFilter}" category.
+          </div>`;
+          return;
+        }
+
+        filteredVideos.forEach((item) => {
+          const div = document.createElement("div");
+          div.className = `playlist-item ${item.id === currentVideoId ? "active" : ""}`;
+          div.onclick = () => loadVideo(item.id);
+
+          div.innerHTML = `
+          <div class="item-info">
+            <i class="fa-solid ${item.id === currentVideoId ? "fa-circle-play" : "fa-film"}"></i>
+            <div class="item-details">
+              <span class="item-name" title="${item.title}">${item.title}</span>
+              <span class="item-category">${item.category}</span>
+            </div>
+          </div>
+          <div class="item-actions">
+            <button class="action-btn" onclick="deleteVideo(event, '${item.id}')" title="Delete">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </div>
+        `;
+          playlistContainer.appendChild(div);
+        });
+      }
+
+      videoForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const title = videoTitleInput.value.trim();
+        const category = videoCategoryInput.value;
+        const url = driveUrlInput.value.trim();
+        const driveId = extractDriveId(url);
+
+        if (!driveId) {
+          showToast("Please enter a valid Google Drive file URL");
+          return;
+        }
+
+        const newVideo = {
+          id: "vid_" + Date.now(),
+          title: title,
+          category: category,
+          url: url,
+        };
+
+        videos.unshift(newVideo);
+        saveState();
+
+        videoTitleInput.value = "";
+        driveUrlInput.value = "";
+
+        loadVideo(newVideo.id);
+        showToast("Video added to vault");
+      });
+
+      window.deleteVideo = function (e, id) {
+        e.stopPropagation();
+        videos = videos.filter((v) => v.id !== id);
+
+        if (currentVideoId === id) {
+          currentVideoId = null;
+          screenBox.innerHTML = `
+          <div class="screen-placeholder" id="placeholder">
+            <i class="fa-solid fa-photo-film"></i>
+            <h3>No Video Playing</h3>
+            <p>Select a video from your vault on the right to start playback.</p>
+          </div>`;
+          currentTitle.textContent = "Select a video to play";
+          currentCategory.style.display = "none";
+        }
+
+        saveState();
+        showToast("Video removed");
+      };
+
+      // System Init
+      (function init() {
+        if (videos.length === 0) {
+          videos = defaultVideos;
+          saveState();
+        } else {
+          renderPlaylist();
+        }
+        if (videos.length > 0) {
+          loadVideo(videos[0].id);
+        }
+      })();
+    </script>
+  </body>
+</html>
