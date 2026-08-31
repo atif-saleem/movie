@@ -1,894 +1,730 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#111111">
-  <meta name="description" content="A beautiful wedding celebration for Muhammad Kashif Saleem and Mrs. Kashif — Pre-Wedding, Mehndi, Barat and Walima.">
-  <title>Muhammad Kashif Saleem & Mrs. Kashif | Wedding Memories</title>
-
-  <style>
-    :root{
-      --ink:#171717;
-      --muted:#777;
-      --soft:#f7f5f2;
-      --paper:#fff;
-      --line:#e8e4de;
-      --gold:#b18a4a;
-      --gold-dark:#8d6a32;
-      --shadow:0 20px 60px rgba(25,20,10,.10);
-      --radius:24px;
-    }
-
-    *{box-sizing:border-box;margin:0;padding:0}
-
-    html{scroll-behavior:smooth}
-
-    body{
-      font-family: Georgia, "Times New Roman", serif;
-      color:var(--ink);
-      background:var(--paper);
-      line-height:1.6;
-      overflow-x:hidden;
-    }
-
-    button,a{font:inherit}
-    a{text-decoration:none;color:inherit}
-
-    .sans{
-      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-    }
-
-    /* ---------- Navigation ---------- */
-    .nav{
-      position:fixed;
-      top:0;
-      left:0;
-      width:100%;
-      z-index:1000;
-      padding:18px 5%;
-      transition:.3s ease;
-    }
-
-    .nav.scrolled{
-      background:rgba(255,255,255,.94);
-      backdrop-filter:blur(14px);
-      box-shadow:0 1px 0 var(--line);
-      padding:12px 5%;
-    }
-
-    .nav-inner{
-      max-width:1200px;
-      margin:auto;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:20px;
-    }
-
-    .brand{
-      font-size:20px;
-      font-weight:bold;
-      letter-spacing:.04em;
-      white-space:nowrap;
-    }
-
-    .brand span{color:var(--gold)}
-
-    .nav-links{
-      display:flex;
-      gap:25px;
-      list-style:none;
-      align-items:center;
-    }
-
-    .nav-links a{
-      font-family:Inter,ui-sans-serif,system-ui,sans-serif;
-      font-size:13px;
-      color:#444;
-      transition:.2s;
-    }
-
-    .nav-links a:hover{color:var(--gold-dark)}
-
-    .menu-btn{
-      display:none;
-      border:0;
-      background:none;
-      cursor:pointer;
-      font-size:24px;
-    }
-
-    /* ---------- Hero ---------- */
-    .hero{
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      position:relative;
-      padding:120px 20px 80px;
-      overflow:hidden;
-      background:
-        radial-gradient(circle at 20% 20%,rgba(177,138,74,.12),transparent 30%),
-        radial-gradient(circle at 80% 75%,rgba(177,138,74,.10),transparent 30%),
-        linear-gradient(135deg,#fff,#faf8f4);
-    }
-
-    .hero:before,
-    .hero:after{
-      content:"";
-      position:absolute;
-      border:1px solid rgba(177,138,74,.28);
-      border-radius:50%;
-      pointer-events:none;
-    }
-
-    .hero:before{
-      width:520px;height:520px;
-      top:-270px;left:-170px;
-    }
-
-    .hero:after{
-      width:650px;height:650px;
-      bottom:-420px;right:-260px;
-    }
-
-    .hero-content{
-      position:relative;
-      z-index:2;
-      max-width:900px;
-    }
-
-    .eyebrow{
-      font-family:Inter,ui-sans-serif,system-ui,sans-serif;
-      text-transform:uppercase;
-      letter-spacing:.32em;
-      font-size:11px;
-      color:var(--gold-dark);
-      font-weight:700;
-      margin-bottom:25px;
-    }
-
-    .hero h1{
-      font-size:clamp(48px,8vw,94px);
-      line-height:.98;
-      font-weight:400;
-      letter-spacing:-.045em;
-    }
-
-    .hero h1 .amp{
-      color:var(--gold);
-      font-style:italic;
-      font-size:.72em;
-      display:inline-block;
-      margin:0 .08em;
-    }
-
-    .hero-sub{
-      max-width:600px;
-      margin:28px auto 0;
-      color:#68645f;
-      font-size:18px;
-    }
-
-    .hero-actions{
-      display:flex;
-      justify-content:center;
-      gap:12px;
-      margin-top:38px;
-      flex-wrap:wrap;
-    }
-
-    .btn{
-      border:1px solid var(--ink);
-      background:var(--ink);
-      color:#fff;
-      padding:13px 23px;
-      border-radius:999px;
-      cursor:pointer;
-      font-family:Inter,ui-sans-serif,system-ui,sans-serif;
-      font-size:13px;
-      transition:.25s;
-    }
-
-    .btn:hover{
-      background:var(--gold-dark);
-      border-color:var(--gold-dark);
-      transform:translateY(-2px);
-    }
-
-    .btn.light{
-      background:transparent;
-      color:var(--ink);
-      border-color:#ccc5ba;
-    }
-
-    .btn.light:hover{
-      background:#fff;
-      border-color:var(--gold);
-      color:var(--gold-dark);
-    }
-
-    .scroll-hint{
-      position:absolute;
-      bottom:28px;
-      left:50%;
-      transform:translateX(-50%);
-      font-family:Inter,ui-sans-serif,system-ui,sans-serif;
-      font-size:10px;
-      letter-spacing:.2em;
-      color:#999;
-      text-transform:uppercase;
-    }
-
-    .scroll-hint:after{
-      content:"";
-      display:block;
-      width:1px;height:35px;
-      background:#cfc8bd;
-      margin:8px auto 0;
-    }
-
-    /* ---------- Intro ---------- */
-    .intro{
-      padding:105px 20px;
-      text-align:center;
-      background:#fff;
-    }
-
-    .section-wrap{
-      width:min(1100px,100%);
-      margin:auto;
-    }
-
-    .section-label{
-      color:var(--gold-dark);
-      font-family:Inter,ui-sans-serif,system-ui,sans-serif;
-      font-size:11px;
-      text-transform:uppercase;
-      letter-spacing:.25em;
-      font-weight:700;
-      margin-bottom:16px;
-    }
-
-    .intro h2,
-    .memories h2{
-      font-size:clamp(34px,5vw,54px);
-      font-weight:400;
-      line-height:1.1;
-    }
-
-    .intro p{
-      max-width:680px;
-      margin:22px auto 0;
-      color:var(--muted);
-      font-size:17px;
-    }
-
-    /* ---------- Event Cards ---------- */
-    .memories{
-      padding:100px 20px 120px;
-      background:var(--soft);
-    }
-
-    .memories-head{
-      text-align:center;
-      margin-bottom:55px;
-    }
-
-    .event-grid{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:24px;
-    }
-
-    .event-card{
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      overflow:hidden;
-      box-shadow:0 8px 30px rgba(30,25,15,.04);
-      transition:transform .3s ease,box-shadow .3s ease;
-    }
-
-    .event-card:hover{
-      transform:translateY(-5px);
-      box-shadow:var(--shadow);
-    }
-
-    .event-card.featured{
-      grid-column:1/-1;
-      display:grid;
-      grid-template-columns:1.25fr .75fr;
-    }
-
-    .video-frame{
-      position:relative;
-      aspect-ratio:16/9;
-      background:#111;
-      overflow:hidden;
-    }
-
-    .featured .video-frame{aspect-ratio:auto;min-height:380px}
-
-    .video-frame iframe{
-      width:100%;
-      height:100%;
-      border:0;
-      display:block;
-    }
-
-    .video-overlay{
-      position:absolute;
-      inset:0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:linear-gradient(135deg,rgba(0,0,0,.15),rgba(0,0,0,.45));
-      pointer-events:none;
-    }
-
-    .play-ring{
-      width:72px;height:72px;
-      border-radius:50%;
-      background:rgba(255,255,255,.94);
-      display:grid;
-      place-items:center;
-      box-shadow:0 8px 30px rgba(0,0,0,.2);
-      transition:.25s;
-    }
-
-    .event-card:hover .play-ring{transform:scale(1.06)}
-
-    .play-ring:before{
-      content:"";
-      margin-left:4px;
-      border-left:18px solid var(--ink);
-      border-top:11px solid transparent;
-      border-bottom:11px solid transparent;
-    }
-
-    .video-overlay.hidden{display:none}
-
-    .event-content{
-      padding:30px;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-    }
-
-    .event-number{
-      color:var(--gold);
-      font-family:Inter,ui-sans-serif,system-ui,sans-serif;
-      font-size:11px;
-      font-weight:800;
-      letter-spacing:.2em;
-      margin-bottom:10px;
-    }
-
-    .event-content h3{
-      font-size:34px;
-      line-height:1.1;
-      font-weight:400;
-      margin-bottom:12px;
-    }
-
-    .event-content p{
-      color:#777;
-      font-family:Inter,ui-sans-serif,system-ui,sans-serif;
-      font-size:14px;
-      line-height:1.75;
-      margin-bottom:22px;
-    }
-
-    .watch{
-      align-self:flex-start;
-      border:0;
-      border-bottom:1px solid var(--gold);
-      background:none;
-      color:#5f4928;
-      cursor:pointer;
-      padding:4px 0;
-      font-family:Inter,ui-sans-serif,system-ui,sans-serif;
-      font-size:12px;
-      font-weight:700;
-      letter-spacing:.05em;
-    }
-
-    /* ---------- Closing ---------- */
-    .closing{
-      padding:120px 20px;
-      text-align:center;
-      background:#fff;
-    }
-
-    .closing .ornament{
-      color:var(--gold);
-      font-size:28px;
-      margin-bottom:20px;
-    }
-
-    .closing h2{
-      font-size:clamp(38px,6vw,65px);
-      font-weight:400;
-      line-height:1.05;
-    }
-
-    .closing p{
-      color:#777;
-      margin:20px auto 0;
-      max-width:560px;
-      font-size:16px;
-    }
-
-    /* ---------- Footer ---------- */
-    footer{
-      padding:28px 20px;
-      border-top:1px solid var(--line);
-      text-align:center;
-      color:#8a8782;
-      font-family:Inter,ui-sans-serif,system-ui,sans-serif;
-      font-size:12px;
-    }
-
-    /* ---------- Modal ---------- */
-    .modal{
-      position:fixed;
-      inset:0;
-      z-index:2000;
-      display:none;
-      align-items:center;
-      justify-content:center;
-      padding:20px;
-      background:rgba(8,8,8,.86);
-      backdrop-filter:blur(8px);
-    }
-
-    .modal.open{display:flex}
-
-    .modal-box{
-      width:min(1100px,100%);
-      background:#111;
-      border-radius:18px;
-      overflow:hidden;
-      box-shadow:0 30px 100px rgba(0,0,0,.45);
-    }
-
-    .modal-top{
-      min-height:60px;
-      padding:12px 16px 12px 22px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:15px;
-      color:#fff;
-      font-family:Inter,ui-sans-serif,system-ui,sans-serif;
-    }
-
-    .modal-title{
-      font-size:14px;
-      font-weight:700;
-    }
-
-    .close{
-      width:38px;height:38px;
-      border-radius:50%;
-      border:1px solid #444;
-      background:#222;
-      color:#fff;
-      cursor:pointer;
-      font-size:20px;
-      line-height:1;
-    }
-
-    .close:hover{background:#333}
-
-    .modal-video{
-      aspect-ratio:16/9;
-      background:#000;
-    }
-
-    .modal-video iframe{
-      width:100%;
-      height:100%;
-      border:0;
-      display:block;
-    }
-
-    .modal-note{
-      padding:10px 18px 15px;
-      color:#999;
-      background:#111;
-      font:11px/1.5 Inter,ui-sans-serif,system-ui,sans-serif;
-      text-align:center;
-    }
-
-    /* ---------- Responsive ---------- */
-    @media(max-width:800px){
-      .nav-links{
-        position:absolute;
-        top:calc(100% + 5px);
-        left:20px;
-        right:20px;
-        display:none;
-        flex-direction:column;
-        align-items:stretch;
-        gap:0;
-        padding:8px;
-        background:rgba(255,255,255,.98);
-        border:1px solid var(--line);
-        border-radius:16px;
-        box-shadow:var(--shadow);
-      }
-
-      .nav-links.open{display:flex}
-
-      .nav-links li a{
-        display:block;
-        padding:12px 14px;
-        border-radius:10px;
-      }
-
-      .nav-links li a:hover{background:#f7f5f2}
-
-      .menu-btn{display:block}
-
-      .event-grid{grid-template-columns:1fr}
-
-      .event-card.featured{
-        grid-column:auto;
-        display:block;
-      }
-
-      .featured .video-frame{min-height:auto}
-
-      .event-content h3{font-size:30px}
-    }
-
-    @media(max-width:560px){
-      .nav{padding:15px 18px}
-      .brand{font-size:17px}
-
-      .hero{padding:110px 18px 75px}
-      .hero-sub{font-size:15px}
-      .hero h1{font-size:52px}
-
-      .intro,.memories,.closing{padding-top:75px;padding-bottom:80px}
-
-      .event-content{padding:23px}
-
-      .play-ring{width:60px;height:60px}
-      .play-ring:before{
-        border-left-width:15px;
-        border-top-width:9px;
-        border-bottom-width:9px;
-      }
-
-      .modal{padding:8px}
-      .modal-top{padding-left:14px}
-    }
-
-    @media(prefers-reduced-motion:reduce){
-      html{scroll-behavior:auto}
-      *{transition:none!important}
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#111111">
+<meta name="description" content="Wedding memories of Muhammad Kashif Saleem and Mrs. Kashif — Pre-Wedding, Mehndi, Barat and Walima.">
+<title>Muhammad Kashif Saleem & Mrs. Kashif | Wedding Memories</title>
+
+<style>
+:root{
+  --black:#151515;
+  --text:#252525;
+  --muted:#77736d;
+  --gold:#b28a4b;
+  --gold-dark:#8d6931;
+  --cream:#f8f6f2;
+  --white:#fff;
+  --border:#e8e3da;
+  --shadow:0 18px 55px rgba(35,27,15,.09);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+  background:var(--white);
+  color:var(--text);
+  font-family:Georgia,"Times New Roman",serif;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+
+button,a{font:inherit}
+a{text-decoration:none;color:inherit}
+
+.container{
+  width:min(1120px,calc(100% - 40px));
+  margin:auto;
+}
+
+/* NAVIGATION */
+.nav{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:1000;
+  padding:19px 0;
+  transition:.3s ease;
+}
+
+.nav.scrolled{
+  background:rgba(255,255,255,.94);
+  backdrop-filter:blur(15px);
+  box-shadow:0 1px 0 var(--border);
+  padding:12px 0;
+}
+
+.nav-inner{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  font-size:20px;
+  font-weight:bold;
+  letter-spacing:.03em;
+}
+
+.logo span{color:var(--gold)}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:30px;
+  list-style:none;
+}
+
+.nav-links a{
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:12px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:#555;
+}
+
+.nav-links a:hover{color:var(--gold-dark)}
+
+.menu{
+  display:none;
+  border:0;
+  background:none;
+  font-size:25px;
+  cursor:pointer;
+}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  overflow:hidden;
+  padding:120px 20px 90px;
+  background:
+    radial-gradient(circle at 15% 20%,rgba(178,138,75,.13),transparent 30%),
+    radial-gradient(circle at 85% 75%,rgba(178,138,75,.10),transparent 30%),
+    linear-gradient(135deg,#fff,#faf8f4);
+}
+
+.hero:before,
+.hero:after{
+  content:"";
+  position:absolute;
+  border:1px solid rgba(178,138,75,.25);
+  border-radius:50%;
+}
+
+.hero:before{
+  width:570px;
+  height:570px;
+  top:-330px;
+  left:-180px;
+}
+
+.hero:after{
+  width:700px;
+  height:700px;
+  right:-360px;
+  bottom:-430px;
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+  max-width:950px;
+}
+
+.eyebrow,
+.section-label{
+  font-family:Arial,Helvetica,sans-serif;
+  text-transform:uppercase;
+  letter-spacing:.28em;
+  font-size:11px;
+  font-weight:bold;
+  color:var(--gold-dark);
+}
+
+.eyebrow{margin-bottom:25px}
+
+.hero h1{
+  font-size:clamp(48px,8vw,94px);
+  line-height:.98;
+  font-weight:400;
+  letter-spacing:-.045em;
+}
+
+.amp{
+  color:var(--gold);
+  font-style:italic;
+  margin:0 .08em;
+}
+
+.hero-text{
+  max-width:640px;
+  margin:28px auto 0;
+  color:var(--muted);
+  font-size:18px;
+}
+
+.hero-btn{
+  display:inline-block;
+  margin-top:36px;
+  padding:13px 25px;
+  border-radius:100px;
+  background:var(--black);
+  color:#fff;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:12px;
+  font-weight:bold;
+  letter-spacing:.04em;
+  transition:.25s;
+}
+
+.hero-btn:hover{
+  background:var(--gold-dark);
+  transform:translateY(-2px);
+}
+
+.scroll{
+  position:absolute;
+  bottom:25px;
+  left:50%;
+  transform:translateX(-50%);
+  font:10px Arial,Helvetica,sans-serif;
+  text-transform:uppercase;
+  letter-spacing:.22em;
+  color:#999;
+}
+
+.scroll:after{
+  content:"";
+  display:block;
+  width:1px;
+  height:32px;
+  margin:7px auto 0;
+  background:#cfc8bc;
+}
+
+/* INTRO */
+.intro{
+  padding:105px 20px;
+  text-align:center;
+}
+
+.intro-content{
+  max-width:720px;
+  margin:auto;
+}
+
+.intro h2,
+.memories-title h2,
+.closing h2{
+  margin-top:15px;
+  font-size:clamp(36px,5vw,57px);
+  line-height:1.08;
+  font-weight:400;
+}
+
+.intro p{
+  margin:22px auto 0;
+  color:var(--muted);
+  font-size:17px;
+}
+
+/* MEMORIES */
+.memories{
+  background:var(--cream);
+  padding:105px 20px 120px;
+}
+
+.memories-title{
+  text-align:center;
+  margin-bottom:60px;
+}
+
+.memories-title p{
+  margin:18px auto 0;
+  max-width:600px;
+  color:var(--muted);
+  font:14px/1.7 Arial,Helvetica,sans-serif;
+}
+
+/* ONE ROW = ONE EVENT */
+.event-list{
+  display:flex;
+  flex-direction:column;
+  gap:28px;
+}
+
+.event{
+  display:grid;
+  grid-template-columns:minmax(280px,.78fr) minmax(400px,1.22fr);
+  min-height:390px;
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:25px;
+  overflow:hidden;
+  box-shadow:0 8px 30px rgba(30,25,15,.035);
+  transition:.3s ease;
+}
+
+.event:hover{
+  transform:translateY(-3px);
+  box-shadow:var(--shadow);
+}
+
+/* DESCRIPTION FIRST */
+.event-info{
+  padding:45px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  position:relative;
+  background:#fff;
+}
+
+.event-info:before{
+  content:"";
+  position:absolute;
+  top:45px;
+  left:45px;
+  width:35px;
+  height:1px;
+  background:var(--gold);
+}
+
+.event-number{
+  margin-top:17px;
+  margin-bottom:11px;
+  font:11px Arial,Helvetica,sans-serif;
+  font-weight:bold;
+  letter-spacing:.18em;
+  color:var(--gold-dark);
+}
+
+.event h3{
+  font-size:39px;
+  line-height:1.08;
+  font-weight:400;
+  margin-bottom:17px;
+}
+
+.event p{
+  color:var(--muted);
+  font:14px/1.8 Arial,Helvetica,sans-serif;
+  max-width:430px;
+}
+
+.event-tag{
+  margin-top:25px;
+  display:inline-flex;
+  width:max-content;
+  padding:8px 12px;
+  border:1px solid var(--border);
+  border-radius:100px;
+  color:#68635c;
+  font:10px Arial,Helvetica,sans-serif;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+}
+
+/* VIDEO SECOND */
+.event-video{
+  position:relative;
+  min-height:390px;
+  background:#111;
+  overflow:hidden;
+}
+
+.event-video iframe{
+  width:100%;
+  height:100%;
+  min-height:390px;
+  border:0;
+  display:block;
+}
+
+/* CLOSING */
+.closing{
+  text-align:center;
+  padding:120px 20px;
+}
+
+.ornament{
+  color:var(--gold);
+  font-size:28px;
+  margin-bottom:10px;
+}
+
+.closing p{
+  max-width:580px;
+  margin:20px auto 0;
+  color:var(--muted);
+  font-size:16px;
+}
+
+/* FOOTER */
+footer{
+  border-top:1px solid var(--border);
+  text-align:center;
+  padding:27px 20px;
+  color:#89847c;
+  font:11px Arial,Helvetica,sans-serif;
+}
+
+/* RESPONSIVE */
+@media(max-width:850px){
+  .nav{padding:15px 0}
+
+  .menu{
+    display:block;
+  }
+
+  .nav-links{
+    position:absolute;
+    display:none;
+    flex-direction:column;
+    align-items:stretch;
+    gap:0;
+    top:calc(100% + 4px);
+    left:20px;
+    right:20px;
+    padding:7px;
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:16px;
+    box-shadow:var(--shadow);
+  }
+
+  .nav-links.open{display:flex}
+
+  .nav-links a{
+    display:block;
+    padding:12px 14px;
+    border-radius:10px;
+  }
+
+  .nav-links a:hover{background:var(--cream)}
+
+  .event{
+    grid-template-columns:1fr;
+  }
+
+  .event-info{
+    order:1;
+    padding:35px;
+  }
+
+  .event-video{
+    order:2;
+    min-height:auto;
+    aspect-ratio:16/9;
+  }
+
+  .event-video iframe{
+    min-height:0;
+  }
+}
+
+@media(max-width:560px){
+  .container{
+    width:min(100% - 28px,1120px);
+  }
+
+  .hero{
+    padding:105px 16px 75px;
+  }
+
+  .hero h1{
+    font-size:51px;
+  }
+
+  .hero-text{
+    font-size:15px;
+  }
+
+  .intro,
+  .memories,
+  .closing{
+    padding-top:75px;
+    padding-bottom:80px;
+  }
+
+  .memories-title{
+    margin-bottom:38px;
+  }
+
+  .event-list{
+    gap:20px;
+  }
+
+  .event{
+    border-radius:19px;
+  }
+
+  .event-info{
+    padding:29px;
+  }
+
+  .event-info:before{
+    top:29px;
+    left:29px;
+  }
+
+  .event h3{
+    font-size:32px;
+  }
+
+  .event p{
+    font-size:13px;
+  }
+
+  .event-video{
+    aspect-ratio:16/10;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{transition:none!important}
+}
+</style>
 </head>
 
 <body>
 
-  <header class="nav" id="navbar">
-    <div class="nav-inner">
-      <a class="brand" href="#home">Kashif <span>&</span> Mrs. Kashif</a>
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#home" class="logo">Kashif <span>&</span> Mrs. Kashif</a>
 
-      <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
-        ☰
-      </button>
+    <button class="menu" id="menu" aria-label="Open navigation" aria-expanded="false">☰</button>
 
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#memories">Memories</a></li>
-        <li><a href="#celebrate">Celebrate</a></li>
-      </ul>
-    </div>
-  </header>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#memories">Memories</a></li>
+      <li><a href="#celebrate">Celebrate</a></li>
+    </ul>
+  </div>
+</header>
 
-  <main>
+<main>
 
-    <section class="hero" id="home">
-      <div class="hero-content">
-        <div class="eyebrow">A Celebration of Love</div>
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="eyebrow">A Celebration of Love</div>
 
-        <h1>
-          Muhammad Kashif Saleem
-          <span class="amp">&</span>
-          Mrs. Kashif
-        </h1>
+    <h1>
+      Muhammad Kashif Saleem
+      <span class="amp">&</span>
+      Mrs. Kashif
+    </h1>
 
-        <p class="hero-sub">
-          Five beautiful chapters. One unforgettable celebration.
-          Relive the moments, laughter and love through our wedding memories.
-        </p>
+    <p class="hero-text">
+      Five beautiful chapters of one unforgettable celebration.
+      Relive the joy, laughter, traditions and memories of our wedding days.
+    </p>
 
-        <div class="hero-actions">
-          <a class="btn" href="#memories">View Memories</a>
-          <a class="btn light" href="#celebrate">Our Celebration</a>
-        </div>
-      </div>
-
-      <div class="scroll-hint">Scroll</div>
-    </section>
-
-    <section class="intro">
-      <div class="section-wrap">
-        <div class="section-label">Our Story</div>
-        <h2>Moments worth remembering forever.</h2>
-        <p>
-          From the joyful pre-wedding moments to Mehndi, Barat and Walima,
-          every event became part of a beautiful journey. Press play and
-          experience each celebration again.
-        </p>
-      </div>
-    </section>
-
-    <section class="memories" id="memories">
-      <div class="section-wrap">
-        <div class="memories-head">
-          <div class="section-label">Wedding Memories</div>
-          <h2>Five chapters of our celebration</h2>
-        </div>
-
-        <div class="event-grid">
-
-          <!-- 01 PRE-WEDDING -->
-          <article class="event-card featured">
-            <div class="video-frame">
-              <iframe
-                src="https://drive.google.com/file/d/1rcPWyrEr3IPRQKyexuJiQMqmIVlYHupR/preview"
-                title="Pre-Wedding video"
-                allow="autoplay; fullscreen"
-                allowfullscreen>
-              </iframe>
-              <div class="video-overlay">
-                <div class="play-ring" aria-hidden="true"></div>
-              </div>
-            </div>
-
-            <div class="event-content">
-              <div class="event-number">01 / PRE-WEDDING</div>
-              <h3>The Beginning</h3>
-              <p>
-                The first chapter of the celebration — a collection of
-                beautiful moments leading into the wedding festivities.
-              </p>
-              <button class="watch" data-video="1rcPWyrEr3IPRQKyexuJiQMqmIVlYHupR" data-title="Pre-Wedding — The Beginning">
-                WATCH FULL VIDEO →
-              </button>
-            </div>
-          </article>
-
-          <!-- 02 GROOM MEHNDI -->
-          <article class="event-card">
-            <div class="video-frame">
-              <iframe
-                src="https://drive.google.com/file/d/1rkgvbP6KU3l1WvpOtFEY6BKDqAeQAg27/preview"
-                title="Groom Mehndi video"
-                allow="autoplay; fullscreen"
-                allowfullscreen>
-              </iframe>
-              <div class="video-overlay">
-                <div class="play-ring" aria-hidden="true"></div>
-              </div>
-            </div>
-
-            <div class="event-content">
-              <div class="event-number">02 / GROOM MEHNDI</div>
-              <h3>His Mehndi</h3>
-              <p>
-                A lively celebration filled with family, friends, music,
-                laughter and unforgettable groom-side memories.
-              </p>
-              <button class="watch" data-video="1rkgvbP6KU3l1WvpOtFEY6BKDqAeQAg27" data-title="Groom Mehndi — His Mehndi">
-                WATCH FULL VIDEO →
-              </button>
-            </div>
-          </article>
-
-          <!-- 03 BRIDE MEHNDI -->
-          <article class="event-card">
-            <div class="video-frame">
-              <iframe
-                src="https://drive.google.com/file/d/12gEOdghSYReH-Qd9KoQUxZFlB47b1Pqz/preview"
-                title="Bride Mehndi video"
-                allow="autoplay; fullscreen"
-                allowfullscreen>
-              </iframe>
-              <div class="video-overlay">
-                <div class="play-ring" aria-hidden="true"></div>
-              </div>
-            </div>
-
-            <div class="event-content">
-              <div class="event-number">03 / BRIDE MEHNDI</div>
-              <h3>Her Mehndi</h3>
-              <p>
-                A graceful celebration of the bride, surrounded by the
-                people who made this special occasion even more memorable.
-              </p>
-              <button class="watch" data-video="12gEOdghSYReH-Qd9KoQUxZFlB47b1Pqz" data-title="Bride Mehndi — Her Mehndi">
-                WATCH FULL VIDEO →
-              </button>
-            </div>
-          </article>
-
-          <!-- 04 BARAT -->
-          <article class="event-card">
-            <div class="video-frame">
-              <iframe
-                src="https://drive.google.com/file/d/1ip4fmeNw7FB4lUht_4HTNJjJM3t87cHS/preview"
-                title="Barat video"
-                allow="autoplay; fullscreen"
-                allowfullscreen>
-              </iframe>
-              <div class="video-overlay">
-                <div class="play-ring" aria-hidden="true"></div>
-              </div>
-            </div>
-
-            <div class="event-content">
-              <div class="event-number">04 / BARAT</div>
-              <h3>The Barat</h3>
-              <p>
-                The grand day arrived — a celebration of togetherness,
-                traditions, family and the beginning of a new chapter.
-              </p>
-              <button class="watch" data-video="1ip4fmeNw7FB4lUht_4HTNJjJM3t87cHS" data-title="Barat — The Grand Celebration">
-                WATCH FULL VIDEO →
-              </button>
-            </div>
-          </article>
-
-          <!-- 05 WALIMA -->
-          <article class="event-card">
-            <div class="video-frame">
-              <iframe
-                src="https://drive.google.com/file/d/1p2RXktJmJ0toFE8WGleOCakwbxensq8L/preview"
-                title="Walima video"
-                allow="autoplay; fullscreen"
-                allowfullscreen>
-              </iframe>
-              <div class="video-overlay">
-                <div class="play-ring" aria-hidden="true"></div>
-              </div>
-            </div>
-
-            <div class="event-content">
-              <div class="event-number">05 / WALIMA</div>
-              <h3>The Walima</h3>
-              <p>
-                The final chapter of the celebration — an elegant gathering
-                filled with happiness, blessings and cherished memories.
-              </p>
-              <button class="watch" data-video="1p2RXktJmJ0toFE8WGleOCakwbxensq8L" data-title="Walima — The Final Chapter">
-                WATCH FULL VIDEO →
-              </button>
-            </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <section class="closing" id="celebrate">
-      <div class="section-wrap">
-        <div class="ornament">✦</div>
-        <div class="section-label">Together Forever</div>
-        <h2>A beautiful beginning<br>to a lifetime together.</h2>
-        <p>
-          Thank you to everyone who shared these precious days with us
-          and helped make our wedding celebration unforgettable.
-        </p>
-      </div>
-    </section>
-
-  </main>
-
-  <footer>
-    <div>With love · Muhammad Kashif Saleem & Mrs. Kashif</div>
-  </footer>
-
-  <!-- Full-screen video viewer -->
-  <div class="modal" id="videoModal" role="dialog" aria-modal="true" aria-label="Wedding video viewer">
-    <div class="modal-box">
-      <div class="modal-top">
-        <div class="modal-title" id="modalTitle">Wedding Memory</div>
-        <button class="close" id="closeModal" aria-label="Close video">×</button>
-      </div>
-
-      <div class="modal-video">
-        <iframe
-          id="modalIframe"
-          src=""
-          title="Wedding video"
-          allow="autoplay; fullscreen"
-          allowfullscreen>
-        </iframe>
-      </div>
-
-      <div class="modal-note">
-        Video hosted securely on Google Drive.
-      </div>
-    </div>
+    <a href="#memories" class="hero-btn">Explore Our Memories</a>
   </div>
 
-  <script>
-    const navbar = document.getElementById("navbar");
-    const menuBtn = document.getElementById("menuBtn");
-    const navLinks = document.getElementById("navLinks");
-    const modal = document.getElementById("videoModal");
-    const modalIframe = document.getElementById("modalIframe");
-    const modalTitle = document.getElementById("modalTitle");
-    const closeModal = document.getElementById("closeModal");
+  <div class="scroll">Scroll</div>
+</section>
 
-    /* Sticky navigation effect */
-    window.addEventListener("scroll", () => {
-      navbar.classList.toggle("scrolled", window.scrollY > 25);
-    }, { passive:true });
+<section class="intro">
+  <div class="intro-content">
+    <div class="section-label">Our Wedding Story</div>
+    <h2>Every moment became a memory.</h2>
+    <p>
+      From the first celebrations to the final gathering, these moments
+      hold the happiness, love and togetherness that made our wedding special.
+      Watch each celebration directly below.
+    </p>
+  </div>
+</section>
 
-    /* Mobile navigation */
-    menuBtn.addEventListener("click", () => {
-      const isOpen = navLinks.classList.toggle("open");
-      menuBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
-    });
+<section class="memories" id="memories">
+  <div class="container">
 
-    navLinks.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", () => {
-        navLinks.classList.remove("open");
-        menuBtn.setAttribute("aria-expanded", "false");
-      });
-    });
+    <div class="memories-title">
+      <div class="section-label">Wedding Memories</div>
+      <h2>Five chapters. One beautiful journey.</h2>
+      <p>
+        Each celebration is presented individually so you can enjoy every
+        video without leaving the page.
+      </p>
+    </div>
 
-    /* Full video modal */
-    document.querySelectorAll(".watch").forEach(button => {
-      button.addEventListener("click", () => {
-        const id = button.dataset.video;
-        const title = button.dataset.title;
+    <div class="event-list">
 
-        modalTitle.textContent = title;
-        modalIframe.src = `https://drive.google.com/file/d/${id}/preview?autoplay=1`;
-        modal.classList.add("open");
-        document.body.style.overflow = "hidden";
-        closeModal.focus();
-      });
-    });
+      <!-- 01 PRE-WEDDING -->
+      <article class="event">
+        <div class="event-info">
+          <div class="event-number">01 / PRE-WEDDING</div>
+          <h3>The Beginning</h3>
+          <p>
+            The celebration begins with our pre-wedding moments — memories
+            filled with excitement, happiness and the anticipation of a
+            beautiful new chapter.
+          </p>
+          <div class="event-tag">Pre-Wedding Celebration</div>
+        </div>
 
-    function hideModal(){
-      modal.classList.remove("open");
-      modalIframe.src = "";
-      document.body.style.overflow = "";
-    }
+        <div class="event-video">
+          <iframe
+            src="https://drive.google.com/file/d/1rcPWyrEr3IPRQKyexuJiQMqmIVlYHupR/preview"
+            title="Pre-Wedding — The Beginning"
+            allow="autoplay; fullscreen"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </article>
 
-    closeModal.addEventListener("click", hideModal);
+      <!-- 02 GROOM MEHNDI -->
+      <article class="event">
+        <div class="event-info">
+          <div class="event-number">02 / GROOM MEHNDI</div>
+          <h3>His Mehndi</h3>
+          <p>
+            A joyful groom-side celebration with family and friends,
+            bringing together laughter, music and the unforgettable energy
+            of Mehndi.
+          </p>
+          <div class="event-tag">Groom's Celebration</div>
+        </div>
 
-    modal.addEventListener("click", (event) => {
-      if(event.target === modal) hideModal();
-    });
+        <div class="event-video">
+          <iframe
+            src="https://drive.google.com/file/d/1rkgvbP6KU3l1WvpOtFEY6BKDqAeQAg27/preview"
+            title="Groom Mehndi — His Mehndi"
+            allow="autoplay; fullscreen"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </article>
 
-    document.addEventListener("keydown", (event) => {
-      if(event.key === "Escape" && modal.classList.contains("open")){
-        hideModal();
-      }
-    });
+      <!-- 03 BRIDE MEHNDI -->
+      <article class="event">
+        <div class="event-info">
+          <div class="event-number">03 / BRIDE MEHNDI</div>
+          <h3>Her Mehndi</h3>
+          <p>
+            A graceful celebration dedicated to the bride, surrounded by
+            loved ones and the beautiful traditions that make Mehndi so special.
+          </p>
+          <div class="event-tag">Bride's Celebration</div>
+        </div>
 
-    /* Remove decorative overlay after the embedded Drive player is interacted with */
-    document.querySelectorAll(".video-frame").forEach(frame => {
-      const overlay = frame.querySelector(".video-overlay");
-      frame.addEventListener("click", () => {
-        if(overlay) overlay.classList.add("hidden");
-      });
-    });
-  </script>
+        <div class="event-video">
+          <iframe
+            src="https://drive.google.com/file/d/12gEOdghSYReH-Qd9KoQUxZFlB47b1Pqz/preview"
+            title="Bride Mehndi — Her Mehndi"
+            allow="autoplay; fullscreen"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </article>
+
+      <!-- 04 BARAT -->
+      <article class="event">
+        <div class="event-info">
+          <div class="event-number">04 / BARAT</div>
+          <h3>The Barat</h3>
+          <p>
+            The grand celebration — a day of tradition, family, happiness
+            and the unforgettable moments that marked the beginning of
+            married life.
+          </p>
+          <div class="event-tag">The Grand Celebration</div>
+        </div>
+
+        <div class="event-video">
+          <iframe
+            src="https://drive.google.com/file/d/1ip4fmeNw7FB4lUht_4HTNJjJM3t87cHS/preview"
+            title="Barat — The Grand Celebration"
+            allow="autoplay; fullscreen"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </article>
+
+      <!-- 05 WALIMA -->
+      <article class="event">
+        <div class="event-info">
+          <div class="event-number">05 / WALIMA</div>
+          <h3>The Walima</h3>
+          <p>
+            The final chapter of our wedding celebration — an elegant
+            gathering filled with happiness, blessings, family and cherished
+            memories.
+          </p>
+          <div class="event-tag">The Final Chapter</div>
+        </div>
+
+        <div class="event-video">
+          <iframe
+            src="https://drive.google.com/file/d/1p2RXktJmJ0toFE8WGleOCakwbxensq8L/preview"
+            title="Walima — The Final Chapter"
+            allow="autoplay; fullscreen"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="closing" id="celebrate">
+  <div class="container">
+    <div class="ornament">✦</div>
+    <div class="section-label">Together Forever</div>
+
+    <h2>
+      A beautiful beginning<br>
+      to a lifetime together.
+    </h2>
+
+    <p>
+      Thank you to everyone who shared these precious celebrations with us
+      and helped make our wedding journey unforgettable.
+    </p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  Muhammad Kashif Saleem & Mrs. Kashif · Wedding Memories
+</footer>
+
+<script>
+const nav = document.getElementById("nav");
+const menu = document.getElementById("menu");
+const navLinks = document.getElementById("navLinks");
+
+window.addEventListener("scroll", () => {
+  nav.classList.toggle("scrolled", window.scrollY > 25);
+}, {passive:true});
+
+menu.addEventListener("click", () => {
+  const open = navLinks.classList.toggle("open");
+  menu.setAttribute("aria-expanded", open ? "true" : "false");
+});
+
+navLinks.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("open");
+    menu.setAttribute("aria-expanded","false");
+  });
+});
+</script>
 
 </body>
 </html>
