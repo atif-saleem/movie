@@ -942,6 +942,200 @@
     }
 
     /* =========================================================
+       VIDEO LOADER + FULLSCREEN CONTROLS
+       ========================================================= */
+
+    .modal-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .fullscreen-modal,
+    .close-modal {
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(212,175,55,.35);
+      border-radius: 50%;
+      background: transparent;
+      color: var(--gold-light);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .fullscreen-modal {
+      font-family: Arial, sans-serif;
+      font-size: 1.25rem;
+      line-height: 1;
+    }
+
+    .fullscreen-modal:hover,
+    .close-modal:hover {
+      background: var(--gold);
+      color: var(--maroon-dark);
+    }
+
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+      background: #000;
+    }
+
+    .video-loader {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      background: #000;
+      color: rgba(255,255,255,.85);
+      font-family: Arial, sans-serif;
+      font-size: .82rem;
+      transition: opacity .25s ease, visibility .25s ease;
+    }
+
+    .video-loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .loader-spinner {
+      width: 42px;
+      height: 42px;
+      border: 3px solid rgba(255,255,255,.2);
+      border-top-color: var(--gold-light);
+      border-radius: 50%;
+      animation: videoSpin .8s linear infinite;
+    }
+
+    @keyframes videoSpin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Real browser fullscreen */
+    .modal-container:fullscreen {
+      width: 100vw;
+      max-width: none;
+      height: 100vh;
+      border-radius: 0;
+      border: none;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-container:fullscreen .video-wrapper {
+      flex: 1;
+      min-height: 0;
+      aspect-ratio: auto;
+      height: auto;
+    }
+
+    /* CSS fallback for mobile browsers that do not support
+       fullscreen on arbitrary elements (notably some iOS browsers). */
+    .modal-container.is-fallback-fullscreen {
+      position: fixed;
+      inset: 0;
+      z-index: 6000;
+      width: 100vw;
+      max-width: none;
+      height: 100dvh;
+      margin: 0;
+      border-radius: 0;
+      border: none;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-container.is-fallback-fullscreen .video-wrapper {
+      flex: 1;
+      min-height: 0;
+      aspect-ratio: auto;
+      height: auto;
+    }
+
+    .modal-container.is-fallback-fullscreen .modal-header {
+      min-height: 54px;
+      flex-shrink: 0;
+    }
+
+    /* Keep fullscreen/close controls above the video on touch devices. */
+    .modal-header,
+    .modal-actions,
+    .fullscreen-modal,
+    .close-modal {
+      position: relative;
+      z-index: 20;
+    }
+
+    @media (max-width: 800px) {
+      .modal {
+        padding: 0;
+      }
+
+      .modal-container {
+        width: 100%;
+        max-width: none;
+        border-radius: 0;
+      }
+
+      .modal-header {
+        min-height: 54px;
+        padding: 8px 12px;
+      }
+
+      .modal-title {
+        font-size: .9rem;
+        padding-right: 8px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .fullscreen-modal,
+      .close-modal {
+        width: 40px;
+        height: 40px;
+      }
+
+      .video-wrapper {
+        aspect-ratio: 16 / 9;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .modal-actions {
+        gap: 6px;
+      }
+
+      .fullscreen-modal,
+      .close-modal {
+        width: 38px;
+        height: 38px;
+      }
+    }
+
+    /* =========================================================
        BACK TO TOP
        ========================================================= */
 
@@ -1741,21 +1935,41 @@
           Wedding Memory
         </div>
 
-        <button
-          class="close-modal"
-          onclick="closeVideo()"
-          aria-label="Close video"
-        >
-          ×
-        </button>
+        <div class="modal-actions">
+          <button
+            class="fullscreen-modal"
+            id="fullscreenButton"
+            type="button"
+            onclick="toggleVideoFullscreen()"
+            aria-label="Enter fullscreen"
+            title="Fullscreen"
+          >
+            ⛶
+          </button>
+
+          <button
+            class="close-modal"
+            onclick="closeVideo()"
+            aria-label="Close video"
+            type="button"
+          >
+            ×
+          </button>
+        </div>
 
       </div>
 
-      <div class="video-wrapper">
+      <div class="video-wrapper" id="videoWrapper">
+
+        <div class="video-loader" id="videoLoader" aria-live="polite">
+          <div class="loader-spinner"></div>
+          <span>Loading video...</span>
+        </div>
 
         <iframe
           id="videoFrame"
           src=""
+          title="Wedding video"
           allow="
             autoplay;
             encrypted-media;
@@ -1822,44 +2036,148 @@
        OPEN VIDEO
        ======================================================= */
 
+    const videoModal = document.getElementById("videoModal");
+    const videoContainer = videoModal.querySelector(".modal-container");
+    const videoWrapper = document.getElementById("videoWrapper");
+    const videoFrame = document.getElementById("videoFrame");
+    const videoLoader = document.getElementById("videoLoader");
+    const fullscreenButton = document.getElementById("fullscreenButton");
+
+    function showVideoLoader() {
+      videoLoader.classList.remove("hidden");
+    }
+
+    function hideVideoLoader() {
+      videoLoader.classList.add("hidden");
+    }
+
     function openVideo(title, driveUrl) {
 
-      const modal = document.getElementById("videoModal");
-      const frame = document.getElementById("videoFrame");
       const titleElement = document.getElementById("modalTitle");
 
       titleElement.textContent = title;
 
-      frame.src = convertDriveLinkToEmbed(driveUrl);
+      /*
+       * Show the modal and loader first.
+       * The iframe is loaded immediately after the modal becomes visible.
+       */
+      showVideoLoader();
 
-      modal.classList.add("active");
-
+      videoModal.classList.add("active");
       document.body.classList.add("modal-open");
-
       document.body.style.overflow = "hidden";
+
+      videoFrame.src = convertDriveLinkToEmbed(driveUrl);
+
+      /*
+       * Google Drive sends the iframe load event when its preview page
+       * has loaded. Keep the loader visible until that happens.
+       */
     }
+
+
+    videoFrame.addEventListener("load", function() {
+      /*
+       * Small delay prevents the loader from disappearing before the
+       * Drive preview has had a chance to paint on slower mobile devices.
+       */
+      setTimeout(hideVideoLoader, 250);
+    });
+
+
+    /* =======================================================
+       FULLSCREEN VIDEO
+       ======================================================= */
+
+    async function toggleVideoFullscreen() {
+
+      try {
+        if (document.fullscreenElement) {
+          await document.exitFullscreen();
+          return;
+        }
+
+        if (videoContainer.requestFullscreen) {
+          await videoContainer.requestFullscreen();
+        } else if (videoContainer.webkitRequestFullscreen) {
+          videoContainer.webkitRequestFullscreen();
+        } else {
+          /*
+           * Fallback for browsers that do not expose fullscreen()
+           * for normal HTML elements.
+           */
+          videoContainer.classList.add("is-fallback-fullscreen");
+          document.body.classList.add("modal-open");
+        }
+
+      } catch (error) {
+        /*
+         * If the browser refuses the Fullscreen API, use the CSS
+         * fullscreen fallback instead of leaving the user without
+         * a fullscreen option.
+         */
+        videoContainer.classList.add("is-fallback-fullscreen");
+      }
+
+      updateFullscreenButton();
+    }
+
+
+    function updateFullscreenButton() {
+
+      const isFullscreen =
+        document.fullscreenElement === videoContainer ||
+        videoContainer.classList.contains("is-fallback-fullscreen");
+
+      fullscreenButton.textContent = isFullscreen ? "⛶" : "⛶";
+      fullscreenButton.setAttribute(
+        "aria-label",
+        isFullscreen ? "Exit fullscreen" : "Enter fullscreen"
+      );
+      fullscreenButton.setAttribute(
+        "title",
+        isFullscreen ? "Exit fullscreen" : "Fullscreen"
+      );
+    }
+
+
+    document.addEventListener("fullscreenchange", updateFullscreenButton);
 
 
     /* =======================================================
        CLOSE VIDEO
        ======================================================= */
 
-    function closeVideo() {
+    async function closeVideo() {
 
-      const modal = document.getElementById("videoModal");
-      const frame = document.getElementById("videoFrame");
+      /*
+       * Exit fullscreen before closing so the next video starts
+       * in the normal modal state.
+       */
+      try {
+        if (document.fullscreenElement) {
+          await document.exitFullscreen();
+        }
+      } catch (error) {
+        // Ignore fullscreen exit errors.
+      }
+
+      videoContainer.classList.remove("is-fallback-fullscreen");
 
       /*
        * Removing the iframe source stops the video completely.
        */
+      videoFrame.src = "";
 
-      frame.src = "";
+      showVideoLoader();
 
-      modal.classList.remove("active");
+      videoModal.classList.remove("active");
 
       document.body.classList.remove("modal-open");
 
       document.body.style.overflow = "";
+
+      updateFullscreenButton();
     }
 
 
@@ -1867,7 +2185,7 @@
        CLOSE MODAL BY CLICKING OUTSIDE
        ======================================================= */
 
-    document.getElementById("videoModal").addEventListener(
+    videoModal.addEventListener(
       "click",
       function(event) {
 
