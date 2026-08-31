@@ -1,802 +1,894 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>StreamVault | Cinema & Events Vault</title>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111111">
+  <meta name="description" content="A beautiful wedding celebration for Muhammad Kashif Saleem and Mrs. Kashif — Pre-Wedding, Mehndi, Barat and Walima.">
+  <title>Muhammad Kashif Saleem & Mrs. Kashif | Wedding Memories</title>
 
-    <!-- FontAwesome Icons & Google Fonts -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+  <style>
+    :root{
+      --ink:#171717;
+      --muted:#777;
+      --soft:#f7f5f2;
+      --paper:#fff;
+      --line:#e8e4de;
+      --gold:#b18a4a;
+      --gold-dark:#8d6a32;
+      --shadow:0 20px 60px rgba(25,20,10,.10);
+      --radius:24px;
+    }
 
-    <style>
-      :root {
-        --bg-main: #0b0f19;
-        --bg-card: rgba(23, 31, 48, 0.7);
-        --bg-glass: rgba(15, 23, 42, 0.75);
-        --accent: #6366f1;
-        --accent-hover: #4f46e5;
-        --accent-glow: rgba(99, 102, 241, 0.35);
-        --text-main: #f8fafc;
-        --text-sub: #94a3b8;
-        --border: rgba(255, 255, 255, 0.08);
-        --radius: 16px;
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    html{scroll-behavior:smooth}
+
+    body{
+      font-family: Georgia, "Times New Roman", serif;
+      color:var(--ink);
+      background:var(--paper);
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+
+    button,a{font:inherit}
+    a{text-decoration:none;color:inherit}
+
+    .sans{
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    }
+
+    /* ---------- Navigation ---------- */
+    .nav{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      z-index:1000;
+      padding:18px 5%;
+      transition:.3s ease;
+    }
+
+    .nav.scrolled{
+      background:rgba(255,255,255,.94);
+      backdrop-filter:blur(14px);
+      box-shadow:0 1px 0 var(--line);
+      padding:12px 5%;
+    }
+
+    .nav-inner{
+      max-width:1200px;
+      margin:auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+
+    .brand{
+      font-size:20px;
+      font-weight:bold;
+      letter-spacing:.04em;
+      white-space:nowrap;
+    }
+
+    .brand span{color:var(--gold)}
+
+    .nav-links{
+      display:flex;
+      gap:25px;
+      list-style:none;
+      align-items:center;
+    }
+
+    .nav-links a{
+      font-family:Inter,ui-sans-serif,system-ui,sans-serif;
+      font-size:13px;
+      color:#444;
+      transition:.2s;
+    }
+
+    .nav-links a:hover{color:var(--gold-dark)}
+
+    .menu-btn{
+      display:none;
+      border:0;
+      background:none;
+      cursor:pointer;
+      font-size:24px;
+    }
+
+    /* ---------- Hero ---------- */
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      position:relative;
+      padding:120px 20px 80px;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 20% 20%,rgba(177,138,74,.12),transparent 30%),
+        radial-gradient(circle at 80% 75%,rgba(177,138,74,.10),transparent 30%),
+        linear-gradient(135deg,#fff,#faf8f4);
+    }
+
+    .hero:before,
+    .hero:after{
+      content:"";
+      position:absolute;
+      border:1px solid rgba(177,138,74,.28);
+      border-radius:50%;
+      pointer-events:none;
+    }
+
+    .hero:before{
+      width:520px;height:520px;
+      top:-270px;left:-170px;
+    }
+
+    .hero:after{
+      width:650px;height:650px;
+      bottom:-420px;right:-260px;
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:2;
+      max-width:900px;
+    }
+
+    .eyebrow{
+      font-family:Inter,ui-sans-serif,system-ui,sans-serif;
+      text-transform:uppercase;
+      letter-spacing:.32em;
+      font-size:11px;
+      color:var(--gold-dark);
+      font-weight:700;
+      margin-bottom:25px;
+    }
+
+    .hero h1{
+      font-size:clamp(48px,8vw,94px);
+      line-height:.98;
+      font-weight:400;
+      letter-spacing:-.045em;
+    }
+
+    .hero h1 .amp{
+      color:var(--gold);
+      font-style:italic;
+      font-size:.72em;
+      display:inline-block;
+      margin:0 .08em;
+    }
+
+    .hero-sub{
+      max-width:600px;
+      margin:28px auto 0;
+      color:#68645f;
+      font-size:18px;
+    }
+
+    .hero-actions{
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      margin-top:38px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      border:1px solid var(--ink);
+      background:var(--ink);
+      color:#fff;
+      padding:13px 23px;
+      border-radius:999px;
+      cursor:pointer;
+      font-family:Inter,ui-sans-serif,system-ui,sans-serif;
+      font-size:13px;
+      transition:.25s;
+    }
+
+    .btn:hover{
+      background:var(--gold-dark);
+      border-color:var(--gold-dark);
+      transform:translateY(-2px);
+    }
+
+    .btn.light{
+      background:transparent;
+      color:var(--ink);
+      border-color:#ccc5ba;
+    }
+
+    .btn.light:hover{
+      background:#fff;
+      border-color:var(--gold);
+      color:var(--gold-dark);
+    }
+
+    .scroll-hint{
+      position:absolute;
+      bottom:28px;
+      left:50%;
+      transform:translateX(-50%);
+      font-family:Inter,ui-sans-serif,system-ui,sans-serif;
+      font-size:10px;
+      letter-spacing:.2em;
+      color:#999;
+      text-transform:uppercase;
+    }
+
+    .scroll-hint:after{
+      content:"";
+      display:block;
+      width:1px;height:35px;
+      background:#cfc8bd;
+      margin:8px auto 0;
+    }
+
+    /* ---------- Intro ---------- */
+    .intro{
+      padding:105px 20px;
+      text-align:center;
+      background:#fff;
+    }
+
+    .section-wrap{
+      width:min(1100px,100%);
+      margin:auto;
+    }
+
+    .section-label{
+      color:var(--gold-dark);
+      font-family:Inter,ui-sans-serif,system-ui,sans-serif;
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.25em;
+      font-weight:700;
+      margin-bottom:16px;
+    }
+
+    .intro h2,
+    .memories h2{
+      font-size:clamp(34px,5vw,54px);
+      font-weight:400;
+      line-height:1.1;
+    }
+
+    .intro p{
+      max-width:680px;
+      margin:22px auto 0;
+      color:var(--muted);
+      font-size:17px;
+    }
+
+    /* ---------- Event Cards ---------- */
+    .memories{
+      padding:100px 20px 120px;
+      background:var(--soft);
+    }
+
+    .memories-head{
+      text-align:center;
+      margin-bottom:55px;
+    }
+
+    .event-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:24px;
+    }
+
+    .event-card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:0 8px 30px rgba(30,25,15,.04);
+      transition:transform .3s ease,box-shadow .3s ease;
+    }
+
+    .event-card:hover{
+      transform:translateY(-5px);
+      box-shadow:var(--shadow);
+    }
+
+    .event-card.featured{
+      grid-column:1/-1;
+      display:grid;
+      grid-template-columns:1.25fr .75fr;
+    }
+
+    .video-frame{
+      position:relative;
+      aspect-ratio:16/9;
+      background:#111;
+      overflow:hidden;
+    }
+
+    .featured .video-frame{aspect-ratio:auto;min-height:380px}
+
+    .video-frame iframe{
+      width:100%;
+      height:100%;
+      border:0;
+      display:block;
+    }
+
+    .video-overlay{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:linear-gradient(135deg,rgba(0,0,0,.15),rgba(0,0,0,.45));
+      pointer-events:none;
+    }
+
+    .play-ring{
+      width:72px;height:72px;
+      border-radius:50%;
+      background:rgba(255,255,255,.94);
+      display:grid;
+      place-items:center;
+      box-shadow:0 8px 30px rgba(0,0,0,.2);
+      transition:.25s;
+    }
+
+    .event-card:hover .play-ring{transform:scale(1.06)}
+
+    .play-ring:before{
+      content:"";
+      margin-left:4px;
+      border-left:18px solid var(--ink);
+      border-top:11px solid transparent;
+      border-bottom:11px solid transparent;
+    }
+
+    .video-overlay.hidden{display:none}
+
+    .event-content{
+      padding:30px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+
+    .event-number{
+      color:var(--gold);
+      font-family:Inter,ui-sans-serif,system-ui,sans-serif;
+      font-size:11px;
+      font-weight:800;
+      letter-spacing:.2em;
+      margin-bottom:10px;
+    }
+
+    .event-content h3{
+      font-size:34px;
+      line-height:1.1;
+      font-weight:400;
+      margin-bottom:12px;
+    }
+
+    .event-content p{
+      color:#777;
+      font-family:Inter,ui-sans-serif,system-ui,sans-serif;
+      font-size:14px;
+      line-height:1.75;
+      margin-bottom:22px;
+    }
+
+    .watch{
+      align-self:flex-start;
+      border:0;
+      border-bottom:1px solid var(--gold);
+      background:none;
+      color:#5f4928;
+      cursor:pointer;
+      padding:4px 0;
+      font-family:Inter,ui-sans-serif,system-ui,sans-serif;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.05em;
+    }
+
+    /* ---------- Closing ---------- */
+    .closing{
+      padding:120px 20px;
+      text-align:center;
+      background:#fff;
+    }
+
+    .closing .ornament{
+      color:var(--gold);
+      font-size:28px;
+      margin-bottom:20px;
+    }
+
+    .closing h2{
+      font-size:clamp(38px,6vw,65px);
+      font-weight:400;
+      line-height:1.05;
+    }
+
+    .closing p{
+      color:#777;
+      margin:20px auto 0;
+      max-width:560px;
+      font-size:16px;
+    }
+
+    /* ---------- Footer ---------- */
+    footer{
+      padding:28px 20px;
+      border-top:1px solid var(--line);
+      text-align:center;
+      color:#8a8782;
+      font-family:Inter,ui-sans-serif,system-ui,sans-serif;
+      font-size:12px;
+    }
+
+    /* ---------- Modal ---------- */
+    .modal{
+      position:fixed;
+      inset:0;
+      z-index:2000;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+      background:rgba(8,8,8,.86);
+      backdrop-filter:blur(8px);
+    }
+
+    .modal.open{display:flex}
+
+    .modal-box{
+      width:min(1100px,100%);
+      background:#111;
+      border-radius:18px;
+      overflow:hidden;
+      box-shadow:0 30px 100px rgba(0,0,0,.45);
+    }
+
+    .modal-top{
+      min-height:60px;
+      padding:12px 16px 12px 22px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:15px;
+      color:#fff;
+      font-family:Inter,ui-sans-serif,system-ui,sans-serif;
+    }
+
+    .modal-title{
+      font-size:14px;
+      font-weight:700;
+    }
+
+    .close{
+      width:38px;height:38px;
+      border-radius:50%;
+      border:1px solid #444;
+      background:#222;
+      color:#fff;
+      cursor:pointer;
+      font-size:20px;
+      line-height:1;
+    }
+
+    .close:hover{background:#333}
+
+    .modal-video{
+      aspect-ratio:16/9;
+      background:#000;
+    }
+
+    .modal-video iframe{
+      width:100%;
+      height:100%;
+      border:0;
+      display:block;
+    }
+
+    .modal-note{
+      padding:10px 18px 15px;
+      color:#999;
+      background:#111;
+      font:11px/1.5 Inter,ui-sans-serif,system-ui,sans-serif;
+      text-align:center;
+    }
+
+    /* ---------- Responsive ---------- */
+    @media(max-width:800px){
+      .nav-links{
+        position:absolute;
+        top:calc(100% + 5px);
+        left:20px;
+        right:20px;
+        display:none;
+        flex-direction:column;
+        align-items:stretch;
+        gap:0;
+        padding:8px;
+        background:rgba(255,255,255,.98);
+        border:1px solid var(--line);
+        border-radius:16px;
+        box-shadow:var(--shadow);
       }
 
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
+      .nav-links.open{display:flex}
+
+      .nav-links li a{
+        display:block;
+        padding:12px 14px;
+        border-radius:10px;
       }
 
-      body {
-        font-family: "Plus Jakarta Sans", sans-serif;
-        background: var(--bg-main);
-        color: var(--text-main);
-        min-height: 100vh;
-        overflow-x: hidden;
-        background-image:
-          radial-gradient(
-            circle at 15% 15%,
-            rgba(99, 102, 241, 0.12) 0%,
-            transparent 45%
-          ),
-          radial-gradient(
-            circle at 85% 85%,
-            rgba(168, 85, 247, 0.08) 0%,
-            transparent 45%
-          );
+      .nav-links li a:hover{background:#f7f5f2}
+
+      .menu-btn{display:block}
+
+      .event-grid{grid-template-columns:1fr}
+
+      .event-card.featured{
+        grid-column:auto;
+        display:block;
       }
 
-      /* Animated background grid */
-      body::before {
-        content: "";
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image:
-          linear-gradient(var(--border) 1px, transparent 1px),
-          linear-gradient(90deg, var(--border) 1px, transparent 1px);
-        background-size: 40px 40px;
-        z-index: -1;
-        opacity: 0.3;
+      .featured .video-frame{min-height:auto}
+
+      .event-content h3{font-size:30px}
+    }
+
+    @media(max-width:560px){
+      .nav{padding:15px 18px}
+      .brand{font-size:17px}
+
+      .hero{padding:110px 18px 75px}
+      .hero-sub{font-size:15px}
+      .hero h1{font-size:52px}
+
+      .intro,.memories,.closing{padding-top:75px;padding-bottom:80px}
+
+      .event-content{padding:23px}
+
+      .play-ring{width:60px;height:60px}
+      .play-ring:before{
+        border-left-width:15px;
+        border-top-width:9px;
+        border-bottom-width:9px;
       }
 
-      /* Layout Structure */
-      .app-header {
-        backdrop-filter: blur(12px);
-        background: var(--bg-glass);
-        border-bottom: 1px solid var(--border);
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        padding: 1rem 2rem;
-      }
+      .modal{padding:8px}
+      .modal-top{padding-left:14px}
+    }
 
-      .header-container {
-        max-width: 1400px;
-        margin: 0 auto;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      *{transition:none!important}
+    }
+  </style>
+</head>
 
-      .brand {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        font-size: 1.25rem;
-        font-weight: 700;
-        background: linear-gradient(135deg, #fff 30%, #a5b4fc 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
+<body>
 
-      .brand i {
-        color: var(--accent);
-        -webkit-text-fill-color: initial;
-        font-size: 1.5rem;
-        filter: drop-shadow(0 0 8px var(--accent-glow));
-      }
+  <header class="nav" id="navbar">
+    <div class="nav-inner">
+      <a class="brand" href="#home">Kashif <span>&</span> Mrs. Kashif</a>
 
-      .main-container {
-        max-width: 1400px;
-        margin: 2rem auto;
-        padding: 0 1.5rem;
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+        ☰
+      </button>
 
-      @media (min-width: 1024px) {
-        .main-container {
-          grid-template-columns: 1fr 380px;
-        }
-      }
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#memories">Memories</a></li>
+        <li><a href="#celebrate">Celebrate</a></li>
+      </ul>
+    </div>
+  </header>
 
-      /* Glassmorphic Panel Styling */
-      .panel {
-        background: var(--bg-card);
-        backdrop-filter: blur(16px);
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        padding: 1.5rem;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-        animation: fadeIn 0.6s ease-out;
-      }
+  <main>
 
-      /* Player Container */
-      .player-wrapper {
-        display: flex;
-        flex-direction: column;
-        gap: 1.25rem;
-      }
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <div class="eyebrow">A Celebration of Love</div>
 
-      .screen-box {
-        position: relative;
-        width: 100%;
-        padding-top: 56.25%; /* 16:9 Aspect Ratio */
-        background: #000;
-        border-radius: calc(var(--radius) - 4px);
-        overflow: hidden;
-        border: 1px solid var(--border);
-        box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
-      }
+        <h1>
+          Muhammad Kashif Saleem
+          <span class="amp">&</span>
+          Mrs. Kashif
+        </h1>
 
-      .screen-box iframe,
-      .screen-placeholder {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: none;
-      }
+        <p class="hero-sub">
+          Five beautiful chapters. One unforgettable celebration.
+          Relive the moments, laughter and love through our wedding memories.
+        </p>
 
-      /* Pop-out Overlay Blocker */
-      .popout-blocker {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 65px;
-        height: 65px;
-        z-index: 10;
-        background: transparent;
-        pointer-events: auto;
-      }
-
-      .screen-placeholder {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 1rem;
-        color: var(--text-sub);
-        background: radial-gradient(
-          circle,
-          rgba(30, 41, 59, 0.8) 0%,
-          rgba(15, 23, 42, 1) 100%
-        );
-        text-align: center;
-        padding: 2rem;
-      }
-
-      .screen-placeholder i {
-        font-size: 3.5rem;
-        color: var(--accent);
-        animation: pulse 2s infinite;
-      }
-
-      .video-info {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 1rem;
-        flex-wrap: wrap;
-      }
-
-      .video-title {
-        font-size: 1.25rem;
-        font-weight: 600;
-        color: var(--text-main);
-      }
-
-      .category-badge {
-        background: rgba(99, 102, 241, 0.2);
-        color: var(--accent);
-        border: 1px solid rgba(99, 102, 241, 0.4);
-        padding: 0.35rem 0.85rem;
-        border-radius: 20px;
-        font-size: 0.8rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-      }
-
-      /* Input & Add Video Panel */
-      .input-group {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        margin-bottom: 1.5rem;
-      }
-
-      .field-wrapper {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-
-      label {
-        font-size: 0.85rem;
-        font-weight: 500;
-        color: var(--text-sub);
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-      }
-
-      input[type="text"],
-      select {
-        width: 100%;
-        padding: 0.85rem 1rem;
-        background: rgba(15, 23, 42, 0.6);
-        border: 1px solid var(--border);
-        border-radius: 10px;
-        color: #fff;
-        font-size: 0.95rem;
-        outline: none;
-        transition: all 0.3s ease;
-      }
-
-      select option {
-        background: #0f172a;
-        color: #fff;
-      }
-
-      input[type="text"]:focus,
-      select:focus {
-        border-color: var(--accent);
-        box-shadow: 0 0 12px var(--accent-glow);
-        background: rgba(15, 23, 42, 0.9);
-      }
-
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        padding: 0.85rem 1.5rem;
-        border-radius: 10px;
-        font-weight: 600;
-        font-size: 0.95rem;
-        cursor: pointer;
-        border: none;
-        transition: all 0.3s ease;
-      }
-
-      .btn-primary {
-        background: linear-gradient(135deg, var(--accent) 0%, #4338ca 100%);
-        color: #fff;
-        box-shadow: 0 4px 15px var(--accent-glow);
-      }
-
-      .btn-primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px var(--accent-glow);
-        background: linear-gradient(135deg, #6d28d9 0%, var(--accent) 100%);
-      }
-
-      /* Category Filter Tabs */
-      .tabs-container {
-        display: flex;
-        gap: 0.5rem;
-        margin-bottom: 1rem;
-        border-bottom: 1px solid var(--border);
-        padding-bottom: 0.75rem;
-        overflow-x: auto;
-      }
-
-      .tab-btn {
-        background: transparent;
-        border: none;
-        color: var(--text-sub);
-        padding: 0.5rem 1rem;
-        font-size: 0.85rem;
-        font-weight: 600;
-        cursor: pointer;
-        border-radius: 8px;
-        transition: all 0.25s ease;
-        white-space: nowrap;
-      }
-
-      .tab-btn:hover {
-        color: #fff;
-        background: rgba(255, 255, 255, 0.05);
-      }
-
-      .tab-btn.active {
-        color: #fff;
-        background: var(--accent);
-        box-shadow: 0 0 12px var(--accent-glow);
-      }
-
-      /* Playlist Sidebar */
-      .playlist-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 0.75rem;
-      }
-
-      .playlist-title {
-        font-size: 1.1rem;
-        font-weight: 600;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-      }
-
-      .playlist-items {
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
-        max-height: 420px;
-        overflow-y: auto;
-        padding-right: 0.25rem;
-      }
-
-      .playlist-items::-webkit-scrollbar {
-        width: 5px;
-      }
-      .playlist-items::-webkit-scrollbar-track {
-        background: transparent;
-      }
-      .playlist-items::-webkit-scrollbar-thumb {
-        background: var(--border);
-        border-radius: 10px;
-      }
-
-      .playlist-item {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0.85rem 1rem;
-        background: rgba(15, 23, 42, 0.4);
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        cursor: pointer;
-        transition: all 0.25s ease;
-      }
-
-      .playlist-item:hover {
-        background: rgba(99, 102, 241, 0.1);
-        border-color: rgba(99, 102, 241, 0.3);
-        transform: translateX(4px);
-      }
-
-      .playlist-item.active {
-        background: rgba(99, 102, 241, 0.18);
-        border-color: var(--accent);
-      }
-
-      .item-info {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        overflow: hidden;
-      }
-
-      .item-info i {
-        color: var(--accent);
-        font-size: 1.1rem;
-      }
-
-      .item-details {
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-      }
-
-      .item-name {
-        font-size: 0.9rem;
-        font-weight: 500;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 180px;
-      }
-
-      .item-category {
-        font-size: 0.75rem;
-        color: var(--text-sub);
-      }
-
-      .item-actions {
-        display: flex;
-        gap: 0.5rem;
-      }
-
-      .action-btn {
-        background: none;
-        border: none;
-        color: var(--text-sub);
-        cursor: pointer;
-        padding: 0.25rem;
-        font-size: 0.9rem;
-        transition: color 0.2s ease;
-      }
-
-      .action-btn:hover {
-        color: #ef4444;
-      }
-
-      /* Toast Notification */
-      .toast {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background: #1e293b;
-        color: #fff;
-        padding: 0.85rem 1.5rem;
-        border-radius: 10px;
-        border-left: 4px solid var(--accent);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-        transform: translateY(100px);
-        opacity: 0;
-        transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        z-index: 1000;
-      }
-
-      .toast.show {
-        transform: translateY(0);
-        opacity: 1;
-      }
-
-      /* Animations */
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(15px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @keyframes pulse {
-        0%,
-        100% {
-          transform: scale(1);
-          opacity: 0.8;
-        }
-        50% {
-          transform: scale(1.05);
-          opacity: 1;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Header -->
-    <header class="app-header">
-      <div class="header-container">
-        <div class="brand">
-          <i class="fa-solid fa-circle-play"></i>
-          <span>StreamVault</span>
+        <div class="hero-actions">
+          <a class="btn" href="#memories">View Memories</a>
+          <a class="btn light" href="#celebrate">Our Celebration</a>
         </div>
       </div>
-    </header>
 
-    <!-- Main Interface -->
-    <main class="main-container">
-      <!-- Player View -->
-      <section class="player-wrapper">
-        <div class="panel">
-          <div class="screen-box" id="screenBox">
-            <div class="screen-placeholder" id="placeholder">
-              <i class="fa-solid fa-photo-film"></i>
-              <h3>No Video Playing</h3>
+      <div class="scroll-hint">Scroll</div>
+    </section>
+
+    <section class="intro">
+      <div class="section-wrap">
+        <div class="section-label">Our Story</div>
+        <h2>Moments worth remembering forever.</h2>
+        <p>
+          From the joyful pre-wedding moments to Mehndi, Barat and Walima,
+          every event became part of a beautiful journey. Press play and
+          experience each celebration again.
+        </p>
+      </div>
+    </section>
+
+    <section class="memories" id="memories">
+      <div class="section-wrap">
+        <div class="memories-head">
+          <div class="section-label">Wedding Memories</div>
+          <h2>Five chapters of our celebration</h2>
+        </div>
+
+        <div class="event-grid">
+
+          <!-- 01 PRE-WEDDING -->
+          <article class="event-card featured">
+            <div class="video-frame">
+              <iframe
+                src="https://drive.google.com/file/d/1rcPWyrEr3IPRQKyexuJiQMqmIVlYHupR/preview"
+                title="Pre-Wedding video"
+                allow="autoplay; fullscreen"
+                allowfullscreen>
+              </iframe>
+              <div class="video-overlay">
+                <div class="play-ring" aria-hidden="true"></div>
+              </div>
+            </div>
+
+            <div class="event-content">
+              <div class="event-number">01 / PRE-WEDDING</div>
+              <h3>The Beginning</h3>
               <p>
-                Select a video from your vault on the right to start playback.
+                The first chapter of the celebration — a collection of
+                beautiful moments leading into the wedding festivities.
               </p>
+              <button class="watch" data-video="1rcPWyrEr3IPRQKyexuJiQMqmIVlYHupR" data-title="Pre-Wedding — The Beginning">
+                WATCH FULL VIDEO →
+              </button>
             </div>
-          </div>
-          <div class="video-info" style="margin-top: 1.25rem">
-            <h2 class="video-title" id="currentTitle">
-              Select a video to play
-            </h2>
-            <span
-              class="category-badge"
-              id="currentCategory"
-              style="display: none"
-              >Barat</span
-            >
-          </div>
+          </article>
+
+          <!-- 02 GROOM MEHNDI -->
+          <article class="event-card">
+            <div class="video-frame">
+              <iframe
+                src="https://drive.google.com/file/d/1rkgvbP6KU3l1WvpOtFEY6BKDqAeQAg27/preview"
+                title="Groom Mehndi video"
+                allow="autoplay; fullscreen"
+                allowfullscreen>
+              </iframe>
+              <div class="video-overlay">
+                <div class="play-ring" aria-hidden="true"></div>
+              </div>
+            </div>
+
+            <div class="event-content">
+              <div class="event-number">02 / GROOM MEHNDI</div>
+              <h3>His Mehndi</h3>
+              <p>
+                A lively celebration filled with family, friends, music,
+                laughter and unforgettable groom-side memories.
+              </p>
+              <button class="watch" data-video="1rkgvbP6KU3l1WvpOtFEY6BKDqAeQAg27" data-title="Groom Mehndi — His Mehndi">
+                WATCH FULL VIDEO →
+              </button>
+            </div>
+          </article>
+
+          <!-- 03 BRIDE MEHNDI -->
+          <article class="event-card">
+            <div class="video-frame">
+              <iframe
+                src="https://drive.google.com/file/d/12gEOdghSYReH-Qd9KoQUxZFlB47b1Pqz/preview"
+                title="Bride Mehndi video"
+                allow="autoplay; fullscreen"
+                allowfullscreen>
+              </iframe>
+              <div class="video-overlay">
+                <div class="play-ring" aria-hidden="true"></div>
+              </div>
+            </div>
+
+            <div class="event-content">
+              <div class="event-number">03 / BRIDE MEHNDI</div>
+              <h3>Her Mehndi</h3>
+              <p>
+                A graceful celebration of the bride, surrounded by the
+                people who made this special occasion even more memorable.
+              </p>
+              <button class="watch" data-video="12gEOdghSYReH-Qd9KoQUxZFlB47b1Pqz" data-title="Bride Mehndi — Her Mehndi">
+                WATCH FULL VIDEO →
+              </button>
+            </div>
+          </article>
+
+          <!-- 04 BARAT -->
+          <article class="event-card">
+            <div class="video-frame">
+              <iframe
+                src="https://drive.google.com/file/d/1ip4fmeNw7FB4lUht_4HTNJjJM3t87cHS/preview"
+                title="Barat video"
+                allow="autoplay; fullscreen"
+                allowfullscreen>
+              </iframe>
+              <div class="video-overlay">
+                <div class="play-ring" aria-hidden="true"></div>
+              </div>
+            </div>
+
+            <div class="event-content">
+              <div class="event-number">04 / BARAT</div>
+              <h3>The Barat</h3>
+              <p>
+                The grand day arrived — a celebration of togetherness,
+                traditions, family and the beginning of a new chapter.
+              </p>
+              <button class="watch" data-video="1ip4fmeNw7FB4lUht_4HTNJjJM3t87cHS" data-title="Barat — The Grand Celebration">
+                WATCH FULL VIDEO →
+              </button>
+            </div>
+          </article>
+
+          <!-- 05 WALIMA -->
+          <article class="event-card">
+            <div class="video-frame">
+              <iframe
+                src="https://drive.google.com/file/d/1p2RXktJmJ0toFE8WGleOCakwbxensq8L/preview"
+                title="Walima video"
+                allow="autoplay; fullscreen"
+                allowfullscreen>
+              </iframe>
+              <div class="video-overlay">
+                <div class="play-ring" aria-hidden="true"></div>
+              </div>
+            </div>
+
+            <div class="event-content">
+              <div class="event-number">05 / WALIMA</div>
+              <h3>The Walima</h3>
+              <p>
+                The final chapter of the celebration — an elegant gathering
+                filled with happiness, blessings and cherished memories.
+              </p>
+              <button class="watch" data-video="1p2RXktJmJ0toFE8WGleOCakwbxensq8L" data-title="Walima — The Final Chapter">
+                WATCH FULL VIDEO →
+              </button>
+            </div>
+          </article>
+
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- Side Control Panel -->
-      <aside class="sidebar-wrapper">
-        <div class="panel">
-          <!-- Add Video Form -->
-          <form class="input-group" id="videoForm">
-            <div class="field-wrapper">
-              <label for="videoTitle">Video Title</label>
-              <input
-                type="text"
-                id="videoTitle"
-                placeholder="e.g. Walima Highlights"
-                required
-              />
-            </div>
+    <section class="closing" id="celebrate">
+      <div class="section-wrap">
+        <div class="ornament">✦</div>
+        <div class="section-label">Together Forever</div>
+        <h2>A beautiful beginning<br>to a lifetime together.</h2>
+        <p>
+          Thank you to everyone who shared these precious days with us
+          and helped make our wedding celebration unforgettable.
+        </p>
+      </div>
+    </section>
 
-            <div class="field-wrapper">
-              <label for="videoCategory">Event / Category</label>
-              <select id="videoCategory" required>
-                <option value="Barat">Barat</option>
-                <option value="Walima">Walima</option>
-                <option value="Mehendi">Mehendi</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
+  </main>
 
-            <div class="field-wrapper">
-              <label for="driveUrl">Google Drive Link</label>
-              <input
-                type="text"
-                id="driveUrl"
-                placeholder="https://drive.google.com/file/d/.../view"
-                required
-              />
-            </div>
+  <footer>
+    <div>With love · Muhammad Kashif Saleem & Mrs. Kashif</div>
+  </footer>
 
-            <button type="submit" class="btn btn-primary">
-              <i class="fa-solid fa-plus"></i> Add Video to Vault
-            </button>
-          </form>
+  <!-- Full-screen video viewer -->
+  <div class="modal" id="videoModal" role="dialog" aria-modal="true" aria-label="Wedding video viewer">
+    <div class="modal-box">
+      <div class="modal-top">
+        <div class="modal-title" id="modalTitle">Wedding Memory</div>
+        <button class="close" id="closeModal" aria-label="Close video">×</button>
+      </div>
 
-          <!-- Category Filter Tabs -->
-          <div class="tabs-container">
-            <button class="tab-btn active" onclick="filterCategory('All')">
-              All
-            </button>
-            <button class="tab-btn" onclick="filterCategory('Barat')">
-              Barat
-            </button>
-            <button class="tab-btn" onclick="filterCategory('Walima')">
-              Walima
-            </button>
-            <button class="tab-btn" onclick="filterCategory('Mehendi')">
-              Mehendi
-            </button>
-            <button class="tab-btn" onclick="filterCategory('Other')">
-              Other
-            </button>
-          </div>
+      <div class="modal-video">
+        <iframe
+          id="modalIframe"
+          src=""
+          title="Wedding video"
+          allow="autoplay; fullscreen"
+          allowfullscreen>
+        </iframe>
+      </div>
 
-          <!-- Playlist -->
-          <div class="playlist-header">
-            <span class="playlist-title">
-              <i class="fa-solid fa-list-ul"></i> Video Vault
-            </span>
-            <span
-              style="font-size: 0.8rem; color: var(--text-sub)"
-              id="itemCount"
-              >0 Videos</span
-            >
-          </div>
+      <div class="modal-note">
+        Video hosted securely on Google Drive.
+      </div>
+    </div>
+  </div>
 
-          <div class="playlist-items" id="playlist">
-            <!-- Dynamically Populated -->
-          </div>
-        </div>
-      </aside>
-    </main>
+  <script>
+    const navbar = document.getElementById("navbar");
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+    const modal = document.getElementById("videoModal");
+    const modalIframe = document.getElementById("modalIframe");
+    const modalTitle = document.getElementById("modalTitle");
+    const closeModal = document.getElementById("closeModal");
 
-    <!-- Notification Toast -->
-    <div class="toast" id="toast">Notice message</div>
+    /* Sticky navigation effect */
+    window.addEventListener("scroll", () => {
+      navbar.classList.toggle("scrolled", window.scrollY > 25);
+    }, { passive:true });
 
-    <script>
-      const STORAGE_KEY = "streamvault_events_v2";
-      let videos = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-      let currentVideoId = null;
-      let activeFilter = "All";
+    /* Mobile navigation */
+    menuBtn.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
 
-      // Pre-populated default videos
-      const defaultVideos = [
-        {
-          id: "default_barat",
-          title: "Barat Event",
-          category: "Barat",
-          url: "https://drive.google.com/file/d/1ip4fmeNw7FB4lUht_4HTNJjJM3t87cHS/view?usp=drive_link",
-        },
-        {
-          id: "default_walima",
-          title: "Walima Ceremony",
-          category: "Walima",
-          url: "https://drive.google.com/file/d/1p2RXktJmJ0toFE8WGleOCakwbxensq8L/view?usp=drive_link",
-        },
-      ];
-
-      // DOM References
-      const screenBox = document.getElementById("screenBox");
-      const currentTitle = document.getElementById("currentTitle");
-      const currentCategory = document.getElementById("currentCategory");
-      const videoForm = document.getElementById("videoForm");
-      const videoTitleInput = document.getElementById("videoTitle");
-      const videoCategoryInput = document.getElementById("videoCategory");
-      const driveUrlInput = document.getElementById("driveUrl");
-      const playlistContainer = document.getElementById("playlist");
-      const itemCount = document.getElementById("itemCount");
-      const toast = document.getElementById("toast");
-
-      function extractDriveId(url) {
-        const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
-        return match ? match[1] : null;
-      }
-
-      function saveState() {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(videos));
-        renderPlaylist();
-      }
-
-      function showToast(message) {
-        toast.textContent = message;
-        toast.classList.add("show");
-        setTimeout(() => toast.classList.remove("show"), 3000);
-      }
-
-      function loadVideo(id) {
-        const item = videos.find((v) => v.id === id);
-        if (!item) return;
-
-        const driveId = extractDriveId(item.url);
-        if (!driveId) {
-          showToast("Invalid Google Drive link");
-          return;
-        }
-
-        currentVideoId = id;
-        const embedUrl = `https://drive.google.com/file/d/${driveId}/preview`;
-
-        // Render iframe along with overlay blocker
-        screenBox.innerHTML = `
-        <iframe src="${embedUrl}" allow="autoplay" allowfullscreen></iframe>
-        <div class="popout-blocker"></div>
-      `;
-        currentTitle.textContent = item.title;
-        currentCategory.textContent = item.category;
-        currentCategory.style.display = "inline-block";
-
-        renderPlaylist();
-      }
-
-      function filterCategory(category) {
-        activeFilter = category;
-
-        document.querySelectorAll(".tab-btn").forEach((btn) => {
-          if (btn.textContent === category) {
-            btn.classList.add("active");
-          } else {
-            btn.classList.remove("active");
-          }
-        });
-
-        renderPlaylist();
-      }
-
-      function renderPlaylist() {
-        playlistContainer.innerHTML = "";
-
-        const filteredVideos =
-          activeFilter === "All"
-            ? videos
-            : videos.filter((v) => v.category === activeFilter);
-
-        itemCount.textContent = `${filteredVideos.length} ${filteredVideos.length === 1 ? "Video" : "Videos"}`;
-
-        if (filteredVideos.length === 0) {
-          playlistContainer.innerHTML = `
-          <div style="text-align: center; color: var(--text-sub); padding: 2rem 0; font-size: 0.9rem;">
-            No videos in "${activeFilter}" category.
-          </div>`;
-          return;
-        }
-
-        filteredVideos.forEach((item) => {
-          const div = document.createElement("div");
-          div.className = `playlist-item ${item.id === currentVideoId ? "active" : ""}`;
-          div.onclick = () => loadVideo(item.id);
-
-          div.innerHTML = `
-          <div class="item-info">
-            <i class="fa-solid ${item.id === currentVideoId ? "fa-circle-play" : "fa-film"}"></i>
-            <div class="item-details">
-              <span class="item-name" title="${item.title}">${item.title}</span>
-              <span class="item-category">${item.category}</span>
-            </div>
-          </div>
-          <div class="item-actions">
-            <button class="action-btn" onclick="deleteVideo(event, '${item.id}')" title="Delete">
-              <i class="fa-solid fa-trash-can"></i>
-            </button>
-          </div>
-        `;
-          playlistContainer.appendChild(div);
-        });
-      }
-
-      videoForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-
-        const title = videoTitleInput.value.trim();
-        const category = videoCategoryInput.value;
-        const url = driveUrlInput.value.trim();
-        const driveId = extractDriveId(url);
-
-        if (!driveId) {
-          showToast("Please enter a valid Google Drive file URL");
-          return;
-        }
-
-        const newVideo = {
-          id: "vid_" + Date.now(),
-          title: title,
-          category: category,
-          url: url,
-        };
-
-        videos.unshift(newVideo);
-        saveState();
-
-        videoTitleInput.value = "";
-        driveUrlInput.value = "";
-
-        loadVideo(newVideo.id);
-        showToast("Video added to vault");
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuBtn.setAttribute("aria-expanded", "false");
       });
+    });
 
-      window.deleteVideo = function (e, id) {
-        e.stopPropagation();
-        videos = videos.filter((v) => v.id !== id);
+    /* Full video modal */
+    document.querySelectorAll(".watch").forEach(button => {
+      button.addEventListener("click", () => {
+        const id = button.dataset.video;
+        const title = button.dataset.title;
 
-        if (currentVideoId === id) {
-          currentVideoId = null;
-          screenBox.innerHTML = `
-          <div class="screen-placeholder" id="placeholder">
-            <i class="fa-solid fa-photo-film"></i>
-            <h3>No Video Playing</h3>
-            <p>Select a video from your vault on the right to start playback.</p>
-          </div>`;
-          currentTitle.textContent = "Select a video to play";
-          currentCategory.style.display = "none";
-        }
+        modalTitle.textContent = title;
+        modalIframe.src = `https://drive.google.com/file/d/${id}/preview?autoplay=1`;
+        modal.classList.add("open");
+        document.body.style.overflow = "hidden";
+        closeModal.focus();
+      });
+    });
 
-        saveState();
-        showToast("Video removed");
-      };
+    function hideModal(){
+      modal.classList.remove("open");
+      modalIframe.src = "";
+      document.body.style.overflow = "";
+    }
 
-      // System Init
-      (function init() {
-        if (videos.length === 0) {
-          videos = defaultVideos;
-          saveState();
-        } else {
-          renderPlaylist();
-        }
-        if (videos.length > 0) {
-          loadVideo(videos[0].id);
-        }
-      })();
-    </script>
-  </body>
+    closeModal.addEventListener("click", hideModal);
+
+    modal.addEventListener("click", (event) => {
+      if(event.target === modal) hideModal();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if(event.key === "Escape" && modal.classList.contains("open")){
+        hideModal();
+      }
+    });
+
+    /* Remove decorative overlay after the embedded Drive player is interacted with */
+    document.querySelectorAll(".video-frame").forEach(frame => {
+      const overlay = frame.querySelector(".video-overlay");
+      frame.addEventListener("click", () => {
+        if(overlay) overlay.classList.add("hidden");
+      });
+    });
+  </script>
+
+</body>
 </html>
