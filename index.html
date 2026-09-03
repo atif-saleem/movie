@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -519,9 +520,19 @@
         box-shadow var(--transition);
     }
 
-    .video-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow);
+    /*
+      Hover-lift only applies on devices that actually support
+      hover with a precise pointer (mouse/trackpad).
+      On touch screens, a lingering :hover state from the first
+      tap was intercepting the tap meant for the iframe's own
+      play / fullscreen / quality controls.
+    */
+    @media (hover: hover) and (pointer: fine) {
+      .video-card:hover,
+      .mehndi-video-card:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow);
+      }
     }
 
     .video-heading {
@@ -570,6 +581,11 @@
       background: #080306;
 
       overflow: hidden;
+
+      /* Let touch gestures (tap on controls, drag on scrubber)
+         reach the iframe immediately instead of being captured
+         by the page's own scroll/zoom handling. */
+      touch-action: manipulation;
     }
 
     .video-frame iframe {
@@ -601,6 +617,46 @@
       line-height: 1.8;
 
       max-width: 850px;
+    }
+
+    /*
+      Fallback link shown under every video so that if a mobile
+      browser blocks/limits the embedded Drive player (common on
+      iOS Safari due to third-party storage restrictions), the
+      user can still open it directly in Drive with full native
+      controls (play, fullscreen, quality/gear icon, speed, etc).
+    */
+    .video-fallback {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+
+      margin-top: 16px;
+
+      color: var(--maroon);
+
+      font-family: Arial, sans-serif;
+      font-size: .82rem;
+      font-weight: bold;
+
+      text-decoration: none;
+
+      border-bottom: 1px solid var(--gold);
+
+      transition: var(--transition);
+    }
+
+    .video-fallback:hover {
+      color: var(--gold-dark);
+    }
+
+    .mehndi-video-description .video-fallback {
+      color: var(--gold-light);
+      border-bottom-color: rgba(212,175,55,.6);
+    }
+
+    .mehndi-video-description .video-fallback:hover {
+      color: white;
     }
 
 
@@ -664,6 +720,10 @@
       overflow: hidden;
 
       box-shadow: 0 20px 50px rgba(0,0,0,.20);
+
+      transition:
+        transform var(--transition),
+        box-shadow var(--transition);
     }
 
     .mehndi-video-title {
@@ -708,6 +768,8 @@
       aspect-ratio: 16 / 9;
 
       background: #000;
+
+      touch-action: manipulation;
     }
 
     .mehndi-video-frame iframe {
@@ -1097,7 +1159,7 @@
 
       .video-frame,
       .mehndi-video-frame {
-        aspect-ratio: 16 / 9;
+        height:400px !important;
       }
 
       .timeline::before {
@@ -1329,7 +1391,9 @@
 
       <p>
         Relive every beautiful chapter directly on this page.
-        Choose any video and press play.
+        Choose any video and press play. On mobile, use the
+        "Open in Google Drive" link if the player controls
+        don't respond.
       </p>
 
     </div>
@@ -1363,7 +1427,10 @@
             src="https://drive.google.com/file/d/1rcPWyrEr3IPRQKyexuJiQMqmIVlYHupR/preview"
             title="Previous Wedding Memories"
             allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
-            allowfullscreen>
+            allowfullscreen
+            webkitallowfullscreen
+            mozallowfullscreen
+            loading="lazy">
           </iframe>
 
         </div>
@@ -1376,6 +1443,14 @@
             bringing together memories that will always remain close
             to our hearts.
           </p>
+
+          <a
+            class="video-fallback"
+            href="https://drive.google.com/file/d/1rcPWyrEr3IPRQKyexuJiQMqmIVlYHupR/view"
+            target="_blank"
+            rel="noopener noreferrer">
+            Open in Google Drive ↗
+          </a>
 
         </div>
 
@@ -1407,7 +1482,10 @@
             src="https://drive.google.com/file/d/1ip4fmeNw7FB4lUht_4HTNJjJM3t87cHS/preview"
             title="Barat Celebration"
             allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
-            allowfullscreen>
+            allowfullscreen
+            webkitallowfullscreen
+            mozallowfullscreen
+            loading="lazy">
           </iframe>
 
         </div>
@@ -1420,6 +1498,14 @@
             unforgettable moments as the wedding festivities reached
             their grandest chapter.
           </p>
+
+          <a
+            class="video-fallback"
+            href="https://drive.google.com/file/d/1ip4fmeNw7FB4lUht_4HTNJjJM3t87cHS/view"
+            target="_blank"
+            rel="noopener noreferrer">
+            Open in Google Drive ↗
+          </a>
 
         </div>
 
@@ -1451,7 +1537,10 @@
             src="https://drive.google.com/file/d/1p2RXktJmJ0toFE8WGleOCakwbxensq8L/preview"
             title="Walima Celebration"
             allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
-            allowfullscreen>
+            allowfullscreen
+            webkitallowfullscreen
+            mozallowfullscreen
+            loading="lazy">
           </iframe>
 
         </div>
@@ -1464,6 +1553,14 @@
             togetherness, surrounded by the people who made
             the occasion special.
           </p>
+
+          <a
+            class="video-fallback"
+            href="https://drive.google.com/file/d/1p2RXktJmJ0toFE8WGleOCakwbxensq8L/view"
+            target="_blank"
+            rel="noopener noreferrer">
+            Open in Google Drive ↗
+          </a>
 
         </div>
 
@@ -1527,7 +1624,10 @@
             src="https://drive.google.com/file/d/1rkgvbP6KU3l1WvpOtFEY6BKDqAeQAg27/preview"
             title="Groom's Mehndi"
             allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
-            allowfullscreen>
+            allowfullscreen
+            webkitallowfullscreen
+            mozallowfullscreen
+            loading="lazy">
           </iframe>
 
         </div>
@@ -1540,6 +1640,14 @@
             Saleem's Mehndi celebration, filled with happiness,
             family, laughter and beautiful memories.
           </p>
+
+          <a
+            class="video-fallback"
+            href="https://drive.google.com/file/d/1rkgvbP6KU3l1WvpOtFEY6BKDqAeQAg27/view"
+            target="_blank"
+            rel="noopener noreferrer">
+            Open in Google Drive ↗
+          </a>
 
         </div>
 
@@ -1571,7 +1679,10 @@
             src="https://drive.google.com/file/d/12gEOdghSYReH-Qd9KoQUxZFlB47b1Pqz/preview"
             title="Bride's Mehndi"
             allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
-            allowfullscreen>
+            allowfullscreen
+            webkitallowfullscreen
+            mozallowfullscreen
+            loading="lazy">
           </iframe>
 
         </div>
@@ -1584,6 +1695,14 @@
             filled with color, happiness, music, love and the people
             closest to her heart.
           </p>
+
+          <a
+            class="video-fallback"
+            href="https://drive.google.com/file/d/12gEOdghSYReH-Qd9KoQUxZFlB47b1Pqz/view"
+            target="_blank"
+            rel="noopener noreferrer">
+            Open in Google Drive ↗
+          </a>
 
         </div>
 
