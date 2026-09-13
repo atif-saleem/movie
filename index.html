@@ -1,6 +1,7 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
 
@@ -12,6 +13,11 @@
     <title>Kasif Saleem Wedding Memories</title>
 
     <style>
+
+        /* =========================
+           RESET
+        ========================== */
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -36,91 +42,142 @@
 
             background: #f7f7f7;
             color: #111;
+
             -webkit-font-smoothing: antialiased;
         }
 
+
         /* =========================
-           HEADER
-        ========================= */
+           HERO
+        ========================== */
 
         .hero {
             background: #111;
             color: #fff;
+
             text-align: center;
-            padding: 55px 20px 50px;
+
+            padding:
+                55px
+                20px
+                50px;
         }
 
         .hero h1 {
             font-size: clamp(30px, 6vw, 52px);
+
             line-height: 1.1;
+
             font-weight: 700;
+
             letter-spacing: -1px;
         }
 
         .hero p {
             margin-top: 14px;
+
             font-size: 16px;
+
             color: #cfcfcf;
+
             line-height: 1.6;
         }
 
+
         /* =========================
            VIDEO SECTION
-        ========================= */
+        ========================== */
 
         .videos-section {
             width: min(1100px, calc(100% - 32px));
+
             margin: 0 auto;
-            padding: 45px 0 70px;
+
+            padding:
+                45px
+                0
+                70px;
         }
+
 
         .section-title {
             text-align: center;
+
             margin-bottom: 28px;
         }
 
+
         .section-title h2 {
             font-size: 27px;
+
             margin-bottom: 8px;
         }
 
+
         .section-title p {
             color: #666;
+
             font-size: 15px;
         }
 
+
         /* =========================
            VIDEO GRID
-        ========================= */
+        ========================== */
 
         .video-grid {
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
             gap: 20px;
         }
 
+
+        /* =========================
+           VIDEO CARD
+        ========================== */
+
         .video-card {
             background: #fff;
+
             border-radius: 18px;
+
             overflow: hidden;
+
             cursor: pointer;
+
             border: 1px solid #e7e7e7;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.06);
 
             transition:
                 transform 0.2s ease,
                 box-shadow 0.2s ease;
         }
 
+
         .video-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+
+            box-shadow:
+                0 12px 30px rgba(0, 0, 0, 0.10);
         }
+
+
+        /* =========================
+           VIDEO THUMBNAIL
+        ========================== */
 
         .video-thumbnail {
             position: relative;
+
             width: 100%;
+
             aspect-ratio: 16 / 9;
+
             background:
                 linear-gradient(
                     135deg,
@@ -129,72 +186,121 @@
                 );
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
         }
+
+
+        /* =========================
+           PLAY BUTTON
+        ========================== */
 
         .play-button {
             width: 64px;
+
             height: 64px;
+
             border-radius: 50%;
+
             background: rgba(255, 255, 255, 0.95);
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.25);
         }
+
 
         .play-button::after {
             content: "";
+
             margin-left: 5px;
 
             width: 0;
+
             height: 0;
 
-            border-top: 10px solid transparent;
-            border-bottom: 10px solid transparent;
-            border-left: 15px solid #111;
+            border-top:
+                10px solid transparent;
+
+            border-bottom:
+                10px solid transparent;
+
+            border-left:
+                15px solid #111;
         }
 
+
+        /* =========================
+           VIDEO INFORMATION
+        ========================== */
+
         .video-info {
-            padding: 19px 20px 20px;
+            padding:
+                19px
+                20px
+                20px;
         }
+
 
         .video-info h3 {
             font-size: 20px;
+
             line-height: 1.3;
+
             margin-bottom: 7px;
         }
 
+
         .video-info p {
             font-size: 14px;
+
             color: #777;
+
             line-height: 1.5;
         }
 
+
         /* =========================
            FOOTER
-        ========================= */
+        ========================== */
 
         footer {
             text-align: center;
-            padding: 25px 20px 35px;
+
+            padding:
+                25px
+                20px
+                35px;
+
             color: #777;
+
             font-size: 14px;
         }
 
+
         /* =========================
            MODAL
-        ========================= */
+        ========================== */
 
         .modal {
             position: fixed;
+
             inset: 0;
 
-            background: rgba(0, 0, 0, 0.94);
+            background:
+                rgba(0, 0, 0, 0.94);
 
             display: none;
+
             align-items: center;
+
             justify-content: center;
 
             z-index: 9999;
@@ -202,66 +308,111 @@
             padding: 20px;
         }
 
+
         .modal.active {
             display: flex;
         }
 
+
         .modal-content {
             width: min(1100px, 100%);
+
             position: relative;
         }
 
-        /* Close button */
+
+        /* =========================
+           CLOSE BUTTON
+           FIXED SO IT IS ALWAYS
+           VISIBLE ON DESKTOP
+        ========================== */
 
         .close-button {
-            position: absolute;
+            position: fixed;
 
-            top: -52px;
-            right: 0;
+            top: 20px;
 
-            width: 42px;
-            height: 42px;
+            right: 25px;
+
+            width: 46px;
+
+            height: 46px;
 
             border: 0;
+
             border-radius: 50%;
 
-            background: rgba(255, 255, 255, 0.14);
+            background:
+                rgba(255, 255, 255, 0.18);
+
             color: #fff;
 
-            font-size: 30px;
-            line-height: 40px;
+            font-size: 32px;
+
+            line-height: 1;
 
             cursor: pointer;
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
 
-            z-index: 10;
+            z-index: 10001;
+
+            -webkit-appearance: none;
+
+            appearance: none;
+
+            transition:
+                background 0.2s ease,
+                transform 0.2s ease;
         }
+
 
         .close-button:hover {
-            background: rgba(255, 255, 255, 0.25);
+            background:
+                rgba(255, 255, 255, 0.30);
+
+            transform: scale(1.05);
         }
 
-        /* Video wrapper */
+
+        .close-button:focus {
+            outline:
+                2px solid #fff;
+
+            outline-offset: 2px;
+        }
+
+
+        /* =========================
+           VIDEO WRAPPER
+        ========================== */
 
         .video-wrapper {
             position: relative;
+
             width: 100%;
+
             aspect-ratio: 16 / 9;
 
             background: #000;
 
             border-radius: 10px;
+
             overflow: hidden;
         }
 
+
         .video-wrapper iframe {
             position: absolute;
+
             inset: 0;
 
             width: 100%;
+
             height: 100%;
 
             border: 0;
@@ -269,18 +420,27 @@
             display: block;
         }
 
+
+        /* =========================
+           MODAL TITLE
+        ========================== */
+
         .modal-title {
             color: #fff;
+
             font-size: 18px;
+
             font-weight: 600;
 
             margin-top: 14px;
+
             text-align: center;
         }
 
+
         /* =========================
            MOBILE
-        ========================= */
+        ========================== */
 
         @media (max-width: 700px) {
 
@@ -291,87 +451,122 @@
                     35px;
             }
 
+
             .hero h1 {
                 font-size: 32px;
             }
+
 
             .hero p {
                 font-size: 14px;
             }
 
+
             .videos-section {
-                width: calc(100% - 24px);
-                padding: 30px 0 50px;
+                width:
+                    calc(100% - 24px);
+
+                padding:
+                    30px
+                    0
+                    50px;
             }
+
 
             .section-title h2 {
                 font-size: 24px;
             }
 
+
             .video-grid {
                 grid-template-columns: 1fr;
+
                 gap: 16px;
             }
+
 
             .video-card {
                 border-radius: 16px;
             }
 
+
             .video-info {
-                padding: 16px 17px 18px;
+                padding:
+                    16px
+                    17px
+                    18px;
             }
+
 
             .video-info h3 {
                 font-size: 18px;
             }
 
+
             .play-button {
                 width: 58px;
+
                 height: 58px;
             }
 
-            /* Full-screen style modal on mobile */
+
+            /* =========================
+               MOBILE MODAL
+            ========================== */
 
             .modal {
                 padding: 0;
+
                 align-items: center;
+
                 justify-content: center;
             }
+
 
             .modal-content {
                 width: 100%;
             }
 
+
             .video-wrapper {
                 width: 100vw;
 
-                /*
-                 * Large mobile viewing area.
-                 * The video keeps its 16:9 ratio.
-                 */
                 aspect-ratio: 16 / 9;
 
                 border-radius: 0;
             }
 
+
+            /* Mobile close button */
+
             .close-button {
-                top: 12px;
+                top:
+                    calc(12px + env(safe-area-inset-top));
+
                 right: 12px;
 
                 width: 44px;
+
                 height: 44px;
 
-                background: rgba(0, 0, 0, 0.65);
+                background:
+                    rgba(0, 0, 0, 0.70);
 
-                font-size: 28px;
+                font-size: 29px;
+
+                z-index: 10001;
             }
+
 
             .modal-title {
                 display: none;
             }
         }
 
-        /* Very small phones */
+
+        /* =========================
+           VERY SMALL PHONES
+        ========================== */
 
         @media (max-width: 380px) {
 
@@ -379,48 +574,74 @@
                 font-size: 28px;
             }
 
+
             .video-info h3 {
                 font-size: 17px;
             }
         }
 
+
         /* =========================
-           BODY LOCK WHEN MODAL OPEN
-        ========================= */
+           BODY LOCK
+        ========================== */
 
         body.modal-open {
             overflow: hidden;
         }
+
     </style>
+
 </head>
 
+
 <body>
+
 
     <!-- =========================
          HERO
     ========================== -->
 
     <header class="hero">
-        <h1>Kasif Saleem</h1>
-        <p>Wedding Memories</p>
+
+        <h1>
+            Kasif Saleem
+        </h1>
+
+        <p>
+            Wedding Memories
+        </p>
+
     </header>
 
 
+
     <!-- =========================
-         VIDEO SECTION
+         MAIN CONTENT
     ========================== -->
 
     <main class="videos-section">
 
+
         <div class="section-title">
-            <h2>Wedding Celebrations</h2>
-            <p>Relive the beautiful moments from the celebrations.</p>
+
+            <h2>
+                Wedding Celebrations
+            </h2>
+
+            <p>
+                Relive the beautiful moments from the celebrations.
+            </p>
+
         </div>
+
 
 
         <div class="video-grid">
 
-            <!-- Previous Wedding Memories -->
+
+            <!-- =========================
+                 PREVIOUS WEDDING MEMORIES
+            ========================== -->
 
             <article
                 class="video-card"
@@ -429,18 +650,31 @@
             >
 
                 <div class="video-thumbnail">
+
                     <div class="play-button"></div>
+
                 </div>
 
+
                 <div class="video-info">
-                    <h3>Previous Wedding Memories</h3>
-                    <p>Watch the beautiful memories from the wedding.</p>
+
+                    <h3>
+                        Previous Wedding Memories
+                    </h3>
+
+                    <p>
+                        Watch the beautiful memories from the wedding.
+                    </p>
+
                 </div>
 
             </article>
 
 
-            <!-- Barat -->
+
+            <!-- =========================
+                 BARAT
+            ========================== -->
 
             <article
                 class="video-card"
@@ -449,18 +683,31 @@
             >
 
                 <div class="video-thumbnail">
+
                     <div class="play-button"></div>
+
                 </div>
 
+
                 <div class="video-info">
-                    <h3>Barat Celebration</h3>
-                    <p>Enjoy the special moments from the Barat celebration.</p>
+
+                    <h3>
+                        Barat Celebration
+                    </h3>
+
+                    <p>
+                        Enjoy the special moments from the Barat celebration.
+                    </p>
+
                 </div>
 
             </article>
 
 
-            <!-- Walima -->
+
+            <!-- =========================
+                 WALIMA
+            ========================== -->
 
             <article
                 class="video-card"
@@ -469,18 +716,31 @@
             >
 
                 <div class="video-thumbnail">
+
                     <div class="play-button"></div>
+
                 </div>
 
+
                 <div class="video-info">
-                    <h3>Walima Celebration</h3>
-                    <p>Watch the memorable moments from the Walima.</p>
+
+                    <h3>
+                        Walima Celebration
+                    </h3>
+
+                    <p>
+                        Watch the memorable moments from the Walima.
+                    </p>
+
                 </div>
 
             </article>
 
 
-            <!-- Groom Mehndi -->
+
+            <!-- =========================
+                 GROOM MEHNDI
+            ========================== -->
 
             <article
                 class="video-card"
@@ -489,18 +749,31 @@
             >
 
                 <div class="video-thumbnail">
+
                     <div class="play-button"></div>
+
                 </div>
 
+
                 <div class="video-info">
-                    <h3>Groom's Mehndi</h3>
-                    <p>Celebrate the colorful moments from the groom's Mehndi.</p>
+
+                    <h3>
+                        Groom's Mehndi
+                    </h3>
+
+                    <p>
+                        Celebrate the colorful moments from the groom's Mehndi.
+                    </p>
+
                 </div>
 
             </article>
 
 
-            <!-- Bride Mehndi -->
+
+            <!-- =========================
+                 BRIDE MEHNDI
+            ========================== -->
 
             <article
                 class="video-card"
@@ -509,19 +782,31 @@
             >
 
                 <div class="video-thumbnail">
+
                     <div class="play-button"></div>
+
                 </div>
 
+
                 <div class="video-info">
-                    <h3>Bride's Mehndi</h3>
-                    <p>Relive the beautiful moments from the bride's Mehndi.</p>
+
+                    <h3>
+                        Bride's Mehndi
+                    </h3>
+
+                    <p>
+                        Relive the beautiful moments from the bride's Mehndi.
+                    </p>
+
                 </div>
 
             </article>
 
+
         </div>
 
     </main>
+
 
 
     <!-- =========================
@@ -529,8 +814,11 @@
     ========================== -->
 
     <footer>
+
         Kasif Saleem Wedding Memories
+
     </footer>
+
 
 
     <!-- =========================
@@ -545,16 +833,25 @@
         aria-modal="true"
     >
 
+
         <div class="modal-content">
+
+
+            <!-- CLOSE BUTTON -->
 
             <button
                 type="button"
                 class="close-button"
                 id="closeButton"
                 aria-label="Close video"
+                title="Close"
             >
                 &times;
             </button>
+
+
+
+            <!-- VIDEO -->
 
             <div class="video-wrapper">
 
@@ -570,14 +867,20 @@
 
             </div>
 
+
+
+            <!-- DESKTOP TITLE -->
+
             <div
                 class="modal-title"
                 id="modalTitle"
             ></div>
 
+
         </div>
 
     </div>
+
 
 
     <!-- =========================
@@ -586,120 +889,191 @@
 
     <script>
 
-        const modal = document.getElementById("videoModal");
-        const videoFrame = document.getElementById("videoFrame");
-        const modalTitle = document.getElementById("modalTitle");
-        const closeButton = document.getElementById("closeButton");
+        const modal =
+            document.getElementById("videoModal");
 
-        const videoCards = document.querySelectorAll(".video-card");
+        const videoFrame =
+            document.getElementById("videoFrame");
+
+        const modalTitle =
+            document.getElementById("modalTitle");
+
+        const closeButton =
+            document.getElementById("closeButton");
+
+        const videoCards =
+            document.querySelectorAll(".video-card");
 
 
-        /*
-         * Open video
-         */
+
+        /* =========================
+           OPEN VIDEO
+        ========================== */
 
         function openVideo(card) {
 
-            const videoURL = card.dataset.video;
-            const title = card.dataset.title;
+            const videoURL =
+                card.dataset.video;
 
-            modalTitle.textContent = title;
+            const title =
+                card.dataset.title;
+
+
+            modalTitle.textContent =
+                title;
+
 
             /*
-             * Google Drive preview URL
+             * Load Google Drive preview.
              *
-             * autoplay=1 asks the embedded player to start
-             * automatically where Google Drive/browser allows it.
+             * autoplay=1 asks Google Drive
+             * to start playback automatically.
              */
 
-            videoFrame.src = videoURL + "?autoplay=1";
+            videoFrame.src =
+                videoURL + "?autoplay=1";
+
 
             modal.classList.add("active");
 
-            modal.setAttribute("aria-hidden", "false");
 
-            document.body.classList.add("modal-open");
+            modal.setAttribute(
+                "aria-hidden",
+                "false"
+            );
+
+
+            document.body.classList.add(
+                "modal-open"
+            );
+
 
             /*
-             * Put focus on close button for accessibility.
+             * Focus close button.
              */
 
             setTimeout(function () {
+
                 closeButton.focus();
+
             }, 100);
+
         }
 
 
-        /*
-         * Close video
-         */
+
+        /* =========================
+           CLOSE VIDEO
+        ========================== */
 
         function closeVideo() {
 
             /*
-             * Clearing iframe src stops the Google Drive video
-             * immediately when the modal closes.
+             * Clearing iframe stops
+             * the video immediately.
              */
 
             videoFrame.src = "";
 
-            modal.classList.remove("active");
 
-            modal.setAttribute("aria-hidden", "true");
+            modal.classList.remove(
+                "active"
+            );
 
-            document.body.classList.remove("modal-open");
+
+            modal.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+
+            document.body.classList.remove(
+                "modal-open"
+            );
+
         }
 
 
-        /*
-         * Click on video cards
-         */
 
-        videoCards.forEach(function (card) {
+        /* =========================
+           CARD CLICK
+        ========================== */
 
-            card.addEventListener("click", function () {
-                openVideo(card);
-            });
+        videoCards.forEach(function(card) {
+
+            card.addEventListener(
+                "click",
+                function() {
+
+                    openVideo(card);
+
+                }
+            );
 
         });
 
 
-        /*
-         * Close button
-         */
 
-        closeButton.addEventListener("click", function () {
-            closeVideo();
-        });
+        /* =========================
+           CLOSE BUTTON CLICK
+        ========================== */
 
+        closeButton.addEventListener(
+            "click",
+            function() {
 
-        /*
-         * Click outside video
-         */
-
-        modal.addEventListener("click", function (event) {
-
-            if (event.target === modal) {
                 closeVideo();
+
             }
+        );
 
-        });
 
 
-        /*
-         * ESC key on desktop
-         */
+        /* =========================
+           CLICK OUTSIDE VIDEO
+        ========================== */
 
-        document.addEventListener("keydown", function (event) {
+        modal.addEventListener(
+            "click",
+            function(event) {
 
-            if (event.key === "Escape" && modal.classList.contains("active")) {
-                closeVideo();
+                if (
+                    event.target === modal
+                ) {
+
+                    closeVideo();
+
+                }
+
             }
+        );
 
-        });
+
+
+        /* =========================
+           ESC KEY
+        ========================== */
+
+        document.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (
+                    event.key === "Escape" &&
+                    modal.classList.contains("active")
+                ) {
+
+                    closeVideo();
+
+                }
+
+            }
+        );
+
 
     </script>
 
 </body>
-</html>
 
+</html>
+```
