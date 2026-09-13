@@ -1,377 +1,705 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kashif Saleem - Wedding Memories</title>
-    <style>
-        :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --accent-gold: #d97706;
-            --text-light: #f8fafc;
-            --text-muted: #94a3b8;
-        }
 
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <meta name="theme-color" content="#111111">
+
+    <title>Kasif Saleem Wedding Memories</title>
+
+    <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-light);
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            padding: 12px;
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                Helvetica,
+                Arial,
+                sans-serif;
+
+            background: #f7f7f7;
+            color: #111;
+            -webkit-font-smoothing: antialiased;
         }
 
-        header {
+        /* =========================
+           HEADER
+        ========================= */
+
+        .hero {
+            background: #111;
+            color: #fff;
             text-align: center;
-            padding: 16px 8px;
-            margin-bottom: 12px;
+            padding: 55px 20px 50px;
         }
 
-        header h1 {
-            font-size: 1.5rem;
-            color: var(--accent-gold);
-            letter-spacing: 0.5px;
+        .hero h1 {
+            font-size: clamp(30px, 6vw, 52px);
+            line-height: 1.1;
+            font-weight: 700;
+            letter-spacing: -1px;
         }
 
-        header p {
-            font-size: 0.875rem;
-            color: var(--text-muted);
-            margin-top: 4px;
+        .hero p {
+            margin-top: 14px;
+            font-size: 16px;
+            color: #cfcfcf;
+            line-height: 1.6;
         }
 
-        /* Video Container - Responsive 16:9 Aspect Ratio */
-        .main-player-card {
-            background: var(--card-bg);
-            border-radius: 12px;
+        /* =========================
+           VIDEO SECTION
+        ========================= */
+
+        .videos-section {
+            width: min(1100px, calc(100% - 32px));
+            margin: 0 auto;
+            padding: 45px 0 70px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .section-title h2 {
+            font-size: 27px;
+            margin-bottom: 8px;
+        }
+
+        .section-title p {
+            color: #666;
+            font-size: 15px;
+        }
+
+        /* =========================
+           VIDEO GRID
+        ========================= */
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .video-card {
+            background: #fff;
+            border-radius: 18px;
             overflow: hidden;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
-            margin-bottom: 20px;
+            cursor: pointer;
+            border: 1px solid #e7e7e7;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
         }
+
+        .video-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-thumbnail {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background:
+                linear-gradient(
+                    135deg,
+                    #222,
+                    #555
+                );
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .play-button {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+        }
+
+        .play-button::after {
+            content: "";
+            margin-left: 5px;
+
+            width: 0;
+            height: 0;
+
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 15px solid #111;
+        }
+
+        .video-info {
+            padding: 19px 20px 20px;
+        }
+
+        .video-info h3 {
+            font-size: 20px;
+            line-height: 1.3;
+            margin-bottom: 7px;
+        }
+
+        .video-info p {
+            font-size: 14px;
+            color: #777;
+            line-height: 1.5;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            text-align: center;
+            padding: 25px 20px 35px;
+            color: #777;
+            font-size: 14px;
+        }
+
+        /* =========================
+           MODAL
+        ========================= */
+
+        .modal {
+            position: fixed;
+            inset: 0;
+
+            background: rgba(0, 0, 0, 0.94);
+
+            display: none;
+            align-items: center;
+            justify-content: center;
+
+            z-index: 9999;
+
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            width: min(1100px, 100%);
+            position: relative;
+        }
+
+        /* Close button */
+
+        .close-button {
+            position: absolute;
+
+            top: -52px;
+            right: 0;
+
+            width: 42px;
+            height: 42px;
+
+            border: 0;
+            border-radius: 50%;
+
+            background: rgba(255, 255, 255, 0.14);
+            color: #fff;
+
+            font-size: 30px;
+            line-height: 40px;
+
+            cursor: pointer;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            z-index: 10;
+        }
+
+        .close-button:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        /* Video wrapper */
 
         .video-wrapper {
             position: relative;
             width: 100%;
-            padding-top: 56.25%; /* 16:9 Aspect Ratio */
-            background-color: #000;
+            aspect-ratio: 16 / 9;
+
+            background: #000;
+
+            border-radius: 10px;
+            overflow: hidden;
         }
 
         .video-wrapper iframe {
             position: absolute;
-            top: 0;
-            left: 0;
+            inset: 0;
+
             width: 100%;
             height: 100%;
-            border: none;
-            z-index: 1;
-        }
 
-        /* Interactive Mobile Cover with Play Button */
-        .video-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(15, 23, 42, 0.85);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 10;
-            cursor: pointer;
-            transition: opacity 0.3s ease;
-        }
+            border: 0;
 
-        .video-overlay.hidden {
-            display: none;
-        }
-
-        .play-btn-big {
-            width: 70px;
-            height: 70px;
-            background: var(--accent-gold);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 20px rgba(217, 119, 6, 0.5);
-            margin-bottom: 12px;
-            transition: transform 0.2s ease;
-        }
-
-        .play-btn-big::after {
-            content: '';
-            display: block;
-            width: 0;
-            height: 0;
-            border-style: solid;
-            border-width: 12px 0 12px 22px;
-            border-color: transparent transparent transparent #ffffff;
-            margin-left: 4px;
-        }
-
-        .video-overlay p {
-            font-weight: 600;
-            font-size: 1rem;
-            color: var(--text-light);
-        }
-
-        .player-info {
-            padding: 12px 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .player-info h2 {
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-
-        .fullscreen-btn {
-            background: var(--accent-gold);
-            color: #fff;
-            border: none;
-            padding: 8px 14px;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        /* Event Selection List */
-        .section-title {
-            font-size: 1rem;
-            color: var(--text-muted);
-            margin-bottom: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .playlist {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .playlist-item {
-            background: var(--card-bg);
-            padding: 14px 16px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            cursor: pointer;
-            border: 1px solid transparent;
-            transition: all 0.2s ease;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        .playlist-item:hover, .playlist-item.active {
-            border-color: var(--accent-gold);
-            background: #283548;
-        }
-
-        .playlist-item .title-group {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .playlist-item .icon {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: rgba(217, 119, 6, 0.15);
-            color: var(--accent-gold);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9rem;
-        }
-
-        .playlist-item.active .icon {
-            background: var(--accent-gold);
-            color: #fff;
-        }
-
-        .playlist-item span {
-            font-weight: 500;
-            font-size: 0.95rem;
-        }
-
-        .play-indicator {
-            font-size: 0.8rem;
-            color: var(--accent-gold);
-            display: none;
-        }
-
-        .playlist-item.active .play-indicator {
             display: block;
         }
 
-        footer {
-            margin-top: auto;
-            padding: 20px 0 10px 0;
+        .modal-title {
+            color: #fff;
+            font-size: 18px;
+            font-weight: 600;
+
+            margin-top: 14px;
             text-align: center;
-            font-size: 0.75rem;
-            color: var(--text-muted);
         }
 
-        @media (min-width: 768px) {
-            body {
-                max-width: 900px;
-                margin: 0 auto;
-                padding: 24px;
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            .hero {
+                padding:
+                    calc(35px + env(safe-area-inset-top))
+                    18px
+                    35px;
             }
 
-            header h1 {
-                font-size: 2rem;
+            .hero h1 {
+                font-size: 32px;
             }
 
-            .player-info h2 {
-                font-size: 1.25rem;
+            .hero p {
+                font-size: 14px;
             }
+
+            .videos-section {
+                width: calc(100% - 24px);
+                padding: 30px 0 50px;
+            }
+
+            .section-title h2 {
+                font-size: 24px;
+            }
+
+            .video-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .video-card {
+                border-radius: 16px;
+            }
+
+            .video-info {
+                padding: 16px 17px 18px;
+            }
+
+            .video-info h3 {
+                font-size: 18px;
+            }
+
+            .play-button {
+                width: 58px;
+                height: 58px;
+            }
+
+            /* Full-screen style modal on mobile */
+
+            .modal {
+                padding: 0;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .modal-content {
+                width: 100%;
+            }
+
+            .video-wrapper {
+                width: 100vw;
+
+                /*
+                 * Large mobile viewing area.
+                 * The video keeps its 16:9 ratio.
+                 */
+                aspect-ratio: 16 / 9;
+
+                border-radius: 0;
+            }
+
+            .close-button {
+                top: 12px;
+                right: 12px;
+
+                width: 44px;
+                height: 44px;
+
+                background: rgba(0, 0, 0, 0.65);
+
+                font-size: 28px;
+            }
+
+            .modal-title {
+                display: none;
+            }
+        }
+
+        /* Very small phones */
+
+        @media (max-width: 380px) {
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .video-info h3 {
+                font-size: 17px;
+            }
+        }
+
+        /* =========================
+           BODY LOCK WHEN MODAL OPEN
+        ========================= */
+
+        body.modal-open {
+            overflow: hidden;
         }
     </style>
 </head>
+
 <body>
 
-    <header>
-        <h1>Kashif Saleem Wedding</h1>
-        <p>Celebration Memories & Event Videos</p>
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <header class="hero">
+        <h1>Kasif Saleem</h1>
+        <p>Wedding Memories</p>
     </header>
 
-    <main>
-        <!-- Main Video Card -->
-        <section class="main-player-card">
-            <div class="video-wrapper" id="videoContainer">
-                <!-- Mobile Cover Overlay with Play Button -->
-                <div class="video-overlay" id="videoOverlay" onclick="startVideo()">
-                    <div class="play-btn-big"></div>
-                    <p id="overlayText">Tap to Play Video</p>
+
+    <!-- =========================
+         VIDEO SECTION
+    ========================== -->
+
+    <main class="videos-section">
+
+        <div class="section-title">
+            <h2>Wedding Celebrations</h2>
+            <p>Relive the beautiful moments from the celebrations.</p>
+        </div>
+
+
+        <div class="video-grid">
+
+            <!-- Previous Wedding Memories -->
+
+            <article
+                class="video-card"
+                data-title="Previous Wedding Memories"
+                data-video="https://drive.google.com/file/d/1rcPWyrEr3IPRQKyexuJiQMqmIVlYHupR/preview"
+            >
+
+                <div class="video-thumbnail">
+                    <div class="play-button"></div>
                 </div>
 
-                <iframe 
-                    id="mainPlayer" 
-                    src="" 
-                    allow="autoplay; fullscreen" 
-                    allowfullscreen>
-                </iframe>
-            </div>
-            <div class="player-info">
-                <h2 id="currentTitle">Previous Wedding Memories</h2>
-                <button class="fullscreen-btn" onclick="openFullScreen()">Fullscreen</button>
-            </div>
-        </section>
-
-        <!-- Playlist Section -->
-        <h3 class="section-title">Select Event</h3>
-        <section class="playlist" id="playlist">
-
-            <div class="playlist-item active" onclick="playVideo('1rcPWyrEr3IPRQKyexuJiQMqmIVlYHupR', 'Previous Wedding Memories', this)">
-                <div class="title-group">
-                    <div class="icon">&#9654;</div>
-                    <span>Previous Wedding Memories</span>
+                <div class="video-info">
+                    <h3>Previous Wedding Memories</h3>
+                    <p>Watch the beautiful memories from the wedding.</p>
                 </div>
-                <div class="play-indicator">Playing</div>
-            </div>
 
-            <div class="playlist-item" onclick="playVideo('1ip4fmeNw7FB4lUht_4HTNJjJM3t87cHS', 'Barat Celebration', this)">
-                <div class="title-group">
-                    <div class="icon">&#9654;</div>
-                    <span>Barat Celebration</span>
+            </article>
+
+
+            <!-- Barat -->
+
+            <article
+                class="video-card"
+                data-title="Barat Celebration"
+                data-video="https://drive.google.com/file/d/1ip4fmeNw7FB4lUht_4HTNJjJM3t87cHS/preview"
+            >
+
+                <div class="video-thumbnail">
+                    <div class="play-button"></div>
                 </div>
-                <div class="play-indicator">Playing</div>
-            </div>
 
-            <div class="playlist-item" onclick="playVideo('1p2RXktJmJ0toFE8WGleOCakwbxensq8L', 'Walima Celebration', this)">
-                <div class="title-group">
-                    <div class="icon">&#9654;</div>
-                    <span>Walima Celebration</span>
+                <div class="video-info">
+                    <h3>Barat Celebration</h3>
+                    <p>Enjoy the special moments from the Barat celebration.</p>
                 </div>
-                <div class="play-indicator">Playing</div>
-            </div>
 
-            <div class="playlist-item" onclick="playVideo('1rkgvbP6KU3l1WvpOtFEY6BKDqAeQAg27', 'Groom\'s Mehndi', this)">
-                <div class="title-group">
-                    <div class="icon">&#9654;</div>
-                    <span>Groom's Mehndi</span>
+            </article>
+
+
+            <!-- Walima -->
+
+            <article
+                class="video-card"
+                data-title="Walima Celebration"
+                data-video="https://drive.google.com/file/d/1p2RXktJmJ0toFE8WGleOCakwbxensq8L/preview"
+            >
+
+                <div class="video-thumbnail">
+                    <div class="play-button"></div>
                 </div>
-                <div class="play-indicator">Playing</div>
-            </div>
 
-            <div class="playlist-item" onclick="playVideo('12gEOdghSYReH-Qd9KoQUxZFlB47b1Pqz', 'Bride\'s Mehndi', this)">
-                <div class="title-group">
-                    <div class="icon">&#9654;</div>
-                    <span>Bride's Mehndi</span>
+                <div class="video-info">
+                    <h3>Walima Celebration</h3>
+                    <p>Watch the memorable moments from the Walima.</p>
                 </div>
-                <div class="play-indicator">Playing</div>
-            </div>
 
-        </section>
+            </article>
+
+
+            <!-- Groom Mehndi -->
+
+            <article
+                class="video-card"
+                data-title="Groom's Mehndi"
+                data-video="https://drive.google.com/file/d/1rkgvbP6KU3l1WvpOtFEY6BKDqAeQAg27/preview"
+            >
+
+                <div class="video-thumbnail">
+                    <div class="play-button"></div>
+                </div>
+
+                <div class="video-info">
+                    <h3>Groom's Mehndi</h3>
+                    <p>Celebrate the colorful moments from the groom's Mehndi.</p>
+                </div>
+
+            </article>
+
+
+            <!-- Bride Mehndi -->
+
+            <article
+                class="video-card"
+                data-title="Bride's Mehndi"
+                data-video="https://drive.google.com/file/d/12gEOdghSYReH-Qd9KoQUxZFlB47b1Pqz/preview"
+            >
+
+                <div class="video-thumbnail">
+                    <div class="play-button"></div>
+                </div>
+
+                <div class="video-info">
+                    <h3>Bride's Mehndi</h3>
+                    <p>Relive the beautiful moments from the bride's Mehndi.</p>
+                </div>
+
+            </article>
+
+        </div>
+
     </main>
 
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
     <footer>
-        &copy; Kashif Saleem Wedding Gallery
+        Kasif Saleem Wedding Memories
     </footer>
 
+
+    <!-- =========================
+         VIDEO MODAL
+    ========================== -->
+
+    <div
+        class="modal"
+        id="videoModal"
+        aria-hidden="true"
+        role="dialog"
+        aria-modal="true"
+    >
+
+        <div class="modal-content">
+
+            <button
+                type="button"
+                class="close-button"
+                id="closeButton"
+                aria-label="Close video"
+            >
+                &times;
+            </button>
+
+            <div class="video-wrapper">
+
+                <iframe
+                    id="videoFrame"
+                    src=""
+                    title="Wedding video"
+                    allow="autoplay; fullscreen; picture-in-picture"
+                    allowfullscreen
+                    webkitallowfullscreen
+                    mozallowfullscreen
+                ></iframe>
+
+            </div>
+
+            <div
+                class="modal-title"
+                id="modalTitle"
+            ></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
     <script>
-        let currentFileId = '1rcPWyrEr3IPRQKyexuJiQMqmIVlYHupR';
 
-        // Direct tap on overlay loads and plays video
-        function startVideo() {
-            const player = document.getElementById('mainPlayer');
-            const overlay = document.getElementById('videoOverlay');
-            
-            player.src = `https://drive.google.com/file/d/${currentFileId}/preview`;
-            overlay.classList.add('hidden');
+        const modal = document.getElementById("videoModal");
+        const videoFrame = document.getElementById("videoFrame");
+        const modalTitle = document.getElementById("modalTitle");
+        const closeButton = document.getElementById("closeButton");
+
+        const videoCards = document.querySelectorAll(".video-card");
+
+
+        /*
+         * Open video
+         */
+
+        function openVideo(card) {
+
+            const videoURL = card.dataset.video;
+            const title = card.dataset.title;
+
+            modalTitle.textContent = title;
+
+            /*
+             * Google Drive preview URL
+             *
+             * autoplay=1 asks the embedded player to start
+             * automatically where Google Drive/browser allows it.
+             */
+
+            videoFrame.src = videoURL + "?autoplay=1";
+
+            modal.classList.add("active");
+
+            modal.setAttribute("aria-hidden", "false");
+
+            document.body.classList.add("modal-open");
+
+            /*
+             * Put focus on close button for accessibility.
+             */
+
+            setTimeout(function () {
+                closeButton.focus();
+            }, 100);
         }
 
-        // Switching items in list reset overlay state
-        function playVideo(fileId, title, element) {
-            currentFileId = fileId;
-            const player = document.getElementById('mainPlayer');
-            const overlay = document.getElementById('videoOverlay');
-            const titleElement = document.getElementById('currentTitle');
 
-            titleElement.innerText = title;
+        /*
+         * Close video
+         */
 
-            // Load iframe with selected video ID
-            player.src = `https://drive.google.com/file/d/${fileId}/preview`;
-            overlay.classList.add('hidden');
+        function closeVideo() {
 
-            // Active list highlight
-            const items = document.querySelectorAll('.playlist-item');
-            items.forEach(item => item.classList.remove('active'));
-            element.classList.add('active');
+            /*
+             * Clearing iframe src stops the Google Drive video
+             * immediately when the modal closes.
+             */
 
-            // Scroll up to player view
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            videoFrame.src = "";
+
+            modal.classList.remove("active");
+
+            modal.setAttribute("aria-hidden", "true");
+
+            document.body.classList.remove("modal-open");
         }
 
-        function openFullScreen() {
-            const container = document.getElementById('videoContainer');
 
-            if (container.requestFullscreen) {
-                container.requestFullscreen();
-            } else if (container.webkitRequestFullscreen) { /* Safari / iOS */
-                container.webkitRequestFullscreen();
-            } else if (container.msRequestFullscreen) {
-                container.msRequestFullscreen();
+        /*
+         * Click on video cards
+         */
+
+        videoCards.forEach(function (card) {
+
+            card.addEventListener("click", function () {
+                openVideo(card);
+            });
+
+        });
+
+
+        /*
+         * Close button
+         */
+
+        closeButton.addEventListener("click", function () {
+            closeVideo();
+        });
+
+
+        /*
+         * Click outside video
+         */
+
+        modal.addEventListener("click", function (event) {
+
+            if (event.target === modal) {
+                closeVideo();
             }
-        }
+
+        });
+
+
+        /*
+         * ESC key on desktop
+         */
+
+        document.addEventListener("keydown", function (event) {
+
+            if (event.key === "Escape" && modal.classList.contains("active")) {
+                closeVideo();
+            }
+
+        });
+
     </script>
+
 </body>
 </html>
+
