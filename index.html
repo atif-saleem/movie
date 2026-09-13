@@ -1,1988 +1,307 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Muhammad Kashif Saleem & Mrs. Kashif | Wedding Memories</title>
-
-  <meta
-    name="description"
-    content="A beautiful collection of wedding memories celebrating Muhammad Kashif Saleem & Mrs. Kashif."
-  >
-
-  <style>
-    :root {
-      --gold: #d4af37;
-      --gold-light: #f5d77a;
-      --gold-dark: #9d7b17;
-
-      --maroon: #681c2b;
-      --maroon-dark: #3b0d18;
-      --maroon-light: #8d3044;
-
-      --cream: #fffaf0;
-      --ivory: #fffdf8;
-
-      --text: #382b2e;
-      --muted: #806f72;
-
-      --shadow: 0 20px 60px rgba(59, 13, 24, 0.16);
-      --shadow-soft: 0 10px 35px rgba(59, 13, 24, 0.10);
-
-      --radius: 24px;
-      --transition: 0.35s ease;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: Georgia, "Times New Roman", serif;
-      color: var(--text);
-
-      background:
-        radial-gradient(
-          circle at 10% 10%,
-          rgba(212,175,55,.10),
-          transparent 25%
-        ),
-        radial-gradient(
-          circle at 90% 20%,
-          rgba(104,28,43,.08),
-          transparent 25%
-        ),
-        var(--cream);
-
-      overflow-x: hidden;
-    }
-
-    body::before,
-    body::after {
-      content: "";
-      position: fixed;
-      width: 350px;
-      height: 350px;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: -1;
-      filter: blur(5px);
-    }
-
-    body::before {
-      top: -150px;
-      left: -150px;
-      background: rgba(212,175,55,.07);
-    }
-
-    body::after {
-      right: -150px;
-      bottom: -150px;
-      background: rgba(104,28,43,.06);
-    }
-
-
-    /* =========================================================
-       NAVIGATION
-       ========================================================= */
-
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-
-      padding: 16px 5%;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      background: rgba(255, 253, 248, 0.88);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-
-      border-bottom: 1px solid rgba(212,175,55,.18);
-
-      transition: var(--transition);
-    }
-
-    .navbar.scrolled {
-      padding: 11px 5%;
-      box-shadow: 0 8px 30px rgba(59,13,24,.08);
-    }
-
-    .brand {
-      text-decoration: none;
-      color: var(--maroon);
-      font-size: 1.2rem;
-      font-weight: bold;
-      letter-spacing: .5px;
-    }
-
-    .brand span {
-      color: var(--gold-dark);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 24px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: var(--text);
-      font-size: .9rem;
-      transition: var(--transition);
-      position: relative;
-    }
-
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -7px;
-      width: 0;
-      height: 2px;
-      background: var(--gold);
-      transition: var(--transition);
-    }
-
-    .nav-links a:hover {
-      color: var(--maroon);
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-
-    /* =========================================================
-       HERO
-       ========================================================= */
-
-    .hero {
-      min-height: 100vh;
-      position: relative;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-
-      padding: 120px 20px 80px;
-      overflow: hidden;
-
-      background:
-        linear-gradient(
-          135deg,
-          rgba(59,13,24,.96),
-          rgba(104,28,43,.93),
-          rgba(59,13,24,.98)
-        );
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 25px;
-
-      border: 1px solid rgba(212,175,55,.35);
-      border-radius: 30px;
-
-      pointer-events: none;
-    }
-
-    .hero::after {
-      content: "✦";
-      position: absolute;
-
-      top: 13%;
-      left: 8%;
-
-      color: rgba(212,175,55,.5);
-      font-size: 80px;
-
-      animation: float 5s ease-in-out infinite;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 1000px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-
-      color: var(--gold-light);
-      text-transform: uppercase;
-      letter-spacing: 5px;
-      font-size: .78rem;
-
-      margin-bottom: 25px;
-    }
-
-    .eyebrow::before,
-    .eyebrow::after {
-      content: "";
-      width: 45px;
-      height: 1px;
-      background: var(--gold);
-    }
-
-    .hero h1 {
-      color: white;
-
-      font-size: clamp(3rem, 8vw, 7.5rem);
-      font-weight: normal;
-      line-height: .95;
-
-      letter-spacing: -3px;
-      margin-bottom: 25px;
-    }
-
-    .hero h1 span {
-      display: block;
-
-      color: var(--gold-light);
-      font-size: .45em;
-
-      margin: 18px 0;
-      letter-spacing: 5px;
-    }
-
-    .hero-subtitle {
-      color: rgba(255,255,255,.78);
-
-      font-family: Arial, sans-serif;
-
-      max-width: 620px;
-      margin: auto;
-
-      line-height: 1.8;
-      font-size: 1rem;
-    }
-
-    .hero-button {
-      display: inline-flex;
-
-      margin-top: 38px;
-      padding: 15px 30px;
-
-      background:
-        linear-gradient(
-          135deg,
-          var(--gold-light),
-          var(--gold)
-        );
-
-      color: var(--maroon-dark);
-
-      text-decoration: none;
-      border-radius: 999px;
-
-      font-family: Arial, sans-serif;
-      font-size: .9rem;
-      font-weight: bold;
-
-      box-shadow: 0 10px 30px rgba(212,175,55,.25);
-
-      transition: var(--transition);
-    }
-
-    .hero-button:hover {
-      transform: translateY(-4px);
-
-      box-shadow:
-        0 16px 35px rgba(212,175,55,.35);
-    }
-
-    .scroll-indicator {
-      position: absolute;
-
-      bottom: 28px;
-      left: 50%;
-
-      transform: translateX(-50%);
-
-      color: rgba(255,255,255,.55);
-
-      font-family: Arial, sans-serif;
-      font-size: .7rem;
-
-      text-transform: uppercase;
-      letter-spacing: 3px;
-    }
-
-    .scroll-indicator span {
-      display: block;
-
-      width: 1px;
-      height: 35px;
-
-      background: var(--gold);
-
-      margin: 8px auto 0;
-
-      animation: scrollLine 1.8s infinite;
-    }
-
-
-    /* =========================================================
-       COMMON SECTIONS
-       ========================================================= */
-
-    section {
-      padding: 100px 5%;
-    }
-
-    .section-heading {
-      text-align: center;
-
-      max-width: 720px;
-
-      margin: 0 auto 60px;
-    }
-
-    .section-label {
-      display: inline-block;
-
-      color: var(--gold-dark);
-
-      font-family: Arial, sans-serif;
-
-      font-size: .72rem;
-      font-weight: bold;
-
-      letter-spacing: 4px;
-      text-transform: uppercase;
-
-      margin-bottom: 12px;
-    }
-
-    .section-heading h2 {
-      color: var(--maroon);
-
-      font-size: clamp(2.2rem, 5vw, 4rem);
-
-      font-weight: normal;
-
-      margin-bottom: 15px;
-    }
-
-    .section-heading p {
-      color: var(--muted);
-
-      font-family: Arial, sans-serif;
-
-      line-height: 1.7;
-      font-size: .95rem;
-    }
-
-
-    /* =========================================================
-       COUPLE
-       ========================================================= */
-
-    .couple-section {
-      background: var(--ivory);
-    }
-
-    .couple-card {
-      max-width: 1050px;
-      margin: auto;
-
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-
-      align-items: center;
-
-      gap: 40px;
-
-      padding: 55px;
-
-      border: 1px solid rgba(212,175,55,.25);
-
-      border-radius: var(--radius);
-
-      background:
-        linear-gradient(
-          135deg,
-          rgba(255,255,255,.95),
-          rgba(255,250,240,.92)
-        );
-
-      box-shadow: var(--shadow-soft);
-    }
-
-    .person {
-      text-align: center;
-    }
-
-    .person-role {
-      color: var(--gold-dark);
-
-      font-family: Arial, sans-serif;
-
-      font-size: .7rem;
-      font-weight: bold;
-
-      letter-spacing: 3px;
-      text-transform: uppercase;
-
-      margin-bottom: 13px;
-    }
-
-    .person h3 {
-      color: var(--maroon);
-
-      font-size: clamp(1.5rem, 3vw, 2.3rem);
-
-      font-weight: normal;
-    }
-
-    .heart {
-      width: 70px;
-      height: 70px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      border-radius: 50%;
-
-      background: var(--maroon);
-      color: var(--gold-light);
-
-      font-size: 1.5rem;
-
-      box-shadow:
-        0 0 0 8px rgba(212,175,55,.10),
-        0 15px 30px rgba(104,28,43,.18);
-    }
-
-
-    /* =========================================================
-       VIDEO EVENTS
-       ========================================================= */
-
-    .events-section {
-      background:
-        linear-gradient(
-          180deg,
-          var(--cream),
-          #fff8eb
-        );
-    }
-
-    /*
-      IMPORTANT:
-      Every video is now full width.
-      No popup/modal is used.
-    */
-
-    .videos-list {
-      max-width: 1050px;
-      margin: auto;
-
-      display: flex;
-      flex-direction: column;
-
-      gap: 55px;
-    }
-
-    .video-card {
-      background: white;
-
-      border: 1px solid rgba(212,175,55,.22);
-
-      border-radius: var(--radius);
-
-      overflow: hidden;
-
-      box-shadow: var(--shadow-soft);
-
-      transition:
-        transform var(--transition),
-        box-shadow var(--transition);
-    }
-
-    /*
-      Hover-lift only applies on devices that actually support
-      hover with a precise pointer (mouse/trackpad).
-      On touch screens, a lingering :hover state from the first
-      tap was intercepting the tap meant for the iframe's own
-      play / fullscreen / quality controls.
-    */
-    @media (hover: hover) and (pointer: fine) {
-      .video-card:hover,
-      .mehndi-video-card:hover {
-        transform: translateY(-6px);
-        box-shadow: var(--shadow);
-      }
-    }
-
-    .video-heading {
-      padding: 30px 35px 22px;
-
-      background:
-        linear-gradient(
-          135deg,
-          var(--maroon-dark),
-          var(--maroon)
-        );
-    }
-
-    .video-number {
-      color: var(--gold-light);
-
-      font-family: Arial, sans-serif;
-
-      font-size: .68rem;
-      font-weight: bold;
-
-      letter-spacing: 3px;
-
-      margin-bottom: 10px;
-    }
-
-    .video-heading h3 {
-      color: white;
-
-      font-size: clamp(1.7rem, 4vw, 2.5rem);
-
-      font-weight: normal;
-    }
-
-    /*
-      Direct Google Drive video area.
-    */
-
-    .video-frame {
-      position: relative;
-
-      width: 100%;
-
-      aspect-ratio: 16 / 9;
-
-      background: #080306;
-
-      overflow: hidden;
-
-      /* Let touch gestures (tap on controls, drag on scrubber)
-         reach the iframe immediately instead of being captured
-         by the page's own scroll/zoom handling. */
-      touch-action: manipulation;
-    }
-
-    .video-frame iframe {
-      position: absolute;
-
-      inset: 0;
-
-      width: 100%;
-      height: 100%;
-
-      border: 0;
-
-      display: block;
-
-      background: #000;
-    }
-
-    .video-description {
-      padding: 28px 35px 35px;
-    }
-
-    .video-description p {
-      color: var(--muted);
-
-      font-family: Arial, sans-serif;
-
-      font-size: .92rem;
-
-      line-height: 1.8;
-
-      max-width: 850px;
-    }
-
-    /*
-      Fallback link shown under every video so that if a mobile
-      browser blocks/limits the embedded Drive player (common on
-      iOS Safari due to third-party storage restrictions), the
-      user can still open it directly in Drive with full native
-      controls (play, fullscreen, quality/gear icon, speed, etc).
-    */
-    .video-fallback {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-
-      margin-top: 16px;
-
-      color: var(--maroon);
-
-      font-family: Arial, sans-serif;
-      font-size: .82rem;
-      font-weight: bold;
-
-      text-decoration: none;
-
-      border-bottom: 1px solid var(--gold);
-
-      transition: var(--transition);
-    }
-
-    .video-fallback:hover {
-      color: var(--gold-dark);
-    }
-
-    .mehndi-video-description .video-fallback {
-      color: var(--gold-light);
-      border-bottom-color: rgba(212,175,55,.6);
-    }
-
-    .mehndi-video-description .video-fallback:hover {
-      color: white;
-    }
-
-
-    /* =========================================================
-       MEHNDI VIDEOS
-       ========================================================= */
-
-    .mehndi-section {
-      background: var(--maroon-dark);
-
-      position: relative;
-
-      overflow: hidden;
-    }
-
-    .mehndi-section::before {
-      content: "";
-
-      position: absolute;
-
-      width: 500px;
-      height: 500px;
-
-      border: 1px solid rgba(212,175,55,.12);
-
-      border-radius: 50%;
-
-      left: -250px;
-      top: 10%;
-    }
-
-    .mehndi-section .section-heading h2 {
-      color: white;
-    }
-
-    .mehndi-section .section-heading p {
-      color: rgba(255,255,255,.65);
-    }
-
-    .mehndi-videos {
-      max-width: 1050px;
-
-      margin: auto;
-
-      display: flex;
-      flex-direction: column;
-
-      gap: 55px;
-    }
-
-    .mehndi-video-card {
-      position: relative;
-      z-index: 2;
-
-      background: rgba(255,255,255,.05);
-
-      border: 1px solid rgba(212,175,55,.25);
-
-      border-radius: var(--radius);
-
-      overflow: hidden;
-
-      box-shadow: 0 20px 50px rgba(0,0,0,.20);
-
-      transition:
-        transform var(--transition),
-        box-shadow var(--transition);
-    }
-
-    .mehndi-video-title {
-      padding: 30px 35px;
-
-      background:
-        linear-gradient(
-          135deg,
-          rgba(255,255,255,.08),
-          rgba(255,255,255,.03)
-        );
-    }
-
-    .mehndi-video-title h3 {
-      color: white;
-
-      font-size: clamp(1.6rem, 4vw, 2.4rem);
-
-      font-weight: normal;
-    }
-
-    .mehndi-video-title span {
-      display: block;
-
-      color: var(--gold-light);
-
-      font-family: Arial, sans-serif;
-
-      font-size: .68rem;
-      font-weight: bold;
-
-      letter-spacing: 3px;
-
-      margin-bottom: 9px;
-    }
-
-    .mehndi-video-frame {
-      position: relative;
-
-      width: 100%;
-
-      aspect-ratio: 16 / 9;
-
-      background: #000;
-
-      touch-action: manipulation;
-    }
-
-    .mehndi-video-frame iframe {
-      position: absolute;
-
-      inset: 0;
-
-      width: 100%;
-      height: 100%;
-
-      border: none;
-
-      display: block;
-    }
-
-    .mehndi-video-description {
-      padding: 28px 35px 35px;
-    }
-
-    .mehndi-video-description p {
-      color: rgba(255,255,255,.65);
-
-      font-family: Arial, sans-serif;
-
-      font-size: .9rem;
-
-      line-height: 1.8;
-    }
-
-
-    /* =========================================================
-       TIMELINE
-       ========================================================= */
-
-    .timeline-section {
-      background: var(--ivory);
-    }
-
-    .timeline {
-      max-width: 850px;
-
-      margin: auto;
-
-      position: relative;
-    }
-
-    .timeline::before {
-      content: "";
-
-      position: absolute;
-
-      top: 0;
-      bottom: 0;
-
-      left: 50%;
-
-      width: 1px;
-
-      background:
-        linear-gradient(
-          transparent,
-          var(--gold),
-          transparent
-        );
-    }
-
-    .timeline-item {
-      position: relative;
-
-      width: 50%;
-
-      padding: 0 45px 45px;
-    }
-
-    .timeline-item:nth-child(odd) {
-      left: 0;
-      text-align: right;
-    }
-
-    .timeline-item:nth-child(even) {
-      left: 50%;
-    }
-
-    .timeline-dot {
-      position: absolute;
-
-      top: 0;
-
-      width: 14px;
-      height: 14px;
-
-      border-radius: 50%;
-
-      background: var(--gold);
-
-      border: 3px solid var(--cream);
-
-      box-shadow:
-        0 0 0 1px var(--gold);
-    }
-
-    .timeline-item:nth-child(odd) .timeline-dot {
-      right: -7px;
-    }
-
-    .timeline-item:nth-child(even) .timeline-dot {
-      left: -7px;
-    }
-
-    .timeline-content {
-      padding: 24px;
-
-      border-radius: 18px;
-
-      background: white;
-
-      border: 1px solid rgba(212,175,55,.18);
-
-      box-shadow: var(--shadow-soft);
-    }
-
-    .timeline-content small {
-      color: var(--gold-dark);
-
-      font-family: Arial, sans-serif;
-
-      font-weight: bold;
-
-      letter-spacing: 2px;
-    }
-
-    .timeline-content h3 {
-      color: var(--maroon);
-
-      font-size: 1.5rem;
-
-      font-weight: normal;
-
-      margin: 7px 0;
-    }
-
-    .timeline-content p {
-      color: var(--muted);
-
-      font-family: Arial, sans-serif;
-
-      font-size: .82rem;
-
-      line-height: 1.6;
-    }
-
-
-    /* =========================================================
-       CLOSING
-       ========================================================= */
-
-    .closing-section {
-      padding: 130px 20px;
-
-      text-align: center;
-
-      background:
-        linear-gradient(
-          135deg,
-          var(--maroon-dark),
-          var(--maroon)
-        );
-    }
-
-    .closing-symbol {
-      color: var(--gold-light);
-
-      font-size: 2rem;
-
-      margin-bottom: 20px;
-    }
-
-    .closing-section h2 {
-      color: white;
-
-      font-size: clamp(2.5rem, 6vw, 5rem);
-
-      font-weight: normal;
-
-      margin-bottom: 20px;
-    }
-
-    .closing-section p {
-      color: rgba(255,255,255,.68);
-
-      font-family: Arial, sans-serif;
-
-      max-width: 650px;
-
-      margin: auto;
-
-      line-height: 1.8;
-    }
-
-    .closing-names {
-      margin-top: 30px;
-
-      color: var(--gold-light);
-
-      font-size: 1.2rem;
-
-      letter-spacing: 1px;
-    }
-
-
-    /* =========================================================
-       FOOTER
-       ========================================================= */
-
-    footer {
-      background: #26080f;
-
-      padding: 30px 20px;
-
-      text-align: center;
-    }
-
-    footer p {
-      color: rgba(255,255,255,.4);
-
-      font-family: Arial, sans-serif;
-
-      font-size: .75rem;
-
-      line-height: 1.6;
-    }
-
-
-    /* =========================================================
-       BACK TO TOP
-       ========================================================= */
-
-    .back-top {
-      position: fixed;
-
-      right: 22px;
-      bottom: 22px;
-
-      z-index: 100;
-
-      width: 45px;
-      height: 45px;
-
-      border: 1px solid rgba(212,175,55,.4);
-
-      border-radius: 50%;
-
-      background: var(--maroon);
-
-      color: var(--gold-light);
-
-      cursor: pointer;
-
-      opacity: 0;
-      visibility: hidden;
-
-      transition: var(--transition);
-    }
-
-    .back-top.show {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .back-top:hover {
-      transform: translateY(-4px);
-
-      background: var(--gold);
-
-      color: var(--maroon-dark);
-    }
-
-
-    /* =========================================================
-       ANIMATIONS
-       ========================================================= */
-
-    @keyframes float {
-      0%, 100% {
-        transform: translateY(0) rotate(0deg);
-      }
-
-      50% {
-        transform: translateY(-15px) rotate(8deg);
-      }
-    }
-
-    @keyframes scrollLine {
-      0% {
-        opacity: 0;
-        transform: scaleY(.3);
-        transform-origin: top;
-      }
-
-      40% {
-        opacity: 1;
-      }
-
-      100% {
-        opacity: 0;
-        transform: scaleY(1);
-        transform-origin: top;
-      }
-    }
-
-
-    /* =========================================================
-       RESPONSIVE
-       ========================================================= */
-
-    @media (max-width: 800px) {
-
-      .navbar {
-        padding: 13px 5%;
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      .brand {
-        font-size: 1rem;
-      }
-
-      section {
-        padding: 75px 5%;
-      }
-
-      .hero {
-        min-height: 92vh;
-
-        padding-top: 100px;
-      }
-
-      .hero::before {
-        inset: 15px;
-      }
-
-      .hero h1 {
-        letter-spacing: -1px;
-      }
-
-      .hero::after {
-        font-size: 45px;
-      }
-
-      .couple-card {
-        grid-template-columns: 1fr;
-
-        padding: 35px 20px;
-
-        gap: 25px;
-      }
-
-      .heart {
-        margin: auto;
-      }
-
-      /*
-       * Videos stay one per row on mobile.
-       */
-
-      .videos-list,
-      .mehndi-videos {
-        gap: 35px;
-      }
-
-      .video-heading,
-      .mehndi-video-title {
-        padding: 24px 22px 20px;
-      }
-
-      .video-description,
-      .mehndi-video-description {
-        padding: 22px;
-      }
-
-      /*
-       * Keep 16:9 video ratio on mobile.
-       * This makes the Drive video fit naturally.
-       */
-
-      .video-frame,
-      .mehndi-video-frame {
-        height:400px !important;
-      }
-
-      .timeline::before {
-        left: 10px;
-      }
-
-      .timeline-item,
-      .timeline-item:nth-child(even) {
-        width: 100%;
-
-        left: 0;
-
-        padding-left: 35px;
-        padding-right: 0;
-
-        text-align: left;
-      }
-
-      .timeline-item:nth-child(odd) .timeline-dot,
-      .timeline-item:nth-child(even) .timeline-dot {
-        left: 3px;
-        right: auto;
-      }
-    }
-
-
-    @media (max-width: 480px) {
-
-      .eyebrow {
-        letter-spacing: 2px;
-        font-size: .65rem;
-      }
-
-      .eyebrow::before,
-      .eyebrow::after {
-        width: 25px;
-      }
-
-      .hero-subtitle {
-        font-size: .85rem;
-      }
-
-      .video-heading,
-      .mehndi-video-title {
-        padding: 22px 18px 18px;
-      }
-
-      .video-description,
-      .mehndi-video-description {
-        padding: 20px 18px 24px;
-      }
-
-      .video-description p,
-      .mehndi-video-description p {
-        font-size: .83rem;
-      }
-
-      .section-heading {
-        margin-bottom: 40px;
-      }
-
-      .closing-section {
-        padding: 100px 20px;
-      }
-    }
-
-
-    /*
-     * Respect users who prefer reduced motion.
-     */
-
-    @media (prefers-reduced-motion: reduce) {
-
-      html {
-        scroll-behavior: auto;
-      }
-
-      *,
-      *::before,
-      *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
-
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kashif Saleem - Wedding Memories</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --accent-gold: #d97706;
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-light);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding: 12px;
+        }
+
+        header {
+            text-align: center;
+            padding: 16px 8px;
+            margin-bottom: 12px;
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            color: var(--accent-gold);
+            letter-spacing: 0.5px;
+        }
+
+        header p {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* Video Container - Responsive 16:9 Aspect Ratio */
+        .main-player-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            background-color: #000;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .player-info {
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .player-info h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .fullscreen-btn {
+            background: var(--accent-gold);
+            color: #fff;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Event Selection List */
+        .section-title {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .playlist {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .playlist-item {
+            background: var(--card-bg);
+            padding: 14px 16px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .playlist-item:hover, .playlist-item.active {
+            border-color: var(--accent-gold);
+            background: #283548;
+        }
+
+        .playlist-item .title-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .playlist-item .icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(217, 119, 6, 0.15);
+            color: var(--accent-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+
+        .playlist-item.active .icon {
+            background: var(--accent-gold);
+            color: #fff;
+        }
+
+        .playlist-item span {
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .play-indicator {
+            font-size: 0.8rem;
+            color: var(--accent-gold);
+            display: none;
+        }
+
+        .playlist-item.active .play-indicator {
+            display: block;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 20px 0 10px 0;
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Media Query for Desktop Optimization */
+        @media (min-width: 768px) {
+            body {
+                max-width: 900px;
+                margin: 0 auto;
+                padding: 24px;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .player-info h2 {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
 </head>
-
-
 <body>
 
-  <!-- =======================================================
-       NAVIGATION
-       ======================================================= -->
-
-  <nav class="navbar" id="navbar">
-
-    <a href="#home" class="brand">
-      Kashif <span>♥</span> Wedding
-    </a>
-
-    <ul class="nav-links">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#couple">Couple</a></li>
-      <li><a href="#events">Events</a></li>
-      <li><a href="#mehndi">Mehndi</a></li>
-      <li><a href="#memories">Memories</a></li>
-    </ul>
-
-  </nav>
-
-
-  <!-- =======================================================
-       HERO
-       ======================================================= -->
-
-  <header class="hero" id="home">
-
-    <div class="hero-content">
-
-      <div class="eyebrow">
-        Our Wedding Memories
-      </div>
-
-      <h1>
-        Muhammad Kashif Saleem
-
-        <span>&amp;</span>
-
-        Mrs. Kashif
-      </h1>
-
-      <p class="hero-subtitle">
-        A beautiful collection of moments, celebrations and memories
-        from our wedding festivities — preserved forever with love.
-      </p>
-
-      <a href="#events" class="hero-button">
-        Explore Our Memories &nbsp; ✦
-      </a>
-
-    </div>
-
-    <div class="scroll-indicator">
-      Scroll
-      <span></span>
-    </div>
-
-  </header>
-
-
-  <!-- =======================================================
-       COUPLE
-       ======================================================= -->
-
-  <section class="couple-section" id="couple">
-
-    <div class="section-heading">
-
-      <div class="section-label">
-        The Couple
-      </div>
-
-      <h2>
-        Two Hearts, One Beautiful Journey
-      </h2>
-
-      <p>
-        Every celebration tells a story. Here are the moments that
-        made our wedding journey truly unforgettable.
-      </p>
-
-    </div>
-
-
-    <div class="couple-card">
-
-      <div class="person">
-
-        <div class="person-role">
-          Groom
-        </div>
-
-        <h3>
-          Muhammad Kashif Saleem
-        </h3>
-
-      </div>
-
-
-      <div class="heart">
-        ♥
-      </div>
-
-
-      <div class="person">
-
-        <div class="person-role">
-          Bride
-        </div>
-
-        <h3>
-          Mrs. Kashif
-        </h3>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- =======================================================
-       EVENTS / DIRECT VIDEOS
-       ======================================================= -->
-
-  <section class="events-section" id="events">
-
-    <div class="section-heading">
-
-      <div class="section-label">
-        Wedding Celebrations
-      </div>
-
-      <h2>
-        Our Special Events
-      </h2>
-
-      <p>
-        Relive every beautiful chapter directly on this page.
-        Choose any video and press play. On mobile, use the
-        "Open in Google Drive" link if the player controls
-        don't respond.
-      </p>
-
-    </div>
-
-
-    <div class="videos-list">
-
-
-      <!-- ===================================================
-           PREVIOUS
-           =================================================== -->
-
-      <article class="video-card">
-
-        <div class="video-heading">
-
-          <div class="video-number">
-            01 / WEDDING MEMORY
-          </div>
-
-          <h3>
-            Previous Wedding Memories
-          </h3>
-
-        </div>
-
-
-        <div class="video-frame">
-
-          <iframe
-            src="https://drive.google.com/file/d/1rcPWyrEr3IPRQKyexuJiQMqmIVlYHupR/preview"
-            title="Previous Wedding Memories"
-            allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
-            allowfullscreen
-            webkitallowfullscreen
-            mozallowfullscreen
-            loading="lazy">
-          </iframe>
-
-        </div>
-
-
-        <div class="video-description">
-
-          <p>
-            A special collection of moments from the wedding journey,
-            bringing together memories that will always remain close
-            to our hearts.
-          </p>
-
-          <a
-            class="video-fallback"
-            href="https://drive.google.com/file/d/1rcPWyrEr3IPRQKyexuJiQMqmIVlYHupR/view"
-            target="_blank"
-            rel="noopener noreferrer">
-            Open in Google Drive ↗
-          </a>
-
-        </div>
-
-      </article>
-
-
-      <!-- ===================================================
-           BARAT
-           =================================================== -->
-
-      <article class="video-card">
-
-        <div class="video-heading">
-
-          <div class="video-number">
-            02 / GRAND CELEBRATION
-          </div>
-
-          <h3>
-            Barat Celebration
-          </h3>
-
-        </div>
-
-
-        <div class="video-frame">
-
-          <iframe
-            src="https://drive.google.com/file/d/1ip4fmeNw7FB4lUht_4HTNJjJM3t87cHS/preview"
-            title="Barat Celebration"
-            allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
-            allowfullscreen
-            webkitallowfullscreen
-            mozallowfullscreen
-            loading="lazy">
-          </iframe>
-
-        </div>
-
-
-        <div class="video-description">
-
-          <p>
-            A celebration filled with joy, family, traditions and
-            unforgettable moments as the wedding festivities reached
-            their grandest chapter.
-          </p>
-
-          <a
-            class="video-fallback"
-            href="https://drive.google.com/file/d/1ip4fmeNw7FB4lUht_4HTNJjJM3t87cHS/view"
-            target="_blank"
-            rel="noopener noreferrer">
-            Open in Google Drive ↗
-          </a>
-
-        </div>
-
-      </article>
-
-
-      <!-- ===================================================
-           WALIMA
-           =================================================== -->
-
-      <article class="video-card">
-
-        <div class="video-heading">
-
-          <div class="video-number">
-            03 / RECEPTION
-          </div>
-
-          <h3>
-            Walima Celebration
-          </h3>
-
-        </div>
-
-
-        <div class="video-frame">
-
-          <iframe
-            src="https://drive.google.com/file/d/1p2RXktJmJ0toFE8WGleOCakwbxensq8L/preview"
-            title="Walima Celebration"
-            allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
-            allowfullscreen
-            webkitallowfullscreen
-            mozallowfullscreen
-            loading="lazy">
-          </iframe>
-
-        </div>
-
-
-        <div class="video-description">
-
-          <p>
-            A graceful evening of celebration, happiness and
-            togetherness, surrounded by the people who made
-            the occasion special.
-          </p>
-
-          <a
-            class="video-fallback"
-            href="https://drive.google.com/file/d/1p2RXktJmJ0toFE8WGleOCakwbxensq8L/view"
-            target="_blank"
-            rel="noopener noreferrer">
-            Open in Google Drive ↗
-          </a>
-
-        </div>
-
-      </article>
-
-
-    </div>
-
-  </section>
-
-
-  <!-- =======================================================
-       MEHNDI DIRECT VIDEOS
-       ======================================================= -->
-
-  <section class="mehndi-section" id="mehndi">
-
-    <div class="section-heading">
-
-      <div class="section-label">
-        Special Memories
-      </div>
-
-      <h2>
-        Mehndi Celebrations
-      </h2>
-
-      <p>
-        Two beautiful celebrations, two different perspectives,
-        one unforgettable Mehndi experience.
-      </p>
-
-    </div>
-
-
-    <div class="mehndi-videos">
-
-
-      <!-- ===================================================
-           GROOM MEHNDI
-           =================================================== -->
-
-      <article class="mehndi-video-card">
-
-        <div class="mehndi-video-title">
-
-          <span>
-            04 / FESTIVE NIGHT
-          </span>
-
-          <h3>
-            Groom's Mehndi
-          </h3>
-
-        </div>
-
-
-        <div class="mehndi-video-frame">
-
-          <iframe
-            src="https://drive.google.com/file/d/1rkgvbP6KU3l1WvpOtFEY6BKDqAeQAg27/preview"
-            title="Groom's Mehndi"
-            allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
-            allowfullscreen
-            webkitallowfullscreen
-            mozallowfullscreen
-            loading="lazy">
-          </iframe>
-
-        </div>
-
-
-        <div class="mehndi-video-description">
-
-          <p>
-            A collection of joyful moments from Muhammad Kashif
-            Saleem's Mehndi celebration, filled with happiness,
-            family, laughter and beautiful memories.
-          </p>
-
-          <a
-            class="video-fallback"
-            href="https://drive.google.com/file/d/1rkgvbP6KU3l1WvpOtFEY6BKDqAeQAg27/view"
-            target="_blank"
-            rel="noopener noreferrer">
-            Open in Google Drive ↗
-          </a>
-
-        </div>
-
-      </article>
-
-
-      <!-- ===================================================
-           BRIDE MEHNDI
-           =================================================== -->
-
-      <article class="mehndi-video-card">
-
-        <div class="mehndi-video-title">
-
-          <span>
-            05 / BEAUTIFUL CELEBRATION
-          </span>
-
-          <h3>
-            Bride's Mehndi
-          </h3>
-
-        </div>
-
-
-        <div class="mehndi-video-frame">
-
-          <iframe
-            src="https://drive.google.com/file/d/12gEOdghSYReH-Qd9KoQUxZFlB47b1Pqz/preview"
-            title="Bride's Mehndi"
-            allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
-            allowfullscreen
-            webkitallowfullscreen
-            mozallowfullscreen
-            loading="lazy">
-          </iframe>
-
-        </div>
-
-
-        <div class="mehndi-video-description">
-
-          <p>
-            Beautiful memories from Mrs. Kashif's Mehndi celebration,
-            filled with color, happiness, music, love and the people
-            closest to her heart.
-          </p>
-
-          <a
-            class="video-fallback"
-            href="https://drive.google.com/file/d/12gEOdghSYReH-Qd9KoQUxZFlB47b1Pqz/view"
-            target="_blank"
-            rel="noopener noreferrer">
-            Open in Google Drive ↗
-          </a>
-
-        </div>
-
-      </article>
-
-
-    </div>
-
-  </section>
-
-
-  <!-- =======================================================
-       MEMORY TIMELINE
-       ======================================================= -->
-
-  <section class="timeline-section" id="memories">
-
-    <div class="section-heading">
-
-      <div class="section-label">
-        The Journey
-      </div>
-
-      <h2>
-        Moments We Will Remember
-      </h2>
-
-      <p>
-        Five chapters. Countless smiles. One beautiful wedding story.
-      </p>
-
-    </div>
-
-
-    <div class="timeline">
-
-
-      <div class="timeline-item">
-
-        <div class="timeline-dot"></div>
-
-        <div class="timeline-content">
-
-          <small>01</small>
-
-          <h3>
-            Previous Memories
-          </h3>
-
-          <p>
-            The journey begins with precious moments and memories
-            leading into the wedding celebrations.
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="timeline-item">
-
-        <div class="timeline-dot"></div>
-
-        <div class="timeline-content">
-
-          <small>02</small>
-
-          <h3>
-            Groom's Mehndi
-          </h3>
-
-          <p>
-            A festive gathering filled with happiness, laughter,
-            colors and family.
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="timeline-item">
-
-        <div class="timeline-dot"></div>
-
-        <div class="timeline-content">
-
-          <small>03</small>
-
-          <h3>
-            Bride's Mehndi
-          </h3>
-
-          <p>
-            A beautiful celebration celebrating the bride and
-            the people closest to her heart.
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="timeline-item">
-
-        <div class="timeline-dot"></div>
-
-        <div class="timeline-content">
-
-          <small>04</small>
-
-          <h3>
-            Barat
-          </h3>
-
-          <p>
-            The grand wedding celebration where families came
-            together to celebrate a new beginning.
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="timeline-item">
-
-        <div class="timeline-dot"></div>
-
-        <div class="timeline-content">
-
-          <small>05</small>
-
-          <h3>
-            Walima
-          </h3>
-
-          <p>
-            A graceful celebration marking the beginning of a
-            new chapter together.
-          </p>
-
-        </div>
-
-      </div>
-
-
-    </div>
-
-  </section>
-
-
-  <!-- =======================================================
-       CLOSING
-       ======================================================= -->
-
-  <section class="closing-section">
-
-    <div class="closing-symbol">
-      ✦ ♥ ✦
-    </div>
-
-    <h2>
-      Forever Starts Here
-    </h2>
-
-    <p>
-      May these memories always remind us of the love, laughter,
-      happiness and beautiful people who made these celebrations
-      unforgettable.
-    </p>
-
-    <div class="closing-names">
-      Muhammad Kashif Saleem &amp; Mrs. Kashif
-    </div>
-
-  </section>
-
-
-  <!-- =======================================================
-       FOOTER
-       ======================================================= -->
-
-  <footer>
-
-    <p>
-      With love &amp; gratitude · Muhammad Kashif Saleem &amp; Mrs. Kashif
-    </p>
-
-    <p style="margin-top:8px;">
-      © <span id="year"></span> · Wedding Memories
-    </p>
-
-  </footer>
-
-
-  <!-- =======================================================
-       BACK TO TOP
-       ======================================================= -->
-
-  <button
-    class="back-top"
-    id="backTop"
-    onclick="window.scrollTo({top:0, behavior:'smooth'})"
-    aria-label="Back to top"
-  >
-    ↑
-  </button>
-
-
-  <!-- =======================================================
-       JAVASCRIPT
-       ======================================================= -->
-
-  <script>
-
-    /* =======================================================
-       NAVBAR + BACK TO TOP
-       ======================================================= */
-
-    const navbar = document.getElementById("navbar");
-    const backTop = document.getElementById("backTop");
-
-    window.addEventListener("scroll", function() {
-
-      if (window.scrollY > 80) {
-
-        navbar.classList.add("scrolled");
-        backTop.classList.add("show");
-
-      } else {
-
-        navbar.classList.remove("scrolled");
-        backTop.classList.remove("show");
-
-      }
-
-    });
-
-
-    /* =======================================================
-       SMOOTH NAVIGATION
-       ======================================================= */
-
-    document.querySelectorAll('a[href^="#"]').forEach(function(link) {
-
-      link.addEventListener("click", function(event) {
-
-        const targetId = this.getAttribute("href");
-
-        if (!targetId || targetId === "#") {
-          return;
+    <header>
+        <h1>Kashif Saleem Wedding</h1>
+        <p>Celebration Memories & Event Videos</p>
+    </header>
+
+    <main>
+        <!-- Main Video Card -->
+        <section class="main-player-card">
+            <div class="video-wrapper" id="videoContainer">
+                <iframe 
+                    id="mainPlayer" 
+                    src="https://drive.google.com/file/d/1rcPWyrEr3IPRQKyexuJiQMqmIVlYHupR/preview" 
+                    allow="autoplay; fullscreen" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <div class="player-info">
+                <h2 id="currentTitle">Previous Wedding Memories</h2>
+                <button class="fullscreen-btn" onclick="openFullScreen()">
+                    <span> Fullscreen</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Playlist Section -->
+        <h3 class="section-title">Select Event</h3>
+        <section class="playlist" id="playlist">
+
+            <div class="playlist-item active" onclick="playVideo('1rcPWyrEr3IPRQKyexuJiQMqmIVlYHupR', 'Previous Wedding Memories', this)">
+                <div class="title-group">
+                    <div class="icon">&#9654;</div>
+                    <span>Previous Wedding Memories</span>
+                </div>
+                <div class="play-indicator">Playing</div>
+            </div>
+
+            <div class="playlist-item" onclick="playVideo('1ip4fmeNw7FB4lUht_4HTNJjJM3t87cHS', 'Barat Celebration', this)">
+                <div class="title-group">
+                    <div class="icon">&#9654;</div>
+                    <span>Barat Celebration</span>
+                </div>
+                <div class="play-indicator">Playing</div>
+            </div>
+
+            <div class="playlist-item" onclick="playVideo('1p2RXktJmJ0toFE8WGleOCakwbxensq8L', 'Walima Celebration', this)">
+                <div class="title-group">
+                    <div class="icon">&#9654;</div>
+                    <span>Walima Celebration</span>
+                </div>
+                <div class="play-indicator">Playing</div>
+            </div>
+
+            <div class="playlist-item" onclick="playVideo('1rkgvbP6KU3l1WvpOtFEY6BKDqAeQAg27', 'Groom\'s Mehndi', this)">
+                <div class="title-group">
+                    <div class="icon">&#9654;</div>
+                    <span>Groom's Mehndi</span>
+                </div>
+                <div class="play-indicator">Playing</div>
+            </div>
+
+            <div class="playlist-item" onclick="playVideo('12gEOdghSYReH-Qd9KoQUxZFlB47b1Pqz', 'Bride\'s Mehndi', this)">
+                <div class="title-group">
+                    <div class="icon">&#9654;</div>
+                    <span>Bride's Mehndi</span>
+                </div>
+                <div class="play-indicator">Playing</div>
+            </div>
+
+        </section>
+    </main>
+
+    <footer>
+        &copy; Kashif Saleem Wedding Gallery
+    </footer>
+
+    <script>
+        // Function to switch active video
+        function playVideo(fileId, title, element) {
+            const player = document.getElementById('mainPlayer');
+            const titleElement = document.getElementById('currentTitle');
+            
+            // Set embedded preview URL
+            player.src = `https://drive.google.com/file/d/${fileId}/preview`;
+            titleElement.innerText = title;
+
+            // Highlight active video item in list
+            const items = document.querySelectorAll('.playlist-item');
+            items.forEach(item => item.classList.remove('active'));
+            element.classList.add('active');
+
+            // Smooth scroll up to player on mobile
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        const target = document.querySelector(targetId);
+        // Native Fullscreen handler for mobile and desktop browsers
+        function openFullScreen() {
+            const container = document.getElementById('videoContainer');
 
-        if (target) {
-
-          event.preventDefault();
-
-          target.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-          });
-
+            if (container.requestFullscreen) {
+                container.requestFullscreen();
+            } else if (container.webkitRequestFullscreen) { /* Safari & iOS */
+                container.webkitRequestFullscreen();
+            } else if (container.msRequestFullscreen) { /* IE11 */
+                container.msRequestFullscreen();
+            }
         }
-
-      });
-
-    });
-
-
-    /* =======================================================
-       CURRENT YEAR
-       ======================================================= */
-
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
-
-  </script>
-
+    </script>
 </body>
 </html>
