@@ -70,6 +70,58 @@
             width: 100%;
             height: 100%;
             border: none;
+            z-index: 1;
+        }
+
+        /* Interactive Mobile Cover with Play Button */
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.85);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .video-overlay.hidden {
+            display: none;
+        }
+
+        .play-btn-big {
+            width: 70px;
+            height: 70px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 20px rgba(217, 119, 6, 0.5);
+            margin-bottom: 12px;
+            transition: transform 0.2s ease;
+        }
+
+        .play-btn-big::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 12px 0 12px 22px;
+            border-color: transparent transparent transparent #ffffff;
+            margin-left: 4px;
+        }
+
+        .video-overlay p {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text-light);
         }
 
         .player-info {
@@ -123,6 +175,7 @@
             cursor: pointer;
             border: 1px solid transparent;
             transition: all 0.2s ease;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .playlist-item:hover, .playlist-item.active {
@@ -176,7 +229,6 @@
             color: var(--text-muted);
         }
 
-        /* Media Query for Desktop Optimization */
         @media (min-width: 768px) {
             body {
                 max-width: 900px;
@@ -205,18 +257,22 @@
         <!-- Main Video Card -->
         <section class="main-player-card">
             <div class="video-wrapper" id="videoContainer">
+                <!-- Mobile Cover Overlay with Play Button -->
+                <div class="video-overlay" id="videoOverlay" onclick="startVideo()">
+                    <div class="play-btn-big"></div>
+                    <p id="overlayText">Tap to Play Video</p>
+                </div>
+
                 <iframe 
                     id="mainPlayer" 
-                    src="https://drive.google.com/file/d/1rcPWyrEr3IPRQKyexuJiQMqmIVlYHupR/preview" 
+                    src="" 
                     allow="autoplay; fullscreen" 
                     allowfullscreen>
                 </iframe>
             </div>
             <div class="player-info">
                 <h2 id="currentTitle">Previous Wedding Memories</h2>
-                <button class="fullscreen-btn" onclick="openFullScreen()">
-                    <span> Fullscreen</span>
-                </button>
+                <button class="fullscreen-btn" onclick="openFullScreen()">Fullscreen</button>
             </div>
         </section>
 
@@ -272,33 +328,47 @@
     </footer>
 
     <script>
-        // Function to switch active video
-        function playVideo(fileId, title, element) {
+        let currentFileId = '1rcPWyrEr3IPRQKyexuJiQMqmIVlYHupR';
+
+        // Direct tap on overlay loads and plays video
+        function startVideo() {
             const player = document.getElementById('mainPlayer');
-            const titleElement = document.getElementById('currentTitle');
+            const overlay = document.getElementById('videoOverlay');
             
-            // Set embedded preview URL
-            player.src = `https://drive.google.com/file/d/${fileId}/preview`;
+            player.src = `https://drive.google.com/file/d/${currentFileId}/preview`;
+            overlay.classList.add('hidden');
+        }
+
+        // Switching items in list reset overlay state
+        function playVideo(fileId, title, element) {
+            currentFileId = fileId;
+            const player = document.getElementById('mainPlayer');
+            const overlay = document.getElementById('videoOverlay');
+            const titleElement = document.getElementById('currentTitle');
+
             titleElement.innerText = title;
 
-            // Highlight active video item in list
+            // Load iframe with selected video ID
+            player.src = `https://drive.google.com/file/d/${fileId}/preview`;
+            overlay.classList.add('hidden');
+
+            // Active list highlight
             const items = document.querySelectorAll('.playlist-item');
             items.forEach(item => item.classList.remove('active'));
             element.classList.add('active');
 
-            // Smooth scroll up to player on mobile
+            // Scroll up to player view
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Native Fullscreen handler for mobile and desktop browsers
         function openFullScreen() {
             const container = document.getElementById('videoContainer');
 
             if (container.requestFullscreen) {
                 container.requestFullscreen();
-            } else if (container.webkitRequestFullscreen) { /* Safari & iOS */
+            } else if (container.webkitRequestFullscreen) { /* Safari / iOS */
                 container.webkitRequestFullscreen();
-            } else if (container.msRequestFullscreen) { /* IE11 */
+            } else if (container.msRequestFullscreen) {
                 container.msRequestFullscreen();
             }
         }
