@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,17 +5,17 @@
     <meta charset="UTF-8">
 
     <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+          content="width=device-width, initial-scale=1.0">
 
-    <meta name="theme-color" content="#111111">
+    <meta name="theme-color" content="#080509">
 
-    <title>Kasif Saleem Wedding Memories</title>
+    <title>Kasif Saleem | Wedding Movie</title>
 
     <style>
 
-        /* =========================
+        /* =====================================================
            RESET
-        ========================== */
+        ===================================================== */
 
         * {
             box-sizing: border-box;
@@ -24,569 +23,1109 @@
             padding: 0;
         }
 
-        html,
-        body {
-            width: 100%;
-            min-height: 100%;
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
+            min-height: 100vh;
+
             font-family:
-                -apple-system,
-                BlinkMacSystemFont,
-                "Segoe UI",
-                Roboto,
-                Helvetica,
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            color: #fff8e8;
+
+            background:
+                radial-gradient(
+                    circle at 15% 10%,
+                    rgba(133, 27, 67, 0.32),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 85% 20%,
+                    rgba(206, 157, 63, 0.16),
+                    transparent 25%
+                ),
+                radial-gradient(
+                    circle at 50% 100%,
+                    rgba(92, 18, 48, 0.28),
+                    transparent 35%
+                ),
+                #080509;
+
+            overflow-x: hidden;
+        }
+
+
+        /* =====================================================
+           AMBIENT LIGHT
+        ===================================================== */
+
+        body::before {
+            content: "";
+
+            position: fixed;
+
+            width: 500px;
+            height: 500px;
+
+            top: -200px;
+            left: -200px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(220, 167, 72, 0.12),
+                    transparent 70%
+                );
+
+            filter: blur(20px);
+
+            pointer-events: none;
+
+            animation:
+                floatingLight 10s ease-in-out infinite alternate;
+
+            z-index: 0;
+        }
+
+        body::after {
+            content: "";
+
+            position: fixed;
+
+            width: 450px;
+            height: 450px;
+
+            right: -200px;
+            bottom: -150px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(130, 20, 60, 0.18),
+                    transparent 70%
+                );
+
+            filter: blur(20px);
+
+            pointer-events: none;
+
+            animation:
+                floatingLight2 12s ease-in-out infinite alternate;
+
+            z-index: 0;
+        }
+
+        @keyframes floatingLight {
+
+            from {
+                transform: translate(0, 0);
+            }
+
+            to {
+                transform: translate(180px, 130px);
+            }
+        }
+
+        @keyframes floatingLight2 {
+
+            from {
+                transform: translate(0, 0);
+            }
+
+            to {
+                transform: translate(-120px, -100px);
+            }
+        }
+
+
+        /* =====================================================
+           GOLD PARTICLES
+        ===================================================== */
+
+        .particles {
+            position: fixed;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            overflow: hidden;
+
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+
+            width: 3px;
+            height: 3px;
+
+            border-radius: 50%;
+
+            background: #e6bd67;
+
+            box-shadow:
+                0 0 10px #e6bd67;
+
+            opacity: 0;
+
+            animation:
+                rise 8s linear infinite;
+        }
+
+        .particle:nth-child(1) {
+            left: 8%;
+            animation-delay: 0s;
+        }
+
+        .particle:nth-child(2) {
+            left: 20%;
+            animation-delay: 2s;
+        }
+
+        .particle:nth-child(3) {
+            left: 35%;
+            animation-delay: 4s;
+        }
+
+        .particle:nth-child(4) {
+            left: 50%;
+            animation-delay: 1s;
+        }
+
+        .particle:nth-child(5) {
+            left: 66%;
+            animation-delay: 5s;
+        }
+
+        .particle:nth-child(6) {
+            left: 80%;
+            animation-delay: 3s;
+        }
+
+        .particle:nth-child(7) {
+            left: 92%;
+            animation-delay: 6s;
+        }
+
+        @keyframes rise {
+
+            0% {
+                bottom: -10px;
+                opacity: 0;
+            }
+
+            15% {
+                opacity: .8;
+            }
+
+            85% {
+                opacity: .5;
+            }
+
+            100% {
+                bottom: 105%;
+                opacity: 0;
+            }
+        }
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .hero {
+            position: relative;
+
+            min-height: 720px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            overflow: hidden;
+
+            z-index: 1;
+
+            border-bottom:
+                1px solid rgba(218, 172, 83, .22);
+        }
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                radial-gradient(
+                    ellipse at center,
+                    rgba(121, 25, 55, .30),
+                    transparent 55%
+                );
+        }
+
+        .hero::after {
+            content: "";
+
+            position: absolute;
+
+            left: 50%;
+
+            bottom: -260px;
+
+            width: 700px;
+
+            height: 500px;
+
+            transform: translateX(-50%);
+
+            border-radius: 50%;
+
+            border:
+                1px solid rgba(222, 177, 87, .18);
+
+            box-shadow:
+                0 0 80px rgba(214, 165, 68, .08),
+                inset 0 0 80px rgba(214, 165, 68, .05);
+        }
+
+
+        /* =====================================================
+           HERO CONTENT
+        ===================================================== */
+
+        .hero-content {
+            position: relative;
+
+            z-index: 2;
+
+            width:
+                min(900px, calc(100% - 30px));
+
+            padding: 70px 15px;
+        }
+
+
+        .small-title {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            color: #e9c77d;
+
+            font-family:
                 Arial,
                 sans-serif;
 
-            background: #f7f7f7;
-            color: #111;
-
-            -webkit-font-smoothing: antialiased;
-        }
-
-
-        /* =========================
-           HERO
-        ========================== */
-
-        .hero {
-            background: #111;
-            color: #fff;
-
-            text-align: center;
-
-            padding:
-                55px
-                20px
-                50px;
-        }
-
-        .hero h1 {
-            font-size: clamp(30px, 6vw, 52px);
-
-            line-height: 1.1;
+            font-size: 11px;
 
             font-weight: 700;
 
-            letter-spacing: -1px;
+            letter-spacing: 5px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 25px;
         }
 
-        .hero p {
-            margin-top: 14px;
+        .small-title::before,
+        .small-title::after {
+            content: "";
 
-            font-size: 16px;
+            width: 45px;
 
-            color: #cfcfcf;
+            height: 1px;
 
-            line-height: 1.6;
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    #d8ae59
+                );
+        }
+
+        .small-title::after {
+            background:
+                linear-gradient(
+                    90deg,
+                    #d8ae59,
+                    transparent
+                );
         }
 
 
-        /* =========================
-           VIDEO SECTION
-        ========================== */
+        .hero h1 {
+            font-size:
+                clamp(54px, 11vw, 120px);
 
-        .videos-section {
-            width: min(1100px, calc(100% - 32px));
+            line-height: .88;
 
-            margin: 0 auto;
+            font-weight: 400;
+
+            letter-spacing: -4px;
+
+            text-shadow:
+                0 15px 40px rgba(0,0,0,.65);
+        }
+
+        .hero h1 span {
+            display: block;
+
+            margin-top: 25px;
+
+            font-size:
+                clamp(24px, 5vw, 48px);
+
+            font-style: italic;
+
+            font-weight: 400;
+
+            letter-spacing: 2px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #a87932,
+                    #ffe39a,
+                    #b98538
+                );
+
+            -webkit-background-clip: text;
+
+            background-clip: text;
+
+            color: transparent;
+        }
+
+
+        .hero-description {
+            max-width: 600px;
+
+            margin:
+                35px auto 0;
+
+            color:
+                rgba(255,248,232,.78);
+
+            font-family:
+                Arial,
+                sans-serif;
+
+            font-size: 14px;
+
+            line-height: 1.8;
+        }
+
+
+        /* =====================================================
+           HERO BUTTON
+        ===================================================== */
+
+        .explore-button {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-top: 35px;
 
             padding:
-                45px
-                0
-                70px;
+                14px 25px;
+
+            border:
+                1px solid rgba(231,190,103,.55);
+
+            border-radius: 50px;
+
+            color: #f9dda0;
+
+            background:
+                rgba(255,255,255,.04);
+
+            backdrop-filter: blur(10px);
+
+            font-family:
+                Arial,
+                sans-serif;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+
+            transition:
+                all .3s ease;
+        }
+
+        .explore-button:hover {
+            background:
+                linear-gradient(
+                    135deg,
+                    #d6a94f,
+                    #8d6021
+                );
+
+            color: #160e0b;
+
+            box-shadow:
+                0 10px 35px rgba(212,163,67,.25);
+
+            transform:
+                translateY(-3px);
         }
 
 
-        .section-title {
+        /* =====================================================
+           SCROLL
+        ===================================================== */
+
+        .scroll {
+            position: absolute;
+
+            bottom: 30px;
+
+            left: 50%;
+
+            transform:
+                translateX(-50%);
+
+            font-family:
+                Arial,
+                sans-serif;
+
+            font-size: 9px;
+
+            letter-spacing: 4px;
+
+            color: #cba85d;
+
+            text-transform: uppercase;
+        }
+
+        .scroll::after {
+            content: "";
+
+            display: block;
+
+            width: 1px;
+
+            height: 35px;
+
+            margin:
+                12px auto 0;
+
+            background:
+                linear-gradient(
+                    #d4a84f,
+                    transparent
+                );
+        }
+
+
+        /* =====================================================
+           MAIN
+        ===================================================== */
+
+        .main {
+            position: relative;
+
+            z-index: 1;
+
+            width:
+                min(1180px, calc(100% - 30px));
+
+            margin: auto;
+
+            padding:
+                90px 0 100px;
+        }
+
+
+        /* =====================================================
+           INTRO
+        ===================================================== */
+
+        .intro {
+            max-width: 750px;
+
+            margin:
+                0 auto 60px;
+
             text-align: center;
+        }
 
-            margin-bottom: 28px;
+        .intro-label {
+            color: #d7ad5b;
+
+            font-family:
+                Arial,
+                sans-serif;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            letter-spacing: 4px;
+
+            text-transform: uppercase;
+        }
+
+        .intro h2 {
+            margin-top: 13px;
+
+            font-size:
+                clamp(35px, 6vw, 58px);
+
+            font-weight: 400;
+
+            line-height: 1.05;
+        }
+
+        .intro p {
+            margin-top: 18px;
+
+            color: #aaa0a4;
+
+            font-family:
+                Arial,
+                sans-serif;
+
+            font-size: 14px;
+
+            line-height: 1.8;
         }
 
 
-        .section-title h2 {
-            font-size: 27px;
+        /* =====================================================
+           FILM GRID
+        ===================================================== */
 
-            margin-bottom: 8px;
-        }
-
-
-        .section-title p {
-            color: #666;
-
-            font-size: 15px;
-        }
-
-
-        /* =========================
-           VIDEO GRID
-        ========================== */
-
-        .video-grid {
+        .film-grid {
             display: grid;
 
             grid-template-columns:
                 repeat(2, minmax(0, 1fr));
 
-            gap: 20px;
+            gap: 28px;
+
+            perspective: 1400px;
         }
 
 
-        /* =========================
-           VIDEO CARD
-        ========================== */
+        /* =====================================================
+           FILM CARD
+        ===================================================== */
 
-        .video-card {
-            background: #fff;
+        .film-card {
+            position: relative;
 
-            border-radius: 18px;
+            min-height: 410px;
+
+            display: block;
 
             overflow: hidden;
 
-            cursor: pointer;
+            border-radius: 24px;
 
-            border: 1px solid #e7e7e7;
-
-            box-shadow:
-                0 5px 20px rgba(0, 0, 0, 0.06);
-
-            transition:
-                transform 0.2s ease,
-                box-shadow 0.2s ease;
-        }
-
-
-        .video-card:hover {
-            transform: translateY(-3px);
-
-            box-shadow:
-                0 12px 30px rgba(0, 0, 0, 0.10);
-        }
-
-
-        /* =========================
-           VIDEO THUMBNAIL
-        ========================== */
-
-        .video-thumbnail {
-            position: relative;
-
-            width: 100%;
-
-            aspect-ratio: 16 / 9;
+            border:
+                1px solid rgba(221,175,84,.20);
 
             background:
                 linear-gradient(
-                    135deg,
-                    #222,
-                    #555
+                    145deg,
+                    rgba(255,255,255,.08),
+                    rgba(255,255,255,.015)
                 );
 
-            display: flex;
+            box-shadow:
+                0 25px 70px rgba(0,0,0,.42),
+                inset 0 1px rgba(255,255,255,.10);
 
-            align-items: center;
+            text-decoration: none;
 
-            justify-content: center;
+            transform-style: preserve-3d;
+
+            transition:
+                transform .25s ease,
+                box-shadow .3s ease,
+                border-color .3s ease;
+        }
+
+        .film-card:hover {
+            border-color:
+                rgba(238,199,111,.62);
+
+            box-shadow:
+                0 35px 90px rgba(0,0,0,.58),
+                0 0 45px rgba(207,155,55,.10);
         }
 
 
-        /* =========================
-           PLAY BUTTON
-        ========================== */
+        /* =====================================================
+           CARD GLOW
+        ===================================================== */
 
-        .play-button {
-            width: 64px;
+        .card-glow {
+            position: absolute;
 
-            height: 64px;
+            width: 180px;
+            height: 180px;
+
+            top: -100px;
+            right: -80px;
 
             border-radius: 50%;
 
-            background: rgba(255, 255, 255, 0.95);
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(232,188,88,.25),
+                    transparent 70%
+                );
+
+            filter: blur(15px);
+
+            transition:
+                transform .6s ease;
+        }
+
+        .film-card:hover .card-glow {
+            transform:
+                scale(1.6);
+        }
+
+
+        /* =====================================================
+           CARD TOP DESIGN
+        ===================================================== */
+
+        .card-top {
+            position: absolute;
+
+            top: 22px;
+
+            left: 22px;
+
+            right: 22px;
 
             display: flex;
 
             align-items: center;
 
-            justify-content: center;
+            justify-content: space-between;
+
+            z-index: 3;
+        }
+
+
+        .number {
+            width: 45px;
+
+            height: 45px;
+
+            display: grid;
+
+            place-items: center;
+
+            border:
+                1px solid rgba(239,203,125,.48);
+
+            border-radius: 50%;
+
+            color: #efd083;
+
+            background:
+                rgba(5,3,5,.42);
+
+            backdrop-filter:
+                blur(10px);
+
+            font-family:
+                Arial,
+                sans-serif;
+
+            font-size: 11px;
 
             box-shadow:
-                0 8px 25px rgba(0, 0, 0, 0.25);
+                inset 0 0 15px rgba(224,175,75,.08);
         }
 
 
-        .play-button::after {
-            content: "";
-
-            margin-left: 5px;
-
-            width: 0;
-
-            height: 0;
-
-            border-top:
-                10px solid transparent;
-
-            border-bottom:
-                10px solid transparent;
-
-            border-left:
-                15px solid #111;
-        }
-
-
-        /* =========================
-           VIDEO INFORMATION
-        ========================== */
-
-        .video-info {
+        .film-label {
             padding:
-                19px
-                20px
-                20px;
+                8px 12px;
+
+            border:
+                1px solid rgba(238,202,126,.28);
+
+            border-radius: 30px;
+
+            background:
+                rgba(0,0,0,.30);
+
+            backdrop-filter:
+                blur(10px);
+
+            color: #eac879;
+
+            font-family:
+                Arial,
+                sans-serif;
+
+            font-size: 9px;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
         }
 
 
-        .video-info h3 {
-            font-size: 20px;
+        /* =====================================================
+           CARD CONTENT
+        ===================================================== */
 
-            line-height: 1.3;
+        .card-content {
+            position: absolute;
 
-            margin-bottom: 7px;
+            left: 25px;
+
+            right: 25px;
+
+            bottom: 25px;
+
+            z-index: 3;
         }
 
+        .card-content h3 {
+            font-size:
+                clamp(27px, 4vw, 38px);
 
-        .video-info p {
-            font-size: 14px;
+            font-weight: 400;
 
-            color: #777;
+            line-height: 1.05;
+
+            color: #fff5df;
+
+            text-shadow:
+                0 5px 25px rgba(0,0,0,.6);
+        }
+
+        .card-content p {
+            max-width: 450px;
+
+            margin-top: 9px;
+
+            color: #c6bdc0;
+
+            font-family:
+                Arial,
+                sans-serif;
+
+            font-size: 13px;
 
             line-height: 1.5;
         }
 
 
-        /* =========================
-           FOOTER
-        ========================== */
+        /* =====================================================
+           WATCH BUTTON
+        ===================================================== */
 
-        footer {
-            text-align: center;
-
-            padding:
-                25px
-                20px
-                35px;
-
-            color: #777;
-
-            font-size: 14px;
-        }
-
-
-        /* =========================
-           MODAL
-        ========================== */
-
-        .modal {
-            position: fixed;
-
-            inset: 0;
-
-            background:
-                rgba(0, 0, 0, 0.94);
-
-            display: none;
+        .watch {
+            display: inline-flex;
 
             align-items: center;
 
-            justify-content: center;
+            gap: 10px;
 
-            z-index: 9999;
+            margin-top: 18px;
 
-            padding: 20px;
+            padding:
+                11px 17px;
+
+            border-radius: 50px;
+
+            color: #17100b;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffe5a0,
+                    #b77c25
+                );
+
+            box-shadow:
+                0 8px 25px rgba(205,154,57,.22);
+
+            font-family:
+                Arial,
+                sans-serif;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            letter-spacing: 1.5px;
+
+            text-transform: uppercase;
+
+            transition:
+                transform .2s ease,
+                box-shadow .2s ease;
         }
 
+        .film-card:hover .watch {
+            transform:
+                translateY(-2px);
 
-        .modal.active {
-            display: flex;
+            box-shadow:
+                0 12px 32px rgba(220,170,65,.36);
         }
 
+        .play {
+            width: 24px;
 
-        .modal-content {
-            width: min(1100px, 100%);
+            height: 24px;
 
-            position: relative;
-        }
+            display: grid;
 
-
-        /* =========================
-           CLOSE BUTTON
-           FIXED SO IT IS ALWAYS
-           VISIBLE ON DESKTOP
-        ========================== */
-
-        .close-button {
-            position: fixed;
-
-            top: 20px;
-
-            right: 25px;
-
-            width: 46px;
-
-            height: 46px;
-
-            border: 0;
+            place-items: center;
 
             border-radius: 50%;
 
             background:
-                rgba(255, 255, 255, 0.18);
+                rgba(0,0,0,.16);
 
-            color: #fff;
-
-            font-size: 32px;
-
-            line-height: 1;
-
-            cursor: pointer;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            z-index: 10001;
-
-            -webkit-appearance: none;
-
-            appearance: none;
-
-            transition:
-                background 0.2s ease,
-                transform 0.2s ease;
+            font-size: 9px;
         }
 
 
-        .close-button:hover {
-            background:
-                rgba(255, 255, 255, 0.30);
+        /* =====================================================
+           DECORATIVE CARD BOTTOM
+        ===================================================== */
 
-            transform: scale(1.05);
-        }
-
-
-        .close-button:focus {
-            outline:
-                2px solid #fff;
-
-            outline-offset: 2px;
-        }
-
-
-        /* =========================
-           VIDEO WRAPPER
-        ========================== */
-
-        .video-wrapper {
-            position: relative;
-
-            width: 100%;
-
-            aspect-ratio: 16 / 9;
-
-            background: #000;
-
-            border-radius: 10px;
-
-            overflow: hidden;
-        }
-
-
-        .video-wrapper iframe {
+        .card-line {
             position: absolute;
 
-            inset: 0;
+            left: 25px;
 
-            width: 100%;
+            right: 25px;
 
-            height: 100%;
+            bottom: 17px;
 
-            border: 0;
+            height: 1px;
 
-            display: block;
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(224,177,83,.4),
+                    transparent
+                );
+
+            z-index: 2;
         }
 
 
-        /* =========================
-           MODAL TITLE
-        ========================== */
+        /* =====================================================
+           CHAPTER QUOTE
+        ===================================================== */
 
-        .modal-title {
-            color: #fff;
+        .quote {
+            max-width: 780px;
 
-            font-size: 18px;
+            margin:
+                95px auto 0;
 
-            font-weight: 600;
-
-            margin-top: 14px;
+            padding:
+                45px 25px;
 
             text-align: center;
+
+            border-top:
+                1px solid rgba(218,172,83,.25);
+
+            border-bottom:
+                1px solid rgba(218,172,83,.25);
+        }
+
+        .quote-symbol {
+            color: #d5aa54;
+
+            font-size: 50px;
+
+            line-height: .5;
+        }
+
+        .quote p {
+            margin-top: 15px;
+
+            color: #e9dfd0;
+
+            font-size:
+                clamp(22px, 4vw, 32px);
+
+            font-style: italic;
+
+            line-height: 1.4;
         }
 
 
-        /* =========================
-           MOBILE
-        ========================== */
+        /* =====================================================
+           FOOTER
+        ===================================================== */
 
-        @media (max-width: 700px) {
+        footer {
+            position: relative;
+
+            z-index: 1;
+
+            padding:
+                30px 20px 50px;
+
+            text-align: center;
+
+            color: #756c70;
+
+            font-family:
+                Arial,
+                sans-serif;
+
+            font-size: 10px;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 760px) {
 
             .hero {
-                padding:
-                    calc(35px + env(safe-area-inset-top))
-                    18px
-                    35px;
+                min-height: 650px;
             }
 
+            .hero-content {
+                padding:
+                    50px 10px 100px;
+            }
 
             .hero h1 {
-                font-size: 32px;
+                letter-spacing: -2px;
             }
 
-
-            .hero p {
-                font-size: 14px;
-            }
-
-
-            .videos-section {
-                width:
-                    calc(100% - 24px);
-
-                padding:
-                    30px
-                    0
-                    50px;
-            }
-
-
-            .section-title h2 {
-                font-size: 24px;
-            }
-
-
-            .video-grid {
+            .film-grid {
                 grid-template-columns: 1fr;
 
-                gap: 16px;
+                gap: 20px;
             }
 
+            .film-card {
+                min-height: 390px;
 
-            .video-card {
-                border-radius: 16px;
+                border-radius: 20px;
             }
 
-
-            .video-info {
+            .main {
                 padding:
-                    16px
-                    17px
-                    18px;
+                    70px 0 80px;
             }
 
-
-            .video-info h3 {
-                font-size: 18px;
-            }
-
-
-            .play-button {
-                width: 58px;
-
-                height: 58px;
-            }
-
-
-            /* =========================
-               MOBILE MODAL
-            ========================== */
-
-            .modal {
-                padding: 0;
-
-                align-items: center;
-
-                justify-content: center;
-            }
-
-
-            .modal-content {
-                width: 100%;
-            }
-
-
-            .video-wrapper {
-                width: 100vw;
-
-                aspect-ratio: 16 / 9;
-
-                border-radius: 0;
-            }
-
-
-            /* Mobile close button */
-
-            .close-button {
-                top:
-                    calc(12px + env(safe-area-inset-top));
-
-                right: 12px;
-
-                width: 44px;
-
-                height: 44px;
-
-                background:
-                    rgba(0, 0, 0, 0.70);
-
-                font-size: 29px;
-
-                z-index: 10001;
-            }
-
-
-            .modal-title {
-                display: none;
-            }
         }
 
 
-        /* =========================
-           VERY SMALL PHONES
-        ========================== */
+        /* =====================================================
+           SMALL MOBILE
+        ===================================================== */
 
-        @media (max-width: 380px) {
+        @media (max-width: 430px) {
 
-            .hero h1 {
-                font-size: 28px;
+            .hero {
+                min-height: 600px;
             }
 
+            .small-title {
+                font-size: 9px;
 
-            .video-info h3 {
-                font-size: 17px;
+                letter-spacing: 3px;
             }
+
+            .small-title::before,
+            .small-title::after {
+                width: 25px;
+            }
+
+            .hero-description {
+                font-size: 13px;
+            }
+
+            .film-card {
+                min-height: 370px;
+            }
+
+            .card-content {
+                left: 19px;
+
+                right: 19px;
+
+                bottom: 22px;
+            }
+
+            .card-top {
+                top: 17px;
+
+                left: 17px;
+
+                right: 17px;
+            }
+
+            .card-line {
+                left: 19px;
+
+                right: 19px;
+            }
+
         }
 
 
-        /* =========================
-           BODY LOCK
-        ========================== */
+        /* =====================================================
+           REDUCE MOTION
+        ===================================================== */
 
-        body.modal-open {
-            overflow: hidden;
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+
+                transition: none !important;
+            }
+
         }
 
     </style>
@@ -597,481 +1136,549 @@
 <body>
 
 
-    <!-- =========================
-         HERO
-    ========================== -->
-
-    <header class="hero">
-
-        <h1>
-            Kasif Saleem
-        </h1>
-
-        <p>
-            Wedding Memories
-        </p>
-
-    </header>
-
-
-
-    <!-- =========================
-         MAIN CONTENT
-    ========================== -->
-
-    <main class="videos-section">
-
-
-        <div class="section-title">
-
-            <h2>
-                Wedding Celebrations
-            </h2>
-
-            <p>
-                Relive the beautiful moments from the celebrations.
-            </p>
-
-        </div>
-
-
-
-        <div class="video-grid">
-
-
-            <!-- =========================
-                 PREVIOUS WEDDING MEMORIES
-            ========================== -->
-
-            <article
-                class="video-card"
-                data-title="Previous Wedding Memories"
-                data-video="https://drive.google.com/file/d/1rcPWyrEr3IPRQKyexuJiQMqmIVlYHupR/preview"
-            >
-
-                <div class="video-thumbnail">
-
-                    <div class="play-button"></div>
-
-                </div>
-
-
-                <div class="video-info">
-
-                    <h3>
-                        Previous Wedding Memories
-                    </h3>
-
-                    <p>
-                        Watch the beautiful memories from the wedding.
-                    </p>
-
-                </div>
-
-            </article>
-
-
-
-            <!-- =========================
-                 BARAT
-            ========================== -->
-
-            <article
-                class="video-card"
-                data-title="Barat Celebration"
-                data-video="https://drive.google.com/file/d/1ip4fmeNw7FB4lUht_4HTNJjJM3t87cHS/preview"
-            >
-
-                <div class="video-thumbnail">
-
-                    <div class="play-button"></div>
-
-                </div>
-
-
-                <div class="video-info">
-
-                    <h3>
-                        Barat Celebration
-                    </h3>
-
-                    <p>
-                        Enjoy the special moments from the Barat celebration.
-                    </p>
-
-                </div>
-
-            </article>
-
-
-
-            <!-- =========================
-                 WALIMA
-            ========================== -->
-
-            <article
-                class="video-card"
-                data-title="Walima Celebration"
-                data-video="https://drive.google.com/file/d/1p2RXktJmJ0toFE8WGleOCakwbxensq8L/preview"
-            >
-
-                <div class="video-thumbnail">
-
-                    <div class="play-button"></div>
-
-                </div>
-
-
-                <div class="video-info">
-
-                    <h3>
-                        Walima Celebration
-                    </h3>
-
-                    <p>
-                        Watch the memorable moments from the Walima.
-                    </p>
-
-                </div>
-
-            </article>
-
-
-
-            <!-- =========================
-                 GROOM MEHNDI
-            ========================== -->
-
-            <article
-                class="video-card"
-                data-title="Groom's Mehndi"
-                data-video="https://drive.google.com/file/d/1rkgvbP6KU3l1WvpOtFEY6BKDqAeQAg27/preview"
-            >
-
-                <div class="video-thumbnail">
-
-                    <div class="play-button"></div>
-
-                </div>
-
-
-                <div class="video-info">
-
-                    <h3>
-                        Groom's Mehndi
-                    </h3>
-
-                    <p>
-                        Celebrate the colorful moments from the groom's Mehndi.
-                    </p>
-
-                </div>
-
-            </article>
-
-
-
-            <!-- =========================
-                 BRIDE MEHNDI
-            ========================== -->
-
-            <article
-                class="video-card"
-                data-title="Bride's Mehndi"
-                data-video="https://drive.google.com/file/d/12gEOdghSYReH-Qd9KoQUxZFlB47b1Pqz/preview"
-            >
-
-                <div class="video-thumbnail">
-
-                    <div class="play-button"></div>
-
-                </div>
-
-
-                <div class="video-info">
-
-                    <h3>
-                        Bride's Mehndi
-                    </h3>
-
-                    <p>
-                        Relive the beautiful moments from the bride's Mehndi.
-                    </p>
-
-                </div>
-
-            </article>
-
-
-        </div>
-
-    </main>
-
-
-
-    <!-- =========================
-         FOOTER
-    ========================== -->
-
-    <footer>
-
-        Kasif Saleem Wedding Memories
-
-    </footer>
-
-
-
-    <!-- =========================
-         VIDEO MODAL
-    ========================== -->
-
-    <div
-        class="modal"
-        id="videoModal"
-        aria-hidden="true"
-        role="dialog"
-        aria-modal="true"
-    >
-
-
-        <div class="modal-content">
-
-
-            <!-- CLOSE BUTTON -->
-
-            <button
-                type="button"
-                class="close-button"
-                id="closeButton"
-                aria-label="Close video"
-                title="Close"
-            >
-                &times;
-            </button>
-
-
-
-            <!-- VIDEO -->
-
-            <div class="video-wrapper">
-
-                <iframe
-                    id="videoFrame"
-                    src=""
-                    title="Wedding video"
-                    allow="autoplay; fullscreen; picture-in-picture"
-                    allowfullscreen
-                    webkitallowfullscreen
-                    mozallowfullscreen
-                ></iframe>
-
-            </div>
-
-
-
-            <!-- DESKTOP TITLE -->
-
-            <div
-                class="modal-title"
-                id="modalTitle"
-            ></div>
-
-
-        </div>
+    <!-- =====================================================
+         PARTICLES
+    ===================================================== -->
+
+    <div class="particles">
+
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
 
     </div>
 
 
 
-    <!-- =========================
+    <!-- =====================================================
+         HERO
+    ===================================================== -->
+
+    <header class="hero">
+
+        <div class="hero-content">
+
+            <div class="small-title">
+                A Wedding Story
+            </div>
+
+
+            <h1>
+
+                Kasif Saleem
+
+                <span>
+                    Wedding Memories
+                </span>
+
+            </h1>
+
+
+            <p class="hero-description">
+
+                Five beautiful chapters.
+                One unforgettable celebration.
+
+                Relive the laughter, traditions,
+                family and moments that made
+                this wedding special.
+
+            </p>
+
+
+            <a
+                href="#films"
+                class="explore-button"
+            >
+
+                Explore The Wedding
+
+                <span>
+                    ↓
+                </span>
+
+            </a>
+
+        </div>
+
+
+        <div class="scroll">
+            Scroll to explore
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MAIN
+    ===================================================== -->
+
+    <main
+        class="main"
+        id="films"
+    >
+
+
+        <!-- INTRO -->
+
+        <section class="intro">
+
+            <div class="intro-label">
+                The Wedding Movie
+            </div>
+
+
+            <h2>
+                Moments Worth Remembering
+            </h2>
+
+
+            <p>
+
+                Every celebration has a story.
+                Choose a chapter below and
+                watch the original wedding film.
+
+            </p>
+
+        </section>
+
+
+
+        <!-- =================================================
+             FILM GRID
+        ================================================= -->
+
+        <section class="film-grid">
+
+
+            <!-- =============================================
+                 FILM 01
+            ============================================== -->
+
+            <a
+                class="film-card"
+                href="https://drive.google.com/file/d/1rcPWyrEr3IPRQKyexuJiQMqmIVlYHupR/view"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                <div class="card-glow"></div>
+
+
+                <div class="card-top">
+
+                    <div class="number">
+                        01
+                    </div>
+
+                    <div class="film-label">
+                        Chapter One
+                    </div>
+
+                </div>
+
+
+                <div class="card-content">
+
+                    <h3>
+                        Previous Wedding Memories
+                    </h3>
+
+
+                    <p>
+                        A collection of beautiful
+                        moments from the wedding.
+                    </p>
+
+
+                    <span class="watch">
+
+                        <span class="play">
+                            ▶
+                        </span>
+
+                        Watch Film
+
+                    </span>
+
+                </div>
+
+
+                <div class="card-line"></div>
+
+            </a>
+
+
+
+            <!-- =============================================
+                 FILM 02
+            ============================================== -->
+
+            <a
+                class="film-card"
+                href="https://drive.google.com/file/d/1ip4fmeNw7FB4lUht_4HTNJjJM3t87cHS/view"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                <div class="card-glow"></div>
+
+
+                <div class="card-top">
+
+                    <div class="number">
+                        02
+                    </div>
+
+                    <div class="film-label">
+                        Chapter Two
+                    </div>
+
+                </div>
+
+
+                <div class="card-content">
+
+                    <h3>
+                        Barat Celebration
+                    </h3>
+
+
+                    <p>
+                        The energy, joy and unforgettable
+                        moments of the Barat.
+                    </p>
+
+
+                    <span class="watch">
+
+                        <span class="play">
+                            ▶
+                        </span>
+
+                        Watch Film
+
+                    </span>
+
+                </div>
+
+
+                <div class="card-line"></div>
+
+            </a>
+
+
+
+            <!-- =============================================
+                 FILM 03
+            ============================================== -->
+
+            <a
+                class="film-card"
+                href="https://drive.google.com/file/d/1p2RXktJmJ0toFE8WGleOCakwbxensq8L/view"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                <div class="card-glow"></div>
+
+
+                <div class="card-top">
+
+                    <div class="number">
+                        03
+                    </div>
+
+                    <div class="film-label">
+                        Chapter Three
+                    </div>
+
+                </div>
+
+
+                <div class="card-content">
+
+                    <h3>
+                        Walima Celebration
+                    </h3>
+
+
+                    <p>
+                        A beautiful celebration filled
+                        with happiness and memories.
+                    </p>
+
+
+                    <span class="watch">
+
+                        <span class="play">
+                            ▶
+                        </span>
+
+                        Watch Film
+
+                    </span>
+
+                </div>
+
+
+                <div class="card-line"></div>
+
+            </a>
+
+
+
+            <!-- =============================================
+                 FILM 04
+            ============================================== -->
+
+            <a
+                class="film-card"
+                href="https://drive.google.com/file/d/1rkgvbP6KU3l1WvpOtFEY6BKDqAeQAg27/view"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                <div class="card-glow"></div>
+
+
+                <div class="card-top">
+
+                    <div class="number">
+                        04
+                    </div>
+
+                    <div class="film-label">
+                        Chapter Four
+                    </div>
+
+                </div>
+
+
+                <div class="card-content">
+
+                    <h3>
+                        Groom's Mehndi
+                    </h3>
+
+
+                    <p>
+                        Colorful moments from the
+                        groom's Mehndi celebration.
+                    </p>
+
+
+                    <span class="watch">
+
+                        <span class="play">
+                            ▶
+                        </span>
+
+                        Watch Film
+
+                    </span>
+
+                </div>
+
+
+                <div class="card-line"></div>
+
+            </a>
+
+
+
+            <!-- =============================================
+                 FILM 05
+            ============================================== -->
+
+            <a
+                class="film-card"
+                href="https://drive.google.com/file/d/12gEOdghSYReH-Qd9KoQUxZFlB47b1Pqz/view"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                <div class="card-glow"></div>
+
+
+                <div class="card-top">
+
+                    <div class="number">
+                        05
+                    </div>
+
+                    <div class="film-label">
+                        Chapter Five
+                    </div>
+
+                </div>
+
+
+                <div class="card-content">
+
+                    <h3>
+                        Bride's Mehndi
+                    </h3>
+
+
+                    <p>
+                        Beautiful memories from the
+                        bride's Mehndi celebration.
+                    </p>
+
+
+                    <span class="watch">
+
+                        <span class="play">
+                            ▶
+                        </span>
+
+                        Watch Film
+
+                    </span>
+
+                </div>
+
+
+                <div class="card-line"></div>
+
+            </a>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             QUOTE
+        ================================================= -->
+
+        <section class="quote">
+
+            <div class="quote-symbol">
+                “
+            </div>
+
+
+            <p>
+
+                Some moments become memories.
+                Some memories become a story.
+
+            </p>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ===================================================== -->
+
+    <footer>
+
+        Kasif Saleem · Wedding Memories
+
+    </footer>
+
+
+
+    <!-- =====================================================
          JAVASCRIPT
-    ========================== -->
+    ===================================================== -->
 
     <script>
 
-        const modal =
-            document.getElementById("videoModal");
+        /*
+         * 3D card movement on desktop.
+         * Disabled on mobile.
+         */
 
-        const videoFrame =
-            document.getElementById("videoFrame");
-
-        const modalTitle =
-            document.getElementById("modalTitle");
-
-        const closeButton =
-            document.getElementById("closeButton");
-
-        const videoCards =
-            document.querySelectorAll(".video-card");
+        const cards =
+            document.querySelectorAll(".film-card");
 
 
-
-        /* =========================
-           OPEN VIDEO
-        ========================== */
-
-        function openVideo(card) {
-
-            const videoURL =
-                card.dataset.video;
-
-            const title =
-                card.dataset.title;
-
-
-            modalTitle.textContent =
-                title;
-
-
-            /*
-             * Load Google Drive preview.
-             *
-             * autoplay=1 asks Google Drive
-             * to start playback automatically.
-             */
-
-            videoFrame.src =
-                videoURL + "?autoplay=1";
-
-
-            modal.classList.add("active");
-
-
-            modal.setAttribute(
-                "aria-hidden",
-                "false"
-            );
-
-
-            document.body.classList.add(
-                "modal-open"
-            );
-
-
-            /*
-             * Focus close button.
-             */
-
-            setTimeout(function () {
-
-                closeButton.focus();
-
-            }, 100);
-
-        }
-
-
-
-        /* =========================
-           CLOSE VIDEO
-        ========================== */
-
-        function closeVideo() {
-
-            /*
-             * Clearing iframe stops
-             * the video immediately.
-             */
-
-            videoFrame.src = "";
-
-
-            modal.classList.remove(
-                "active"
-            );
-
-
-            modal.setAttribute(
-                "aria-hidden",
-                "true"
-            );
-
-
-            document.body.classList.remove(
-                "modal-open"
-            );
-
-        }
-
-
-
-        /* =========================
-           CARD CLICK
-        ========================== */
-
-        videoCards.forEach(function(card) {
+        cards.forEach(function(card) {
 
             card.addEventListener(
-                "click",
+                "mousemove",
+                function(event) {
+
+                    if (window.innerWidth <= 760) {
+                        return;
+                    }
+
+
+                    const rect =
+                        card.getBoundingClientRect();
+
+
+                    const x =
+                        event.clientX - rect.left;
+
+
+                    const y =
+                        event.clientY - rect.top;
+
+
+                    const centerX =
+                        rect.width / 2;
+
+
+                    const centerY =
+                        rect.height / 2;
+
+
+                    const rotateY =
+                        ((x - centerX) / centerX) * 5;
+
+
+                    const rotateX =
+                        ((centerY - y) / centerY) * 5;
+
+
+                    card.style.transform =
+                        `
+                        perspective(1200px)
+                        rotateX(${rotateX}deg)
+                        rotateY(${rotateY}deg)
+                        translateY(-6px)
+                        scale(1.01)
+                        `;
+
+                }
+            );
+
+
+            card.addEventListener(
+                "mouseleave",
                 function() {
 
-                    openVideo(card);
+                    card.style.transform =
+                        `
+                        perspective(1200px)
+                        rotateX(0deg)
+                        rotateY(0deg)
+                        translateY(0)
+                        scale(1)
+                        `;
 
                 }
             );
 
         });
 
-
-
-        /* =========================
-           CLOSE BUTTON CLICK
-        ========================== */
-
-        closeButton.addEventListener(
-            "click",
-            function() {
-
-                closeVideo();
-
-            }
-        );
-
-
-
-        /* =========================
-           CLICK OUTSIDE VIDEO
-        ========================== */
-
-        modal.addEventListener(
-            "click",
-            function(event) {
-
-                if (
-                    event.target === modal
-                ) {
-
-                    closeVideo();
-
-                }
-
-            }
-        );
-
-
-
-        /* =========================
-           ESC KEY
-        ========================== */
-
-        document.addEventListener(
-            "keydown",
-            function(event) {
-
-                if (
-                    event.key === "Escape" &&
-                    modal.classList.contains("active")
-                ) {
-
-                    closeVideo();
-
-                }
-
-            }
-        );
-
-
     </script>
+
 
 </body>
 
